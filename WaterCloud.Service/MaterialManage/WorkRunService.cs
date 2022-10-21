@@ -91,8 +91,8 @@ namespace WaterCloud.Service.MaterialManage
             SortedDictionary<string, float> outProductDic = new SortedDictionary<string, float>();
             DateTime startTime = new DateTime(DateTime.Now.Year, 1, 1); ;
             var works = uniwork.IQueryable<WorkOrderDetailEntity>().Where(a => a.F_RealEndTime >= startTime && a.F_WorkOrderState > 1).ToList();
-            var hotList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 9 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
-            var weldList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 2 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
+            var hotList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 10 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
+            var weldList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 15 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
             var laserList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 6 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
             for (int i = 1; i <= DateTime.Now.Month; i++)
             {

@@ -52,4 +52,5 @@ layui.config({
     numberInput: 'numberInput/numberInput',//数字输入框组件
     labelGeneration: 'labelGeneration/labelGeneration',//动态标签组件
     HandwrittenSignature: 'HandwrittenSignature/HandwrittenSignature',//签名组件
+    inputAttr: 'inputAttr/inputAttr',//输入框扩展
 });

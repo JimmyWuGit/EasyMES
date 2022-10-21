@@ -430,10 +430,10 @@ namespace WaterCloud.Service.PlanManage
                         {
                             continue;
                         }
-                        int tempnum = (int)item.F_NeedNum / (ordernote.F_DayNum ?? 0);
-                        int palletnum = tempnum / 22;
+						var tempMaterial = warmMaterials.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
+						int tempnum = (int)item.F_NeedNum / (ordernote.F_DayNum ?? 0);
+                        int palletnum = tempnum / (int)tempMaterial.F_ContainerNum;
                         var tempout = new OutStorageEntity();
-                        var tempMaterial = warmMaterials.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
                         tempout.Create();
                         tempout.F_DoneNum = 0;
                         tempout.F_EnabledMark = false;
@@ -442,15 +442,15 @@ namespace WaterCloud.Service.PlanManage
                             tempout.F_EnabledMark = true;
                         }
                         tempout.F_MaterialId = item.F_MaterialId;
-                        tempout.F_Num = palletnum * 22;
+                        tempout.F_Num = palletnum * (int)tempMaterial.F_ContainerNum;
                         if (item.F_NeedNum - item.F_DoneNum < tempout.F_Num)
                         {
                             tempout.F_Num = item.F_NeedNum - item.F_DoneNum;
                         }
                         if (storage.F_Num < tempout.F_Num)
                         {
-                            palletnum = (int)storage.F_Num / 22;
-                            tempout.F_Num = palletnum * 22;
+                            palletnum = (int)storage.F_Num / (int)tempMaterial.F_ContainerNum;
+                            tempout.F_Num = palletnum * (int)tempMaterial.F_ContainerNum;
                         }
                         storage.F_Num -= tempout.F_Num;
                         item.F_DoneNum += tempout.F_Num;

@@ -197,14 +197,6 @@
                  }
                  var ids = [];
                  for (var i = 0; i < data.length; i++) {
-                     if (data[i].F_EqpState != 0) {
-                         common.modalMsg("设备使用中，无法操作", "warning");
-                         return false;
-                     }
-                     if (data[i].F_EqpUse == 7) {
-                         common.modalMsg("模具请从模具管理操作", "warning");
-                         return false;
-                     }
                      ids.push(data[i].F_Id);
                  }
                  common.deleteForm({
@@ -221,10 +213,6 @@
                      common.modalMsg("未选中数据", "warning");
                      return false;
                  }
-                 if (data[0].F_EqpUse == 7) {
-                     common.modalMsg("模具请从模具管理操作", "warning");
-                     return false;
-                 }
                  common.modalOpen({
                      title: "编辑界面",
                      url: "/EquipmentManage/Equipment/Form?keyValue=" + data[0].F_Id,
@@ -235,10 +223,6 @@
              else if (obj.event === 'details') {
                  if (data.length == 0) {
                      common.modalMsg("未选中数据", "warning");
-                     return false;
-                 }
-                 if (data[0].F_EqpUse == 7) {
-                     common.modalMsg("模具请从模具管理操作", "warning");
                      return false;
                  }
                  common.modalOpen({
@@ -258,8 +242,8 @@
                      common.modalMsg("子设备无需绑定", "warning");
                      return false;
                  }
-                 if (data[0].F_EqpUse == 7) {
-                     common.modalMsg("模具无需绑定", "warning");
+                 if (data[0].F_EqpType != 0) {
+                     common.modalMsg("固定设备才能绑定", "warning");
                      return false;
                  }
                  common.modalOpen({
@@ -314,10 +298,10 @@
                      common.modalMsg("子设备无需绑定", "warning");
                      return false;
                  }
-                 if (data[0].F_EqpUse == 7) {
-                     common.modalMsg("模具无需绑定", "warning");
-                     return false;
-                 }
+                if (data[0].F_EqpType != 0) {
+                    common.modalMsg("固定设备才能绑定", "warning");
+                    return false;
+                }
                  common.openNewTabByIframe({
                      title: "区域绑定",
                      href: "/EquipmentManage/EqpArea/Index?keyValue=" + data[0].F_Id,
@@ -349,10 +333,6 @@
                  });
              }
              else if (obj.event === 'edit') {
-                 if (obj.data.F_EqpUse == 7) {
-                     common.modalMsg("模具请从模具管理操作", "warning");
-                     return false;
-                 }
                  common.modalOpen({
                      title: "编辑界面",
                      url: "/EquipmentManage/Equipment/Form?keyValue=" + obj.data.F_Id,
@@ -361,10 +341,6 @@
                  });
              }
              else if (obj.event === 'details') {
-                 if (obj.data.F_EqpUse == 7) {
-                     common.modalMsg("模具请从模具管理操作", "warning");
-                     return false;
-                 }
                  common.modalOpen({
                      title: "查看界面",
                      url: "/EquipmentManage/Equipment/Details?keyValue=" + obj.data.F_Id,
@@ -378,10 +354,10 @@
                      common.modalMsg("子设备无需绑定", "warning");
                      return false;
                  }
-                 if (obj.data.F_EqpUse == 7) {
-                     common.modalMsg("模具无需绑定", "warning");
-                     return false;
-                 }
+                if (data[0].F_EqpType != 0) {
+                    common.modalMsg("固定设备才能绑定", "warning");
+                    return false;
+                }
                  common.openNewTabByIframe({
                      title: "区域绑定",
                      href: "/EquipmentManage/EqpArea/Index?keyValue=" + obj.data.F_Id,
@@ -392,10 +368,10 @@
                      common.modalMsg("子设备无需绑定", "warning");
                      return false;
                  }
-                 if (obj.data.F_EqpUse == 7) {
-                     common.modalMsg("模具无需绑定", "warning");
-                     return false;
-                 }
+                if (data[0].F_EqpType != 0) {
+                    common.modalMsg("固定设备才能绑定", "warning");
+                    return false;
+                }
                  common.modalOpen({
                      title: "物料绑定",
                      url: "/EquipmentManage/Equipment/MaterialForm?keyValue=" + obj.data.F_Id,

@@ -194,7 +194,7 @@ GROUP BY d.f_id, d.F_EqpName)g on t.F_Id = g.f_id";
         {
             if (DateTime.Now.Hour == 8 || DateTime.Now.Hour == 20) return;
 
-            var eqp = _context.Query<EquipmentEntity>(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9);
+            var eqp = _context.Query<EquipmentEntity>(t => t.F_EqpType == 0 && t.F_ParentId == "0");
             var workplan = _context.Query<WorkPlanEntity>(t => Sql.DiffDays(t.F_Date, date) == 0 && classnum == t.F_ClassNum);
 
             var query = eqp.LeftJoin<WorkPlanEntity>(workplan, (a, b) => a.F_Id == b.F_EqpId).Select((a, b) => new stopResultEntity
@@ -243,7 +243,7 @@ GROUP BY d.f_id, d.F_EqpName)g on t.F_Id = g.f_id";
         /// <returns></returns>
         public async Task setIsLoadingCompletedIntime(DateTime datebgn, DateTime dateend, string dateString, string shift)
         {
-            var eqp = _context.Query<EquipmentEntity>(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9)
+            var eqp = _context.Query<EquipmentEntity>(t => t.F_EqpType == 0 && t.F_ParentId == "0")
                 .Select(t => new stopResultEntity
                 {
                     F_EqpName = t.F_EqpName,

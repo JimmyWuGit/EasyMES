@@ -35,7 +35,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
         public async Task<ActionResult> GetTreeGridJson(string keyword)
         {
             var data = await _eqpservice.GetLookList();
-            data = data.Where(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9).ToList();
+            data = data.Where(t => t.F_EqpType == 0).ToList();
             if (!string.IsNullOrEmpty(keyword))
             {
                 data = data.TreeWhere(t => t.F_EqpName.Contains(keyword));
@@ -58,7 +58,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
         public async Task<ActionResult> GetEqpListJson(string keyword)
         {
             var data = await _eqpservice.GetList(keyword);
-            data = data.Where(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9).OrderBy(t=>t.F_EqpName).ToList();
+            data = data.Where(t => t.F_EqpType == 0).OrderBy(t=>t.F_EqpName).ToList();
             return Content(data.ToJson());
         }
 
@@ -67,7 +67,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
         public async Task<ActionResult> GetEqpListJsonxmSelect(string keyword)
         {
             var datanew = await _eqpservice.GetList(keyword);
-            var data = datanew.Where(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9).OrderBy(t => t.F_EqpName)
+            var data = datanew.Where(t => t.F_EqpType == 0).OrderBy(t => t.F_EqpName)
                 .Select(t=>new { 
                     name=t.F_EqpName,
                     value=t.F_Id

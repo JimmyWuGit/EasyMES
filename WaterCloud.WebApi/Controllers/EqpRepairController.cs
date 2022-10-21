@@ -36,7 +36,7 @@ namespace WaterCloud.WebApi.Controllers
         public async Task<AlwaysResult> getEqplist()
         {
             var data = await equipmentService.GetList();
-            data = data.Where(t => t.F_EqpUse == 2 || t.F_EqpUse == 6 || t.F_EqpUse == 9).OrderBy(t => t.F_EqpName).ToList();
+            data = data.Where(t => t.F_EqpType == 0 && t.F_ParentId == "0").OrderBy(t => t.F_EqpName).ToList();
             return new AlwaysResult<List<EquipmentEntity>> { state = ResultType.success.ToString(), data = data };
         }
 

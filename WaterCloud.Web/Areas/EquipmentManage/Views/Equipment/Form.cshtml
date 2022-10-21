@@ -17,7 +17,7 @@
             $('#F_MaintainType').parent().parent().addClass('layui-hide');
             $('#F_MaintainNum').parent().parent().addClass('layui-hide');
             initControl();
-            EqpTypeChange("");
+            EqpTypeChange("0");
             var eqpUse;
             if (!!keyValue) {
                 common.ajax({
@@ -42,7 +42,7 @@
             $("#F_ParentId").bindSelect({
                 url: "/EquipmentManage/Equipment/GetListJson",
                 id: "F_Id",
-                text: "F_EqpName"
+                text: "F_EqpName",
             });
             $("#F_EqpType").bindSelect({
                 data: top.clients.dataItems['Mes_EqpType'],

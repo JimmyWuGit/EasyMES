@@ -267,13 +267,13 @@ namespace WaterCloud.Service.ProcessManage
             var ids = eqpList.Select(a => a.F_Id).ToList();
             var useList = userTimeList.ToList<EqpWorkTimeEntity>();
             var temps = eqpList.Select(a => a.F_Id).ToList();
-            var mould = eqpList.Where(a => a.F_EqpUse == 7).FirstOrDefault();
-            var master = eqpList.Where(a => a.F_IsMaster == true).FirstOrDefault();
+            var items = await itemsApp.GetItemList("Mes_MoveEqpSetting");
+            var moulditems = items.FirstOrDefault(a => a.F_ItemCode == "2").F_Description.Split(",");
+            var fixtureitems = items.FirstOrDefault(a => a.F_ItemCode == "1").F_Description.Split(",");
+			var mould = eqpList.Where(a => moulditems.Contains(a.F_EqpUse.ToString())).FirstOrDefault();
+			var fixture = eqpList.Where(a => fixtureitems.Contains(a.F_EqpUse.ToString())).FirstOrDefault();
+			var master = eqpList.Where(a => a.F_IsMaster == true).FirstOrDefault();
             int mouldCount = 0;
-            if (master.F_EqpUse == 9 && eqpList.Where(a => a.F_EqpUse == 7).Count() == 0)
-            {
-                throw new Exception("热压设备必须带模具");
-            }
             //检测设备有没有问题
             if (eqpList.Count() != uniwork.IQueryable<EquipmentEntity>(a => ids.Contains(a.F_Id) && a.F_EqpState < 2).Count())
             {
@@ -294,7 +294,6 @@ namespace WaterCloud.Service.ProcessManage
                     mould = null;
                 }
             }
-            var fixture = eqpList.Where(a => a.F_EqpUse == 18).FirstOrDefault();
             int count = uniwork.IQueryable<WorkOrderDetailEqpBandingEntity>(a => temps.Contains(a.F_EqpId))
              .InnerJoin<WorkOrderDetailEntity>((a, b) => a.F_WorkOrderDetailId == b.F_Id && b.F_WorkOrderState == 1)
             .Select((a, b) => b).Count();
@@ -353,7 +352,7 @@ namespace WaterCloud.Service.ProcessManage
                 entity.F_EqpUse = item.F_EqpUse;
                 entity.F_MouldNum = 0;
                 entity.F_IsMaster = item.F_IsMaster;
-                if (item.F_EqpUse == 7)
+                if (moulditems.Contains(item.F_EqpUse.ToString()))
                 {
                     var cout = uniwork.IQueryable<WorkOrderDetailEntity>(a => a.F_WorkOrderState == 1 && a.F_Id != keyValue).InnerJoin<WorkOrderDetailEqpBandingEntity>((a, b) => a.F_Id == b.F_WorkOrderDetailId && b.F_EqpUse == 7 && b.F_EqpId == item.F_Id)
                         .Select((a, b) => b.F_MouldNum).ToList().Sum() ?? 0;

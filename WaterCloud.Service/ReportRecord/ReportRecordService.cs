@@ -1304,25 +1304,6 @@ namespace WaterCloud.Service.ReportRecord
             await uniwork.Delete<OutStorageInfoEntity>(expression2);
             uniwork.Commit();
         }
-        public async Task RemoveBadRecord(string keepTime)
-        {
-            DateTime operateTime = DateTime.Now;
-            if (keepTime == "7")            //保留近一周
-            {
-                operateTime = DateTime.Now.AddDays(-7);
-            }
-            else if (keepTime == "1")       //保留近一个月
-            {
-                operateTime = DateTime.Now.AddMonths(-1);
-            }
-            else if (keepTime == "3")       //保留近三个月
-            {
-                operateTime = DateTime.Now.AddMonths(-2);
-            }
-            var expression = ExtLinq.True<BadMaterialEntity>();
-            expression = expression.And(t => t.F_CreatorTime <= operateTime);
-            await uniwork.Delete<BadMaterialEntity>(expression);
-        }
         public async Task RemoveEqpUseRecord(string keepTime)
         {
             DateTime operateTime = DateTime.Now;
