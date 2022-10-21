@@ -9,7 +9,7 @@
 - 不包含任何采集程序及接口，使用场景为零部件离散型生产
 - 此产品为商业授权，使用文档授权后提供，授权联系作者，作者QQ295228902
 - 集成钉钉，才能完成钉钉消息推送，请知悉
-- WaterCloud讨论交流QQ群（1065447456）[![](https://pub.idqqimg.com/wpa/images/group.png)](https://jq.qq.com/?_wv=1027&k=51RHQVG)
+- 讨论交流QQ群（1065447456）[![](https://pub.idqqimg.com/wpa/images/group.png)](https://jq.qq.com/?_wv=1027&k=51RHQVG)
 - 数据库目前有Mysql的脚本，可以转其他的
 - 由于历史原因，业务复杂，暂不修改ORM及升级底层版本
 
