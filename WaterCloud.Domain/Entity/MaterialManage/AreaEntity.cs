@@ -81,6 +81,9 @@ namespace WaterCloud.Domain.MaterialManage
         /// true货架 false叠加
         /// </summary>
         public bool? F_StackType { get; set; }
-
-    }
+        /// <summary>
+        /// 库位前缀几位
+        /// </summary>
+        public int F_Prefix { get; set; } = 2;
+	}
 }

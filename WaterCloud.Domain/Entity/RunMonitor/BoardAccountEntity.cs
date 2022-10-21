@@ -73,10 +73,5 @@ namespace WaterCloud.Domain.RunMonitor
         /// </summary>
         /// <returns></returns>
         public string F_DeleteUserId { get; set; }
-        /// <summary>
-        /// 所属设备
-        /// </summary>
-        /// <returns></returns>
-        public string F_EqpId { get; set; }
     }
 }

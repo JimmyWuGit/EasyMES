@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 20/10/2022 15:51:50
+ Date: 21/10/2022 10:48:13
 */
 
 SET NAMES utf8mb4;
@@ -36,6 +36,7 @@ CREATE TABLE `mes_area`  (
   `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
   `F_NEEDRULE` tinyint NULL DEFAULT NULL COMMENT '是否需要先进先出',
   `F_STACKTYPE` tinyint NULL DEFAULT NULL COMMENT 'true货架 false叠加',
+  `F_PREFIX` int NOT NULL COMMENT '库位前缀',
   PRIMARY KEY (`F_ID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
 
@@ -70,6 +71,30 @@ CREATE TABLE `mes_batchinfo`  (
 
 -- ----------------------------
 -- Records of mes_batchinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mes_boardaccount
+-- ----------------------------
+DROP TABLE IF EXISTS `mes_boardaccount`;
+CREATE TABLE `mes_boardaccount`  (
+  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'Id',
+  `F_ACCOUNT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '账号',
+  `F_PASSWORD` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
+  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '是否启用',
+  `F_DELETEMARK` tinyint NULL DEFAULT NULL COMMENT '逻辑删除标志',
+  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
+  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL COMMENT '最后修改时间',
+  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '最后修改人',
+  `F_DELETETIME` datetime NULL DEFAULT NULL COMMENT '删除时间',
+  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '删除人',
+  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '内容',
+  PRIMARY KEY (`F_ID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mes_boardaccount
 -- ----------------------------
 
 -- ----------------------------
@@ -2309,6 +2334,11 @@ INSERT INTO `sys_module` VALUES ('08d94670-7854-4707-8a1e-256200820167', '732b02
 INSERT INTO `sys_module` VALUES ('08d94b44-8770-42cb-8dc2-ef4c67a7b162', '5c4c18b1-88be-4819-ab5a-199bba8ae070', 3, 'CheckDateStorage', '盘点记录', '', '/ReportRecord/CheckDateStorage/Index', 'iframe', 1, 0, 0, 0, 0, 0, 12, 0, 1, '', '2021-07-20 14:06:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-07-20 14:06:49', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
 INSERT INTO `sys_module` VALUES ('08d94c14-e1b5-4b56-8873-37fb81ebaad3', '08d935e2-5205-4f27-8a80-331f2856ee0e', 3, 'Order', '订单管理', 'fa fa-500px', '/PlanManage/Order/Index', 'iframe', 1, 0, 0, 0, 0, 0, 3, 0, 1, '', '2021-07-21 14:58:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-07-26 09:15:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
 INSERT INTO `sys_module` VALUES ('08d97330-6dd4-4435-851b-d6b12ea91518', '462027E0-0848-41DD-BCC3-025DCAE65555', 3, 'ReportTemplate', '报表模板', 'fa fa-area-chart', '/SystemManage/ReportTemplate/Index', 'iframe', 1, 0, 0, 0, 0, 0, 11, 0, 1, '', '2021-09-09 09:23:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-09-09 13:30:52', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
+INSERT INTO `sys_module` VALUES ('08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 'd5be1a41-547d-4001-8ae7-f6568e4d6cfe', 2, 'RunMonitor', '运营监控', 'fa fa-tv', NULL, 'expand', 1, 1, 0, 0, 0, 0, 96, 0, 1, '', '2022-10-21 09:50:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '');
+INSERT INTO `sys_module` VALUES ('08dab30a-d896-4019-8066-7001d27a834e', '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 3, 'BoardAccount', '看板账户', 'fa fa-address-book', '/RunMonitor/BoardAccount/Index', 'iframe', 1, 0, 0, 0, 0, 0, 0, 0, 1, '', '2022-10-21 10:20:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '');
+INSERT INTO `sys_module` VALUES ('08dab30b-0c23-4b79-8743-35952367b7d8', '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 3, 'LogisticScanScreen', '物流信息看板', 'fa fa-clock-o', '/RunMonitor/LogisticScanScreen/Index', 'blank', 1, 0, 0, 0, 0, 0, 1, 0, 1, '', '2022-10-21 10:22:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '');
+INSERT INTO `sys_module` VALUES ('08dab30b-24a5-4bd2-8124-6f5037002a73', '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 3, 'EqpScanScreen', '设备扫码看板', 'fa fa-sheqel', '/RunMonitor/EqpScanScreen/Index', 'blank', 1, 0, 0, 0, 0, 0, 2, 0, 1, '', '2022-10-21 10:22:47', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '');
+INSERT INTO `sys_module` VALUES ('08dab30b-4c9e-445f-82a9-e0264f432d57', '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 3, 'SmartScreen', '总生产情况', 'fa fa-file-movie-o', '/RunMonitor/SmartScreen/Index', 'blank', 1, 0, 0, 0, 0, 0, 3, 0, 1, '', '2022-10-21 10:23:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '');
 INSERT INTO `sys_module` VALUES ('0a479fd4-57ca-46db-a8bf-c30d5871b1f9', '5c841e96-00f1-47ea-aec7-d197278562de', 3, 'ControlJobPlaner', '调度人员', 'fa fa-user-secret', '/ClassTask/ControlJobPlaner/Index', 'iframe', 1, 0, 0, 0, 0, 0, 0, 0, 1, '', '2021-01-18 14:53:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-18 15:18:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('0bddfade-d5b4-46c3-b0b6-45fb9f728e38', '5c4c18b1-88be-4819-ab5a-199bba8ae070', 3, 'ReturnMaterialReport', '领用退回记录', '', '/ReportRecord/ReturnMaterialReport/Index', 'iframe', 1, 0, 0, 0, 0, 0, 6, 0, 1, '', '2021-02-26 08:50:46', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-02-26 08:55:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
 INSERT INTO `sys_module` VALUES ('101358e6-eb92-431a-9f05-949f05738506', 'd5be1a41-547d-4001-8ae7-f6568e4d6cfe', 2, 'MaterialManage', '生产管理', 'fa fa-shopping-cart', NULL, 'expand', 1, 1, 0, 0, 0, 0, 3, 0, 1, '', '2020-11-18 10:43:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-06-23 09:03:26', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
@@ -3402,6 +3432,8 @@ CREATE TABLE `sys_printtemplate`  (
 -- ----------------------------
 -- Records of sys_printtemplate
 -- ----------------------------
+INSERT INTO `sys_printtemplate` VALUES ('08dab30e-3e4a-4dab-8536-08eb819a63de', '二维码编号名称模板', '/file/code1.frx', 0, 1, '', '2022-10-21 10:44:58', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '二维码参数barId；名称参数name：编号参数code');
+INSERT INTO `sys_printtemplate` VALUES ('08dab30e-5e26-442c-8ad3-8cb4bb9409dd', '出入库单据模板', '/file/code2.frx', 0, 1, '', '2022-10-21 10:45:52', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '二维码参数barId;名称参数name;编号参数code;数量参数num;');
 
 -- ----------------------------
 -- Table structure for sys_printtemplatehis
@@ -3661,7 +3693,6 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('08d96e82-89ea-4ed8-89fb-9520423dbcf7', 'qianweihong', '钱玮鸿', NULL, NULL, 1, NULL, '', '', '', NULL, NULL, NULL, 'd69fd66a-6a77-4011-8a25-53a79bdf5001', '5AB270C0-5D33-4203-A54F-4552699FDA3C', 'c987d51f-2d82-4286-bfb5-bdf679975803', 'bb5451c9-388c-49c1-a481-69810373bca1', 0, 0, 0, 0, NULL, 0, 1, NULL, '2021-09-03 10:28:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '7181');
 INSERT INTO `sys_user` VALUES ('9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', 'admin', '超级管理员', '超级管理员', NULL, 1, '2020-03-28 00:00:00', '13600000001', '3333', NULL, NULL, NULL, NULL, 'd69fd66a-6a77-4011-8a25-53a79bdf5001', '5AB270C0-5D33-4203-A54F-4552699FDA3C', NULL, NULL, 1, 0, 0, 0, NULL, 0, 1, '系统内置账户', '2016-07-20 00:00:00', NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, NULL, NULL, 0, '7181');
 
 -- ----------------------------

@@ -82,6 +82,80 @@ namespace WaterCloud.Service.MaterialManage
             var data = uniwork.IQueryable<EqpMaterialUseEntity>(a => a.F_DoneNum != a.F_Num && a.F_EqpName == eqpName && a.F_TransferBoxCode==code).FirstOrDefault();
             return data;
         }
+
+        public async Task<object> GetBoardDataJson()
+        {
+            SortedDictionary<int, float> planDic = new SortedDictionary<int, float>();
+            SortedDictionary<int, float> realDic = new SortedDictionary<int, float>();
+            SortedDictionary<int, double> passRateDic = new SortedDictionary<int, double>();
+            SortedDictionary<string, float> outProductDic = new SortedDictionary<string, float>();
+            DateTime startTime = new DateTime(DateTime.Now.Year, 1, 1); ;
+            var works = uniwork.IQueryable<WorkOrderDetailEntity>().Where(a => a.F_RealEndTime >= startTime && a.F_WorkOrderState > 1).ToList();
+            var hotList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 9 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
+            var weldList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 2 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
+            var laserList = uniwork.IQueryable<EquipmentEntity>().Where(a => a.F_ParentId == "0" && a.F_EqpUse == 6 && a.F_EnabledMark == true && a.F_DeleteMark == false).Select(a => a.F_Id).ToList();
+            for (int i = 1; i <= DateTime.Now.Month; i++)
+            {
+                float plannum = works.Where(a => a.F_RealEndTime >= startTime.AddMonths(i - 1) && a.F_RealEndTime < startTime.AddMonths(i)).Sum(a => a.F_PlanNum) ?? 0;
+                float realnum = works.Where(a => a.F_RealEndTime >= startTime.AddMonths(i - 1) && a.F_RealEndTime < startTime.AddMonths(i)).Sum(a => a.F_DoneNum) ?? 0;
+                float badnum = works.Where(a => a.F_RealEndTime >= startTime.AddMonths(i - 1) && a.F_RealEndTime < startTime.AddMonths(i)).Sum(a => a.F_BadNum) ?? 0;
+                planDic.Add(i, plannum);
+                realDic.Add(i, realnum);
+                if (realnum == 0)
+                {
+                    passRateDic.Add(i, 0);
+                }
+                else
+                {
+                    passRateDic.Add(i, Math.Round((realnum - badnum) / realnum, 4) * 100);
+                }
+            }
+            foreach (var item in works.GroupBy(a => a.F_MaterialId).Select(a => new { a.Key, num = a.Sum(a => a.F_DoneNum) }))
+            {
+                var material = await uniwork.FindEntity<MaterialEntity>(item.Key);
+                outProductDic.Add(material.F_MaterialName, item.num ?? 0);
+            }
+            if (outProductDic.Count == 0)
+            {
+                outProductDic.Add("无数据", 0);
+            }
+            var hotworks = uniwork.IQueryable<WorkOrderDetailEntity>().Where(a => a.F_RealEndTime >= startTime && a.F_WorkOrderState > 1)
+                .InnerJoin<WorkOrderDetailEqpBandingEntity>((a, b) => a.F_Id == b.F_WorkOrderDetailId && b.F_IsMaster == true && hotList.Contains(b.F_EqpId))
+                .Select((a, b) => a);
+            float hotPlanNum = hotworks.Sum(a => a.F_PlanNum) ?? 0;
+            float hotRealNum = hotworks.Sum(a => a.F_DoneNum) ?? 0;
+            float hotbadNum = hotworks.Sum(a => a.F_BadNum) ?? 0;
+            var hotPassRate = (hotRealNum == 0 ? 0 : Math.Round((hotRealNum - hotbadNum) / hotRealNum, 4) * 100).ToString("f2");
+            var hotFinishRate = (hotPlanNum == 0 ? 0 : Math.Round(hotRealNum / hotPlanNum, 4) * 100).ToString("f2");
+
+            var weldworks = uniwork.IQueryable<WorkOrderDetailEntity>().Where(a => a.F_RealEndTime >= startTime && a.F_WorkOrderState > 1)
+                .InnerJoin<WorkOrderDetailEqpBandingEntity>((a, b) => a.F_Id == b.F_WorkOrderDetailId && b.F_IsMaster == true && weldList.Contains(b.F_EqpId))
+                .Select((a, b) => a);
+            float weldPlanNum = weldworks.Sum(a => a.F_PlanNum) ?? 0;
+            float weldRealNum = weldworks.Sum(a => a.F_DoneNum) ?? 0;
+            float weldbadNum = weldworks.Sum(a => a.F_BadNum) ?? 0;
+            var weldPassRate = (weldRealNum == 0 ? 0 : Math.Round((weldRealNum - weldbadNum) / weldRealNum, 4) * 100).ToString("f2");
+            var weldFinishRate = (weldPlanNum == 0 ? 0 : Math.Round(weldRealNum / weldPlanNum, 4) * 100).ToString("f2");
+            var laserworks = uniwork.IQueryable<WorkOrderDetailEntity>().Where(a => a.F_RealEndTime >= startTime && a.F_WorkOrderState > 1)
+                .InnerJoin<WorkOrderDetailEqpBandingEntity>((a, b) => a.F_Id == b.F_WorkOrderDetailId && b.F_IsMaster == true && laserList.Contains(b.F_EqpId))
+                .Select((a, b) => a);
+            float laserPlanNum = laserworks.Sum(a => a.F_PlanNum) ?? 0;
+            float laserRealNum = laserworks.Sum(a => a.F_DoneNum) ?? 0;
+            float laserbadNum = laserworks.Sum(a => a.F_BadNum) ?? 0;
+            var laserPassRate = (laserRealNum == 0 ? 0 : Math.Round((laserRealNum - laserbadNum) / laserRealNum, 4)*100).ToString("f2");
+            var laserFinishRate = (laserPlanNum == 0 ? 0 : Math.Round(laserRealNum / laserPlanNum, 4) * 100).ToString("f2");
+            var data = new
+            {
+                plans = planDic,
+                reals = realDic,
+                passRates = passRateDic,
+                outProducts = outProductDic,
+                hot = new { hotPlanNum, hotRealNum, hotbadNum, hotPassRate, hotFinishRate },
+                weld = new { weldPlanNum, weldRealNum, weldbadNum, weldPassRate, weldFinishRate },
+                laser = new { laserPlanNum, laserRealNum, laserbadNum, laserPassRate, laserFinishRate },
+            };
+            return data;
+        }
         #endregion
 
         #region 提交数据

@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using WaterCloud.Code;
-using WaterCloud.Domain.EquipmentManage;
 using WaterCloud.Domain.MaterialManage;
 using WaterCloud.Service.EquipmentManage;
 using WaterCloud.Service.MaterialManage;
@@ -78,6 +77,27 @@ namespace WaterCloud.WebApi.Controllers
                 var first = data.Where(a => a.F_LocationState == false).FirstOrDefault();
                 data = data.Where(a => a.F_LocationState == false && a.F_SortCode == first.F_SortCode).ToList();
             }
+            var areas = await _areaService.GetList();
+            foreach (var item in data)
+            {
+                var temp = list.Where(a => item.F_LocationCode.Contains(a.Prefix)).FirstOrDefault();
+                var area = areas.FirstOrDefault(a => a.F_AreaCode == item.F_AreaCode);
+                if (temp!=null)
+				{
+					if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix) == item.F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix))
+					{
+						temp.list.Add(item);
+					}
+				}
+                else
+                {
+                    LocationExtend ex = new LocationExtend();
+					ex.Prefix = item.F_LocationCode.Substring(0, area.F_Prefix);
+					ex.list = new List<LocationEntity>();
+                    ex.list.Add(item);
+                    list.Add(ex);
+                }
+            }
             return new AlwaysResult<List<LocationExtend>> { state = ResultType.success.ToString(), data = list, count = list.Count };
         }
         /// <summary>
@@ -100,50 +120,23 @@ namespace WaterCloud.WebApi.Controllers
                 var first = data.Where(a => a.F_LocationState == false).FirstOrDefault();
                 data = data.Where(a => a.F_LocationState == false && a.F_SortCode == first.F_SortCode).ToList();
             }
-            foreach (var item in data)
+			var areas = await _areaService.GetList();
+			foreach (var item in data)
             {
                 var temp = list.Where(a => item.F_LocationCode.Contains(a.Prefix)).FirstOrDefault();
-
-                if (temp != null)
+				var area = areas.FirstOrDefault(a => a.F_AreaCode == item.F_AreaCode);
+				if (temp != null)
                 {
-                    if (item.F_AreaCode == "热压后中转区")
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Substring(0, 5).Replace("-", "") == item.F_LocationCode.Substring(0, 5).Replace("-", ""))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                    else if(item.F_AreaCode == "成品仓库")
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Substring(0, 7).Replace("-", "") == item.F_LocationCode.Substring(0, 7).Replace("-", ""))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, 3) == item.F_LocationCode.Replace("-", "").Substring(0, 3))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                }
+					if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix) == item.F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix))
+					{
+						temp.list.Add(item);
+					}
+				}
                 else
                 {
                     LocationExtend ex = new LocationExtend();
-                    if (item.F_AreaCode == "热压后中转区")
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 3);
-                    }
-                    else if (item.F_AreaCode == "成品仓库")
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 4);
-                    }
-                    else
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 2);
-                    }
-                    ex.list = new List<LocationEntity>();
+					ex.Prefix = item.F_LocationCode.Substring(0, area.F_Prefix);
+					ex.list = new List<LocationEntity>();
                     ex.list.Add(item);
                     list.Add(ex);
                 }
@@ -184,49 +177,23 @@ namespace WaterCloud.WebApi.Controllers
         {
             var data = await _storageService.GetStorageByMaterial(code, eqpName, isAll);
             List<StorageExtend> list = new List<StorageExtend>();
-            foreach (var item in data)
+			var areas = await _areaService.GetList();
+			foreach (var item in data)
             {
                 var temp = list.Where(a => item.F_LocationCode.Contains(a.Prefix)).FirstOrDefault();
-                if (temp != null)
+				var area = areas.FirstOrDefault(a => a.F_AreaCode == item.F_AreaCode);
+				if (temp != null)
                 {
-                    if (item.F_AreaCode == "热压后中转区")
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, 3) == item.F_LocationCode.Replace("-", "").Substring(0, 3))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                    else if (item.F_AreaCode == "成品仓库")
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, 4) == item.F_LocationCode.Replace("-", "").Substring(0, 4))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, 2) == item.F_LocationCode.Replace("-", "").Substring(0, 2))
-                        {
-                            temp.list.Add(item);
-                        }
-                    }
-                }
+					if (isAll || temp.list[0].F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix) == item.F_LocationCode.Replace("-", "").Substring(0, area.F_Prefix))
+					{
+						temp.list.Add(item);
+					}
+				}
                 else
                 {
                     StorageExtend ex = new StorageExtend();
-                    if (item.F_AreaCode == "热压后中转区")
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 3);
-                    }
-                    else if (item.F_AreaCode == "成品仓库")
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 4);
-                    }
-                    else
-                    {
-                        ex.Prefix = item.F_LocationCode.Substring(0, 2);
-                    }
-                    ex.list = new List<StorageEntity>();
+					ex.Prefix = item.F_LocationCode.Substring(0, area.F_Prefix);
+					ex.list = new List<StorageEntity>();
                     ex.list.Add(item);
                     list.Add(ex);
                 }
