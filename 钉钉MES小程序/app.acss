@@ -1,5 +1,4 @@
-/* @import "./static/css/uikit.min.acss"; */
-/* @import "./static/icon/iconfont.acss"; */
+@import "./static/css/uikit.min.acss";
 page {
   background-color: #F7F7F7;
   border: 1px solid rgba(0, 0, 0, 0);
