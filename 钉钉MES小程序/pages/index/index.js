@@ -10,8 +10,8 @@ Page({
     objectArray:[
     {
       name:'测试工厂',
-      apiurl:'http://127.0.0.1:8081',
-      PhotoUrl:'http://127.0.0.1:8082/upload/'
+      apiurl:'http://localhost:8081',
+      PhotoUrl:'http://localhost:8082/upload/'
     }
   ],
   },
