@@ -26,7 +26,6 @@
     "pages/Storage/AreaStorage/AreaStorage",
     "pages/Checkout/CheckoutInfo/CheckoutInfo",
     "pages/WorkRun/GetWorkOrderInfo/GetWorkOrderInfo",
-    "pages/Hotline/HotlineParam/HotlineParam",
     "pages/Checkout/TwoCheckout/TwoCheckout",
     "pages/Checkout/CheckoutJob/CheckoutJob",
     "pages/Checkout/CheckoutCancle/CheckoutCancle",
