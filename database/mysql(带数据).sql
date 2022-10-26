@@ -339,7 +339,7 @@ INSERT INTO `mes_checkoutdescription` VALUES ('fb6eec89-5820-40a5-9b83-ed145eea3
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_consumeinfo`;
 CREATE TABLE `mes_consumeinfo`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -512,7 +512,7 @@ CREATE TABLE `mes_eqpmaterialbanding`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpmaterialuse`;
 CREATE TABLE `mes_eqpmaterialuse`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -759,7 +759,7 @@ CREATE TABLE `mes_eqpstoprecord`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpworktime`;
 CREATE TABLE `mes_eqpworktime`  (
-  `F_Id` bigint NOT NULL COMMENT '主键',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
   `F_StartTime` datetime NOT NULL COMMENT '结束时间',
   `F_EndTime` datetime NOT NULL COMMENT '开始时间',
   `F_TimeNum` double NOT NULL COMMENT '计算以半小时算',
@@ -923,7 +923,7 @@ INSERT INTO `mes_instorage` VALUES ('08dab32d-aa05-4431-8c0e-08d3b5f674db', 'IN-
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_instorageinfo`;
 CREATE TABLE `mes_instorageinfo`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -956,7 +956,7 @@ CREATE TABLE `mes_instorageinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_laserlinedata`;
 CREATE TABLE `mes_laserlinedata`  (
-  `F_Id` bigint NOT NULL COMMENT '主键-自增',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键-自增',
   `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
   `F_AddTime` datetime NULL DEFAULT NULL COMMENT '时间',
   `F_DeleteMark` tinyint NULL DEFAULT NULL,
@@ -1139,7 +1139,7 @@ INSERT INTO `mes_materialeqpbanding` VALUES ('08dab32f-01ef-4ba8-8b8d-72e9e56082
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_needcheck`;
 CREATE TABLE `mes_needcheck`  (
-  `F_Id` bigint NOT NULL COMMENT '主键',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
   `F_IsCheck` tinyint NOT NULL COMMENT '检验标识',
   `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `F_CheckType` int NOT NULL COMMENT '检验类型',
@@ -1220,7 +1220,7 @@ INSERT INTO `mes_orderdetail` VALUES ('08dab329-f28f-4254-8931-6a5f81def94a', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_outputinfo`;
 CREATE TABLE `mes_outputinfo`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -1299,7 +1299,7 @@ INSERT INTO `mes_outstorage` VALUES ('08dab32d-aa05-4d81-8975-fa50d1dfc028', 'ON
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_outstorageinfo`;
 CREATE TABLE `mes_outstorageinfo`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -1393,7 +1393,7 @@ CREATE TABLE `mes_readytransferbox`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_returnmaterial`;
 CREATE TABLE `mes_returnmaterial`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -1428,7 +1428,7 @@ CREATE TABLE `mes_returnmaterial`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapimage`;
 CREATE TABLE `mes_scapimage`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_ScapId` bigint NOT NULL COMMENT '可疑id',
   `F_FilePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '上传路径',
   `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '缺陷信息',
@@ -1445,7 +1445,7 @@ CREATE TABLE `mes_scapimage`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapmaterial`;
 CREATE TABLE `mes_scapmaterial`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_BatchCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '条码编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -1475,7 +1475,7 @@ CREATE TABLE `mes_scapmaterial`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapmaterialreturn`;
 CREATE TABLE `mes_scapmaterialreturn`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_BatchCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '条码编号',
   `F_ScapMaterialId` bigint NOT NULL COMMENT '可疑物料Id',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
@@ -1531,7 +1531,7 @@ CREATE TABLE `mes_storage`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_storagechangeinfo`;
 CREATE TABLE `mes_storagechangeinfo`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
   `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
   `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
@@ -1818,7 +1818,7 @@ INSERT INTO `mes_workdetailprocessbanding` VALUES ('08dab32d-d699-4601-8009-dc88
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workdetailtimebanding`;
 CREATE TABLE `mes_workdetailtimebanding`  (
-  `F_Id` bigint NOT NULL COMMENT 'id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '明细id',
   `F_EqpWorkTimeId` bigint NOT NULL,
   PRIMARY KEY (`F_Id`) USING BTREE
@@ -2154,7 +2154,7 @@ CREATE TABLE `oms_formtest`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_message`;
 CREATE TABLE `oms_message`  (
-  `F_Id` bigint NOT NULL COMMENT '主键Id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
   `F_MessageType` int NULL DEFAULT NULL COMMENT '信息类型（通知、私信、处理）',
   `F_ToUserId` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '收件人主键',
   `F_ToUserName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '收件人',
@@ -2179,7 +2179,7 @@ CREATE TABLE `oms_message`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_messagehis`;
 CREATE TABLE `oms_messagehis`  (
-  `F_Id` bigint NOT NULL COMMENT '主键Id',
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
   `F_MessageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '信息Id',
   `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
