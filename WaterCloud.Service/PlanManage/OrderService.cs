@@ -258,9 +258,13 @@ namespace WaterCloud.Service.PlanManage
             var orderIds = ordernotes.Select(a => a.F_Id).ToList();
             //获取当前天
             DateTime currentdate = DateTime.Now.Date;
-            if (DateTime.Now.Hour<8)
-            {
-                currentdate = currentdate.AddDays(-1);
+			//班别
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var currentTime = DateTime.Now.TimeOfDay;
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+			{
+				currentdate = currentdate.AddDays(-1);
             }
             //到期的订单先结案
             var overnote = ordernotes.Where(a => a.F_PlanEndTime == DateTime.Now.Date.AddDays(-1)).FirstOrDefault();
@@ -334,10 +338,6 @@ namespace WaterCloud.Service.PlanManage
             //今天的计划加进计划库存中
             var tempinplan = inPlans.Where(a => a.F_PlanTime < currentdate.AddDays(1) && a.F_InStorageState <= 2).ToList();
             var tempoutplan = outPlans.Where(a => a.F_PlanTime < currentdate.AddDays(1) && a.F_OutStorageState <= 2).ToList();
-            //班别
-			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
-			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
-			var currentTime = DateTime.Now.TimeOfDay;
 			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
             {
                 tempinplan = inPlans.Where(a => a.F_PlanTime < currentdate.AddDays(2) && a.F_InStorageState <= 2).ToList();

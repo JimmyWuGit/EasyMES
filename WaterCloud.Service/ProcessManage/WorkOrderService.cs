@@ -135,12 +135,29 @@ namespace WaterCloud.Service.ProcessManage
             var data = GetFieldsFilterData(query.FirstOrDefault());
             data.details =await orderApp.GetListByOrder(keyValue);
             data.planDate = ((DateTime)data.F_PlanStartTime).Date;
-            data.classNum = "B";
-            if (((DateTime)data.F_PlanStartTime).Hour==8)
-            {
-                data.classNum = "A";
-            }
-            return data;
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+			var tempEndTime = tempStartTime;
+			for (int i = 0; i < classNums.Count(); i++)
+			{
+				var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+				var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+				if (endTime > startTime)
+				{
+					tempEndTime += endTime - startTime;
+				}
+				else
+				{
+					tempEndTime += endTime + 24 * 60 - startTime;
+				}
+				if (((DateTime)data.planDate).AddMinutes(tempStartTime)== data.F_PlanStartTime && ((DateTime)data.planDate).AddMinutes(tempEndTime) == data.F_PlanEndTime)
+				{
+					data.classNum = classNums[i].F_ItemCode;
+                    break;
+				}
+				tempStartTime = tempEndTime;
+			}
+			return data;
         }
         private IQuery<WorkOrderExtend> GetQuery()
         {
@@ -273,17 +290,29 @@ namespace WaterCloud.Service.ProcessManage
         public async Task SubmitForm(WorkOrderExtend entity, string keyValue)
         {
             List<WorkOrderDetailEntity> list = new List<WorkOrderDetailEntity>();
-            if (entity.classNum=="A")
-            {
-                entity.F_PlanStartTime = ((DateTime)entity.planDate).AddHours(8);
-                entity.F_PlanEndTime = ((DateTime)entity.planDate).AddHours(20);
-            }
-            else
-            {
-                entity.F_PlanStartTime = ((DateTime)entity.planDate).AddHours(20);
-                entity.F_PlanEndTime = ((DateTime)entity.planDate).AddHours(32);
-            }
-            uniwork.BeginTrans();
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+			var tempEndTime = tempStartTime;
+			for (int i = 0; i < classNums.Count(); i++)
+			{
+                var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+                var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+				if (endTime > startTime)
+				{
+					tempEndTime += endTime - startTime;
+				}
+				else
+				{
+					tempEndTime += endTime + 24 * 60 - startTime;
+				}
+				if (classNums[i].F_ItemCode == entity.classNum)
+				{
+					entity.F_PlanStartTime = ((DateTime)entity.planDate).AddMinutes(tempStartTime);
+					entity.F_PlanEndTime = ((DateTime)entity.planDate).AddMinutes(tempEndTime);
+				}
+				tempStartTime = tempEndTime;
+			}
+			uniwork.BeginTrans();
             if (string.IsNullOrEmpty(keyValue))
             {
                 entity.F_DeleteMark = false;

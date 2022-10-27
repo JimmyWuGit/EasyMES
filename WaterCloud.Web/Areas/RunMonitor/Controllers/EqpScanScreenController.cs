@@ -101,8 +101,15 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
             var data = await _boxService.GetReadyBoxes(keyValue);
             return Content(data.ToJson());
         }
-
-        [HttpPost]
+		[HttpGet]
+		[HandlerAjaxOnly]
+		public async Task<ActionResult> GetBatch()
+		{
+			//获取预绑定流转箱
+			var data = await _runService.GetBatch();
+			return Content(data);
+		}
+		[HttpPost]
         [HandlerAjaxOnly]
         public async Task<ActionResult> AddReadyBox(ReadyTransferBoxEntity entity)
         {

@@ -9,6 +9,7 @@ using WaterCloud.Domain.MaterialManage;
 using WaterCloud.Domain.QualityManage;
 using WaterCloud.Domain.ReportRecord;
 using WaterCloud.Service.ReportRecord;
+using WaterCloud.Service.SystemManage;
 
 namespace WaterCloud.Service.AutoJob
 {
@@ -16,27 +17,75 @@ namespace WaterCloud.Service.AutoJob
     {
         private IWebHostEnvironment _hostingEnvironment;
         private IDbContext _context;
-        public CheckDateStorageJob(IDbContext context)
+		private ItemsDataService itemsApp;
+		public CheckDateStorageJob(IDbContext context)
         {
             _hostingEnvironment = GlobalContext.HostingEnvironment;
             _context = context;
-         }
+			itemsApp = new ItemsDataService(context);
+		}
         public async Task<AlwaysResult> Start()
         {
             AlwaysResult obj = new AlwaysResult();
             try
             {
                 DateTime checkdate = DateTime.Now.Date;
-                DateTime starttime = DateTime.Now.Date.AddHours(8);
-                DateTime endtime = DateTime.Now.Date.AddHours(20);
-                string classNum = "A";
-                if (DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20)
+                DateTime starttime = DateTime.Now.Date;
+                DateTime endtime = DateTime.Now.Date;
+                string classNum = "";
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+				var tempStartTime = classStartTime.TotalMinutes;
+				var tempEndTime = tempStartTime;
+                var selectClass = 0;
+				for (int i = 0; i < classNums.Count(); i++)
+				{
+					var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+					var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+					if (endTime > startTime)
+					{
+						tempEndTime += endTime - startTime;
+					}
+					else
+					{
+						tempEndTime += endTime + 24 * 60 - startTime;
+					}
+					if (checkdate.AddMinutes(tempStartTime) < DateTime.Now && checkdate.AddMinutes(tempEndTime) >= DateTime.Now)
+					{
+						selectClass = i-1;
+					}
+					tempStartTime = tempEndTime;
+				}
+                if (selectClass < 0)
                 {
-                    checkdate = DateTime.Now.Date.AddDays(-1);
-                    classNum = "B";
-                    starttime = checkdate.AddHours(20);
-                    endtime = checkdate.AddHours(32);
-                }
+                    selectClass = classNums.Count() - 1;
+				}
+				for (int i = 0; i < classNums.Count(); i++)
+				{
+					var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+					var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+					if (endTime > startTime)
+					{
+						tempEndTime += endTime - startTime;
+					}
+					else
+					{
+						tempEndTime += endTime + 24 * 60 - startTime;
+					}
+					if (i == selectClass)
+					{
+						starttime = checkdate.AddMinutes(tempStartTime);
+						endtime = checkdate.AddMinutes(tempEndTime);
+                        if (starttime>DateTime.Now)
+                        {
+							checkdate = DateTime.Now.Date.AddDays(-1);
+							starttime = starttime.AddDays(-1);
+							endtime = endtime.AddDays(-1);
+						}
+                        break;
+					}
+					tempStartTime = tempEndTime;
+				}
                 List<CheckDateStorageEntity> list = new List<CheckDateStorageEntity>();
                 var materials = _context.Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).ToList();
                 foreach (var item in materials)

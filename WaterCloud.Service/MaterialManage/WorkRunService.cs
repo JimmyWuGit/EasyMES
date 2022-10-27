@@ -13,6 +13,8 @@ using WaterCloud.Service.ClassTask;
 using System.Net.Http;
 using WaterCloud.Domain.QualityManage;
 using WaterCloud.Domain.SystemOrganize;
+using WaterCloud.Service.SystemManage;
+using static Serenity.Web.PropertyItemsScript;
 
 namespace WaterCloud.Service.MaterialManage
 {
@@ -31,14 +33,16 @@ namespace WaterCloud.Service.MaterialManage
         private LocationService locationApp;
         private StorageService _storageApp;
         private ControlJobService _jobApp;
+        private ItemsDataService itemsApp;
 
-        public WorkRunService(IDbContext context, IHttpClientFactory httpClientFactory)
+		public WorkRunService(IDbContext context, IHttpClientFactory httpClientFactory)
         {
             currentuser = OperatorProvider.Provider.GetCurrent();
             uniwork = new RepositoryBase(context);
             transferApp = new TransferBoxService(context);
             locationApp = new LocationService(context);
-            _storageApp = new StorageService(context, httpClientFactory);
+			itemsApp = new ItemsDataService(context);
+			_storageApp = new StorageService(context, httpClientFactory);
             _jobApp = new ControlJobService(context, httpClientFactory);
             if (currentuser == null)
             {
@@ -82,8 +86,40 @@ namespace WaterCloud.Service.MaterialManage
             var data = uniwork.IQueryable<EqpMaterialUseEntity>(a => a.F_DoneNum != a.F_Num && a.F_EqpName == eqpName && a.F_TransferBoxCode==code).FirstOrDefault();
             return data;
         }
+		public async Task<string> GetBatch()
+		{
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var tempStartTime = classStartTime.TotalMinutes;
+			var tempEndTime = tempStartTime;
+			var currentTime = DateTime.Now.TimeOfDay;
+			var currentdate = DateTime.Now.Date;
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+			{
+				currentdate = currentdate.AddDays(-1);
+			}
+			for (int i = 0; i < classNums.Count(); i++)
+			{
+				var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+				var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+				if (endTime > startTime)
+				{
+					tempEndTime += endTime - startTime;
+				}
+				else
+				{
+					tempEndTime += endTime + 24 * 60 - startTime;
+                }
+                if (currentdate.AddMinutes(tempStartTime) <DateTime.Now && currentdate.AddMinutes(tempEndTime) >= DateTime.Now)
+                {
+                    return $"{currentdate.ToString("yyyyMMdd")}-{classNums[i].F_ItemCode}";
+                }
+                tempStartTime = tempEndTime;
 
-        public async Task<object> GetBoardDataJson()
+			}
+            return "";
+        }
+		public async Task<object> GetBoardDataJson()
         {
             SortedDictionary<int, float> planDic = new SortedDictionary<int, float>();
             SortedDictionary<int, float> realDic = new SortedDictionary<int, float>();

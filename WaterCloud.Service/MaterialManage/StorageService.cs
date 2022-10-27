@@ -13,6 +13,7 @@ using WaterCloud.Domain.QualityManage;
 using System.Linq;
 using System.IO;
 using WaterCloud.Domain.PlanManage;
+using WaterCloud.Service.SystemManage;
 
 namespace WaterCloud.Service.MaterialManage
 {
@@ -25,11 +26,13 @@ namespace WaterCloud.Service.MaterialManage
     {
         private ControlJobService jobApp;
         private LocationService locationApp;
-        public StorageService(IDbContext context, IHttpClientFactory httpClientFactory) : base(context)
+        private ItemsDataService itemsApp;
+		public StorageService(IDbContext context, IHttpClientFactory httpClientFactory) : base(context)
         {
             jobApp = new ControlJobService(context, httpClientFactory);
             locationApp = new LocationService(context);
-        }
+			itemsApp = new ItemsDataService(context);
+		}
         #region 获取数据
         public async Task<List<StorageEntity>> GetList(string keyword = "")
         {
@@ -262,20 +265,40 @@ namespace WaterCloud.Service.MaterialManage
         public async Task<List<MaterialEntity>> GetCurrentClassNumStorage()
         {
             DateTime checkdate = DateTime.Now.Date;
-            DateTime starttime = DateTime.Now.Date.AddHours(8);
-            DateTime endtime = DateTime.Now.Date.AddHours(20);
-            string classNum = "A";
-            if (DateTime.Now.Hour < 8 || DateTime.Now.Hour >= 20)
-            {
-                if (DateTime.Now.Hour < 8)
-                {
-                    checkdate = DateTime.Now.Date.AddDays(-1);
-                }
-                classNum = "B";
-                starttime = checkdate.AddHours(20);
-                endtime = checkdate.AddHours(32);
-            }
-            var materials = uniwork.GetDbContext().Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).OrderByDesc(a => a.F_MaterialType).ToList();
+            DateTime starttime = DateTime.Now.Date;
+            DateTime endtime = DateTime.Now.Date;
+            string classNum = "";
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var tempStartTime = classStartTime.TotalMinutes;
+			var tempEndTime = tempStartTime;
+			var currentTime = DateTime.Now.TimeOfDay;
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+			{
+				checkdate = DateTime.Now.Date.AddDays(-1);
+			}
+			for (int j = 0; j < classNums.Count(); j++)
+			{
+				var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+				var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+				if (endTime > startTime)
+				{
+					tempEndTime += endTime - startTime;
+				}
+				else
+				{
+					tempEndTime += endTime + 24 * 60 - startTime;
+				}
+				if (DateTime.Now > checkdate.AddMinutes(tempStartTime) && DateTime.Now <= checkdate.AddMinutes(tempEndTime))
+				{
+					classNum = classNums[j].F_ItemCode;
+					starttime = checkdate.AddMinutes(tempStartTime);
+					endtime = checkdate.AddMinutes(tempEndTime);
+					break;
+				}
+                tempStartTime = tempEndTime;
+			}
+			var materials = uniwork.GetDbContext().Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).OrderByDesc(a => a.F_MaterialType).ToList();
             foreach (var item in materials)
             {
                 var CurrentNum = uniwork.IQueryable<StorageEntity>(a => a.F_MaterialId == item.F_Id && a.F_IsCheckout != false).Sum(a => a.F_Num) ?? 0;

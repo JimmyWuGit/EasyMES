@@ -38,8 +38,11 @@ namespace WaterCloud.Service.AutoJob
                 var orderIds = ordernotes.Select(a => a.F_Id).ToList();
                 //获取当前天
                 DateTime currentdate = DateTime.Now.Date;
-                if (DateTime.Now.Hour < 8)
-                {
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+				var currentTime = DateTime.Now.TimeOfDay;
+				if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+				{
                     currentdate = currentdate.AddDays(-1);
                 }
                 //到期的订单先结案
@@ -114,10 +117,6 @@ namespace WaterCloud.Service.AutoJob
                 //今天的计划加进计划库存中
                 var tempinplan = inPlans.Where(a => a.F_PlanTime >= currentdate && a.F_PlanTime < currentdate.AddDays(1) && a.F_InStorageState < 2).ToList();
                 var tempoutplan = outPlans.Where(a => a.F_PlanTime >= currentdate && a.F_PlanTime < currentdate.AddDays(1) && a.F_OutStorageState < 2).ToList();
-				//班别
-				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
-				var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
-				var currentTime = DateTime.Now.TimeOfDay;
 				if (TimeSpan.Compare(currentTime, classStartTime) < 0)
                 {
                     tempinplan = inPlans.Where(a => a.F_PlanTime < currentdate.AddDays(2) && a.F_InStorageState <= 2).ToList();
@@ -625,20 +624,34 @@ namespace WaterCloud.Service.AutoJob
         private async Task<List<MaterialEntity>> GetCurrentClassNumStorage()
         {
             DateTime checkdate = DateTime.Now.Date;
-            DateTime starttime = DateTime.Now.Date.AddHours(8);
-            DateTime endtime = DateTime.Now.Date.AddHours(20);
-            string classNum = "A";
-            if (DateTime.Now.Hour < 8 || DateTime.Now.Hour >= 20)
-            {
-                if (DateTime.Now.Hour < 8)
+            DateTime starttime = DateTime.Now.Date;
+            DateTime endtime = DateTime.Now.Date;
+            string classNum = "";
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+			var tempEndTime = tempStartTime;
+			for (int j = 0; j < classNums.Count(); j++)
+			{
+				var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+				var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+				if (endTime > startTime)
+				{
+					tempEndTime += endTime - startTime;
+				}
+				else
+				{
+					tempEndTime += endTime + 24 * 60 - startTime;
+				}
+				if (DateTime.Now> DateTime.Now.Date.AddMinutes(tempStartTime)&& DateTime.Now <= DateTime.Now.Date.AddMinutes(tempEndTime))
                 {
-                    checkdate = DateTime.Now.Date.AddDays(-1);
-                }
-                classNum = "B";
-                starttime = checkdate.AddHours(20);
-                endtime = checkdate.AddHours(32);
-            }
-            var materials = _context.Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).OrderByDesc(a => a.F_MaterialType).ToList();
+					classNum = classNums[j].F_ItemCode;
+					starttime = DateTime.Now.Date.AddMinutes(tempStartTime);
+					endtime = DateTime.Now.Date.AddMinutes(tempEndTime);
+                    break;
+				}
+				tempStartTime += tempEndTime;
+			}
+			var materials = _context.Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).OrderByDesc(a => a.F_MaterialType).ToList();
             foreach (var item in materials)
             {
                 var CurrentNum = _context.Query<StorageEntity>(a => a.F_MaterialId == item.F_Id && a.F_IsCheckout != false).Sum(a => a.F_Num) ?? 0;
