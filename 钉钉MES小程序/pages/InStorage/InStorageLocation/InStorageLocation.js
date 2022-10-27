@@ -8,7 +8,7 @@ Page({
     areaArrIndex: 0,
     arrIndex: 0,
     arrOutIndex: 0,
-    areaCode:"原材料仓库",
+    areaCode:"",
   },
   onLoad() { 
     // myRequest.get("/api/Common/GetAreaList").then((res) => {
