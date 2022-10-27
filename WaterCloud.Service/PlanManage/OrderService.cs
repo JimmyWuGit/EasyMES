@@ -57,7 +57,7 @@ namespace WaterCloud.Service.PlanManage
         public async Task<List<MaterialEntity>> GetMaterialList(string keyword)
         {
             //获取数据权限
-            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false && a.F_EnabledMark==true && a.F_MaterialType == 2);
+            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false && a.F_EnabledMark==true && a.F_MaterialType >0);
             if (!string.IsNullOrEmpty(keyword))
             {
                 list = list.Where(t => t.F_MaterialCode.Contains(keyword) || t.F_MaterialName.Contains(keyword));

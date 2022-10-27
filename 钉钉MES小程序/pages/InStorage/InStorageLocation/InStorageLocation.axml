@@ -44,6 +44,13 @@
       </picker>
     </view> -->
     <view class="page-section">
+      <picker onChange="bindObjPickerAreaChange" value="{{arrAreaIndex}}" range="{{objectAreaArray}}" range-key="F_AreaCode">
+        <view class="row">
+          <view class="row-title requireLabel">库区</view>
+          <view class="row-extra">{{objectAreaArray[arrAreaIndex].F_AreaCode}}</view>
+          <image class="title_icon" src="/static/images/arrow_down.png" mode="aspectFill" />
+        </view>
+      </picker>
       <view style="padding:10rpx;display:{{instorageHidden?'none':'block'}}">
         <button size="mini" type="primary" onTap="GetLocation">获取可用库位</button>
         <button size="mini" type="primary" style="float:right" onTap="GetAllLocation">获取所有库位</button>

@@ -31,18 +31,21 @@ namespace WaterCloud.WebApi.Controllers
         public LocationService _locationService { get; set; }
         public WorkRunService _service { get; set; }
         public ReportRecordService _repService { get; set; }
-        #region 获取数据
-        /// <summary>
-        /// 获取区域列表
-        /// </summary>
-        /// <param name="keyword">关键词</param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<AlwaysResult> GetAreaList([FromQuery] string keyword)
+		#region 获取数据
+		/// <summary>
+		/// 获取区域列表
+		/// </summary>
+		/// <param name="keyword">关键词</param>
+		/// <param name="type">类型</param>
+		/// <returns></returns>
+		[HttpGet]
+        public async Task<AlwaysResult> GetAreaList([FromQuery] string keyword = "", [FromQuery] int? type = null)
         {
             var data = await _areaService.GetList(keyword);
             data=data.Where(a => a.F_EnabledMark == true).OrderBy(a=>a.F_AreaType).ToList();
-            return new AlwaysResult<List<AreaEntity>> { state = ResultType.success.ToString(), data = data };
+            if (type!=null)
+				data = data.Where(a => a.F_AreaType == type).ToList();
+			return new AlwaysResult<List<AreaEntity>> { state = ResultType.success.ToString(), data = data };
         }
         /// <summary>
         /// 获取物料列表
