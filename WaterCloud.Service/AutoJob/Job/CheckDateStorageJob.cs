@@ -36,55 +36,66 @@ namespace WaterCloud.Service.AutoJob
 				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
 				var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
 				var tempStartTime = classStartTime.TotalMinutes;
-				var tempEndTime = tempStartTime;
+				var classEndTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[1]);
+				var tempEndTime = classEndTime.TotalMinutes;
                 var selectClass = 0;
-				for (int i = 0; i < classNums.Count(); i++)
-				{
-					var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
-					var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
-					if (endTime > startTime)
-					{
-						tempEndTime += endTime - startTime;
-					}
-					else
-					{
-						tempEndTime += endTime + 24 * 60 - startTime;
-					}
-					if (checkdate.AddMinutes(tempStartTime) < DateTime.Now && checkdate.AddMinutes(tempEndTime) >= DateTime.Now)
-					{
-						selectClass = i-1;
-					}
-					tempStartTime = tempEndTime;
-				}
-                if (selectClass < 0)
+                if (classNums.Count() == 1)
                 {
-                    selectClass = classNums.Count() - 1;
+					checkdate = checkdate.AddDays(-1);
+					starttime = checkdate.AddMinutes(tempStartTime);
+					endtime = checkdate.AddMinutes(tempEndTime);
 				}
-				for (int i = 0; i < classNums.Count(); i++)
-				{
-					var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
-					var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
-					if (endTime > startTime)
+                else
+                {
+					tempEndTime = tempStartTime;
+					for (int i = 0; i < classNums.Count(); i++)
 					{
-						tempEndTime += endTime - startTime;
-					}
-					else
-					{
-						tempEndTime += endTime + 24 * 60 - startTime;
-					}
-					if (i == selectClass)
-					{
-						starttime = checkdate.AddMinutes(tempStartTime);
-						endtime = checkdate.AddMinutes(tempEndTime);
-                        if (starttime>DateTime.Now)
-                        {
-							checkdate = DateTime.Now.Date.AddDays(-1);
-							starttime = starttime.AddDays(-1);
-							endtime = endtime.AddDays(-1);
+						var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+						var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+						if (endTime > startTime)
+						{
+							tempEndTime += endTime - startTime;
 						}
-                        break;
+						else
+						{
+							tempEndTime += endTime + 24 * 60 - startTime;
+						}
+						if (checkdate.AddMinutes(tempStartTime) < DateTime.Now && checkdate.AddMinutes(tempEndTime) >= DateTime.Now)
+						{
+							selectClass = i - 1;
+						}
+						tempStartTime = tempEndTime;
 					}
-					tempStartTime = tempEndTime;
+					if (selectClass < 0)
+					{
+						selectClass = classNums.Count() - 1;
+					}
+					for (int i = 0; i < classNums.Count(); i++)
+					{
+						var startTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]).TotalMinutes;
+						var endTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]).TotalMinutes;
+						if (endTime > startTime)
+						{
+							tempEndTime += endTime - startTime;
+						}
+						else
+						{
+							tempEndTime += endTime + 24 * 60 - startTime;
+						}
+						if (i == selectClass)
+						{
+							starttime = checkdate.AddMinutes(tempStartTime);
+							endtime = checkdate.AddMinutes(tempEndTime);
+							if (starttime > DateTime.Now)
+							{
+								checkdate = DateTime.Now.Date.AddDays(-1);
+								starttime = starttime.AddDays(-1);
+								endtime = endtime.AddDays(-1);
+							}
+							break;
+						}
+						tempStartTime = tempEndTime;
+					}
 				}
                 List<CheckDateStorageEntity> list = new List<CheckDateStorageEntity>();
                 var materials = _context.Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).ToList();

@@ -1,5 +1,6 @@
 ﻿using Chloe;
 using Microsoft.AspNetCore.Hosting;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -628,29 +629,45 @@ namespace WaterCloud.Service.AutoJob
             DateTime endtime = DateTime.Now.Date;
             string classNum = "";
 			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
-			var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
-			var tempEndTime = tempStartTime;
-			for (int j = 0; j < classNums.Count(); j++)
-			{
-				var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
-				var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
-				if (endTime > startTime)
-				{
-					tempEndTime += endTime - startTime;
-				}
-				else
-				{
-					tempEndTime += endTime + 24 * 60 - startTime;
-				}
-				if (DateTime.Now> DateTime.Now.Date.AddMinutes(tempStartTime)&& DateTime.Now <= DateTime.Now.Date.AddMinutes(tempEndTime))
-                {
-					classNum = classNums[j].F_ItemCode;
-					starttime = DateTime.Now.Date.AddMinutes(tempStartTime);
-					endtime = DateTime.Now.Date.AddMinutes(tempEndTime);
-                    break;
-				}
-				tempStartTime += tempEndTime;
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var tempStartTime = classStartTime.TotalMinutes;
+			var tempEndTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[1]).TotalMinutes;
+			var currentTime = DateTime.Now.TimeOfDay;
+			if (classNums.Count() == 1)
+            {
+				classNum = classNums[0].F_ItemCode;
+				starttime = DateTime.Now.Date.AddMinutes(tempStartTime);
+				endtime = DateTime.Now.Date.AddMinutes(tempEndTime);
 			}
+            else
+            {
+				if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+				{
+					checkdate = checkdate.AddDays(-1);
+				}
+				tempEndTime = tempStartTime;
+                for (int j = 0; j < classNums.Count(); j++)
+                {
+                    var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+                    var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+                    if (endTime > startTime)
+                    {
+                        tempEndTime += endTime - startTime;
+                    }
+                    else
+                    {
+                        tempEndTime += endTime + 24 * 60 - startTime;
+                    }
+                    if (DateTime.Now > checkdate.AddMinutes(tempStartTime) && DateTime.Now <= checkdate.AddMinutes(tempEndTime))
+                    {
+                        classNum = classNums[j].F_ItemCode;
+                        starttime = checkdate.AddMinutes(tempStartTime);
+                        endtime = checkdate.AddMinutes(tempEndTime);
+                        break;
+                    }
+                    tempStartTime += tempEndTime;
+                }
+            }
 			var materials = _context.Query<MaterialEntity>(a => a.F_EnabledMark == true && a.F_DeleteMark == false).OrderByDesc(a => a.F_MaterialType).ToList();
             foreach (var item in materials)
             {

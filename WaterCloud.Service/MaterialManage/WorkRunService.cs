@@ -94,6 +94,10 @@ namespace WaterCloud.Service.MaterialManage
 			var tempEndTime = tempStartTime;
 			var currentTime = DateTime.Now.TimeOfDay;
 			var currentdate = DateTime.Now.Date;
+            if (classNums.Count() == 1)
+            {
+				return $"{currentdate.ToString("yyyyMMdd")}-{classNums.FirstOrDefault().F_ItemCode}";
+			}
 			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
 			{
 				currentdate = currentdate.AddDays(-1);
