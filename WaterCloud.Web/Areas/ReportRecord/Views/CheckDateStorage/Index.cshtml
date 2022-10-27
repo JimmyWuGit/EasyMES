@@ -110,7 +110,10 @@
                         field: 'F_CheckDate', title: '日期', width: 160, filter: true
                     },
                     {
-                        field: 'F_ClassNum', title: '班次', width: 110, filter: true
+                        field: 'F_ClassNum', title: '班次', width: 110, filter: true,
+                        templet: function (d) {
+                            return top.clients.dataItems["Mes_ClassNumber"][d.F_ClassNum] == null ? "" : top.clients.dataItems["Mes_ClassNumber"][d.F_ClassNum];
+                        }
                     },
                     {
                         field: 'F_MaterialType', title: '料号分类', width: 110, filter: true,

@@ -18,6 +18,10 @@
         var processId = '';
         var lists = [];
         $(function () {
+            $("#F_ClassNum").bindSelect({
+                data: top.clients.dataItems['Mes_ClassNumber'],
+                id: "",
+            });
             if (!!keyValue) {
                 $("#F_EqpId").bindSelect({
                     url: "/EquipmentManage/Equipment/GetListJson",
@@ -258,8 +262,6 @@
                         <div class="layui-input-block">
                             <select id="F_ClassNum" name="F_ClassNum" disabled>
                                 <option value="">==请选择==</option>
-                                <option value="A">白班</option>
-                                <option value="B">晚班</option>
                             </select>
                         </div>
                     </div>

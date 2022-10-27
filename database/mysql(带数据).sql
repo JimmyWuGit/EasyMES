@@ -499,13 +499,15 @@ CREATE TABLE `mes_eqpmaterialbanding`  (
   `F_Num` double NOT NULL COMMENT '产量数量',
   `F_ProduceType` int NOT NULL COMMENT '生产模式(0独立，1共享)',
   `F_Priority` int NOT NULL COMMENT '从大到小',
-  `F_PrgName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '夹具编号',
   PRIMARY KEY (`F_Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpmaterialbanding
 -- ----------------------------
+INSERT INTO `mes_eqpmaterialbanding` VALUES ('08dab325-2db2-407b-8b96-621c2b8c961d', '08dab324-2b7c-4c57-836d-e3db2073193d', '08dab322-a5a1-47c6-855e-81cc3c1bedb5', 'MC_20221021131051', '半成品01', 'PCB', 1, 652, 0, 1);
+INSERT INTO `mes_eqpmaterialbanding` VALUES ('08dab325-35ac-4ce1-825a-50b4fc6b6819', '08dab324-9e2b-47bc-80d4-5a9cdfc728cd', '08dab322-c1e7-452f-8149-d2a52b033213', 'MC_20221021131133', '成品', 'PCB', 2, 322, 0, 1);
+INSERT INTO `mes_eqpmaterialbanding` VALUES ('08dab325-39be-4660-8588-6ac3c87d4623', '08dab324-d447-4b9e-8933-a50e21483734', '08dab322-aed6-482a-8330-ef6180dac558', 'MC_20221021131103', '半成品02', 'PCB', 1, 1268, 0, 1);
 
 -- ----------------------------
 -- Table structure for mes_eqpmaterialuse
@@ -772,6 +774,7 @@ CREATE TABLE `mes_eqpworktime`  (
 -- ----------------------------
 -- Records of mes_eqpworktime
 -- ----------------------------
+INSERT INTO `mes_eqpworktime` VALUES (1, '2022-10-21 08:00:00', '2022-10-21 20:00:00', 12, '08dab311-971f-40e5-8f63-83a1e1b16a44', '管理员', '');
 
 -- ----------------------------
 -- Table structure for mes_equipment
@@ -812,7 +815,7 @@ CREATE TABLE `mes_equipment`  (
   `F_OutTransferNum` int NULL DEFAULT NULL COMMENT '产出容器限制',
   `F_PlanStopTime` int NULL DEFAULT NULL COMMENT '固定停机时间分钟(min)',
   `F_OEE` int NULL DEFAULT NULL COMMENT 'OEE(%)',
-  `F_Beat` double NULL DEFAULT NULL COMMENT '节拍(s)'
+  `F_Beat` double NULL DEFAULT NULL COMMENT '节拍(s)',
   PRIMARY KEY (`F_Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -949,34 +952,6 @@ CREATE TABLE `mes_instorageinfo`  (
 
 -- ----------------------------
 -- Records of mes_instorageinfo
--- ----------------------------
-
--- ----------------------------
--- Table structure for mes_laserlinedata
--- ----------------------------
-DROP TABLE IF EXISTS `mes_laserlinedata`;
-CREATE TABLE `mes_laserlinedata`  (
-  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键-自增',
-  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
-  `F_AddTime` datetime NULL DEFAULT NULL COMMENT '时间',
-  `F_DeleteMark` tinyint NULL DEFAULT NULL,
-  `F_EnabledMark` tinyint NULL DEFAULT NULL,
-  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `F_CreatorTime` datetime NULL DEFAULT NULL,
-  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `F_LastModifyTime` datetime NULL DEFAULT NULL,
-  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `F_DeleteTime` datetime NULL DEFAULT NULL,
-  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `F_PrgName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `F_RunTime` int NULL DEFAULT NULL,
-  `F_ClassPiece` int NULL DEFAULT NULL COMMENT '切割序号',
-  `F_StationNo` int NULL DEFAULT NULL COMMENT '转台号',
-  PRIMARY KEY (`F_Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mes_laserlinedata
 -- ----------------------------
 
 -- ----------------------------
@@ -1247,7 +1222,6 @@ CREATE TABLE `mes_outputinfo`  (
   `F_BandingUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人',
   `F_BandingTime` datetime NULL DEFAULT NULL COMMENT '绑定时间',
   `F_IsTemp` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
-  `F_GoOnProduce` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '继续生产',
   PRIMARY KEY (`F_Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -1518,7 +1492,7 @@ CREATE TABLE `mes_storage`  (
   `F_Num` double NOT NULL COMMENT '数量',
   `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `F_IsCheckout` tinyint NOT NULL,
-  `F_BatchId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '批次Id',
+  `F_BatchId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '批次Id',
   PRIMARY KEY (`F_Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -1827,6 +1801,9 @@ CREATE TABLE `mes_workdetailtimebanding`  (
 -- ----------------------------
 -- Records of mes_workdetailtimebanding
 -- ----------------------------
+INSERT INTO `mes_workdetailtimebanding` VALUES (1, '08dab32d-d3d7-4a0b-8cd9-16cc8697fff7', 1);
+INSERT INTO `mes_workdetailtimebanding` VALUES (2, '08dab32d-d698-4632-846a-c2d93b382ef2', 1);
+INSERT INTO `mes_workdetailtimebanding` VALUES (3, '08dab32d-d54e-49ab-807e-dbdd8d9ab706', 1);
 
 -- ----------------------------
 -- Table structure for mes_workorder
@@ -2173,6 +2150,10 @@ CREATE TABLE `oms_message`  (
 -- ----------------------------
 -- Records of oms_message
 -- ----------------------------
+INSERT INTO `oms_message` VALUES (1, 2, '08dab311-971f-40e5-8f63-83a1e1b16a44', '管理员', '工单作业,工单号为WC_202210211431030,第1工序为工序02的工单开始作业。--任务待处理', 1, '2022-10-21 14:57:36', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '超级管理员', 'iframe', '/ClassTask/ControlJob/Index', '08dab331-8937-4963-8fb9-0388b695f06f', 0);
+INSERT INTO `oms_message` VALUES (2, 2, '08dab311-971f-40e5-8f63-83a1e1b16a44', '管理员', '工单作业,工单号为WC_202210211431080,第1工序为工序01的工单开始作业。--任务待处理', 1, '2022-10-21 14:58:15', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '超级管理员', 'iframe', '/ClassTask/ControlJob/Index', '08dab331-a014-41c7-8fe6-763cdf70058a', 0);
+INSERT INTO `oms_message` VALUES (3, 2, '08dab311-971f-40e5-8f63-83a1e1b16a44', '管理员', '工单作业,工单号为WC_202210211431050,第1工序为工序03的工单开始作业。--任务待处理', 1, '2022-10-21 14:58:28', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '超级管理员', 'iframe', '/ClassTask/ControlJob/Index', '08dab331-a831-4c9d-8973-7c40e0dc3419', 0);
+INSERT INTO `oms_message` VALUES (4, 2, '08dab311-971f-40e5-8f63-83a1e1b16a44', '管理员', '设备领料,设备为冲压1号线,物料编号为MC_20221021131051,名称为半成品01的物料进行领料。数量为50--任务待处理', 1, '2022-10-21 14:59:27', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '超级管理员', 'iframe', '/ClassTask/ControlJob/Index', '08dab331-cb0b-449c-827b-1935eafade1a', 0);
 
 -- ----------------------------
 -- Table structure for oms_messagehis
@@ -2401,6 +2382,7 @@ INSERT INTO `sys_items` VALUES ('e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', '879dc37
 INSERT INTO `sys_items` VALUES ('f948d392-2b2c-4c07-9143-13635e955ed6', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_MaterialType', '物料分类', 0, 2, 6, 0, 1, '', '2020-12-01 15:52:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('FA7537E2-1C64-4431-84BF-66158DD63269', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '101', '婚姻', 0, 2, 12, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('faff6e57-5a15-4ba7-a971-d5453e3040c2', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_CheckType', '检验类型', 0, 2, 13, 0, 1, '', '2021-05-21 15:05:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_items` VALUES ('08dab7e1-2118-47e0-8604-dbf1803eec08', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_ClassNumber', '班别', 0, 2, 17, 0, 1, '', '2022-10-27 14:04:38', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_itemsdetail
@@ -2432,6 +2414,140 @@ CREATE TABLE `sys_itemsdetail`  (
 -- ----------------------------
 -- Records of sys_itemsdetail
 -- ----------------------------
+INSERT INTO `sys_itemsdetail` VALUES ('0096ad81-4317-486e-9144-a6a02999ff19', '2748F35F-4EE2-417C-A907-3453146AAF67', NULL, '4', '护照', NULL, 0, NULL, 4, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('018e7873-e7dd-4163-a9f2-e99eadcc44fb', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '6', '激光切割', NULL, 0, NULL, 6, 0, 1, '固定', '2020-11-30 15:04:57', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('04aba88d-f09b-46c6-bd90-a38471399b0e', 'D94E4DC1-C2FD-4D19-9D5D-3886D39900CE', NULL, '2', '业务角色', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('07d28cf3-eb8d-479e-b7b0-b353ca2dbd72', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '0', '3D扫描站', NULL, 0, NULL, 0, 0, 1, '固定', '2020-11-30 15:03:51', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('0883b606-2b0b-493f-9b9a-6e94fefc7d99', 'c2a3ec97-e4f0-46a5-addf-1ba4e40e2ab9', NULL, '3', '已终止', NULL, 0, NULL, 3, 0, 1, '', '2021-01-04 13:38:19', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d9344e-5290-4470-8b94-367ced6d6c84', '08d9344e-25dc-40ab-8eeb-473d9321c7e2', NULL, '0', '质检异常停机', NULL, 0, NULL, 0, 0, 0, '', '2021-06-21 08:48:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-07-14 18:28:31', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d93f50-1eb2-44a8-8b01-58293dad9a3c', '08d93f50-133e-4fe7-860d-4dd9cd33cfe5', NULL, '0', '可疑', NULL, 0, NULL, 0, 0, 1, '', '2021-07-05 08:59:19', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d93f50-2a0b-4ee0-85ed-991d2f83205c', '08d93f50-133e-4fe7-860d-4dd9cd33cfe5', NULL, '1', '报废', NULL, 0, NULL, 1, 0, 1, '', '2021-07-05 08:59:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d93f50-3018-40c7-8c57-23039cd57610', '08d93f50-133e-4fe7-860d-4dd9cd33cfe5', NULL, '2', '正常', NULL, 0, NULL, 2, 0, 1, '', '2021-07-05 08:59:49', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-07-05 09:00:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d941ac-6c83-449a-80ec-f7cce40335fe', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '18', '夹具', NULL, 0, NULL, 18, 0, 1, '流动', '2021-07-08 09:05:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d946b2-3901-4172-8337-67f5936e04ee', '08d9344e-25dc-40ab-8eeb-473d9321c7e2', NULL, '1', '是否开立工单', NULL, 0, NULL, 1, 0, 1, '', '2021-07-14 18:29:12', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08d946b3-3244-45a0-81df-5ee294a46666', '08d9344e-25dc-40ab-8eeb-473d9321c7e2', NULL, '2', '是否及时领料和产出', NULL, 0, NULL, 2, 0, 0, '', '2021-07-14 18:36:11', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-08-18 14:07:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab327-d32e-48bd-87b3-61e547d314f1', '08dab327-a5c5-4ce4-8567-a45c414ab232', NULL, '1', '共享型设备', NULL, 0, NULL, 1, 0, 1, '8,18', '2022-10-21 13:48:05', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-21 13:48:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab327-fa33-4f53-8fec-07fd7799c94b', '08dab327-a5c5-4ce4-8567-a45c414ab232', NULL, '2', '模具型设备', NULL, 0, NULL, 2, 0, 1, '7', '2022-10-21 13:49:11', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('0a2ba6b9-716f-410f-8e89-929ec2277333', '64c10822-0c85-4516-9b59-879b818547ae', NULL, '1', '私信', NULL, 0, NULL, 1, 0, 1, '', '2020-07-29 16:51:59', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('0bfc45f0-009f-4fa7-8883-d2dd8700629c', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '1', '领用检验', NULL, 0, NULL, 1, 0, 1, '', '2021-05-21 15:06:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('0c9d7265-6b7d-4830-a3e4-bf7a89646697', '8742966f-322c-4ed8-b737-ffee53d85a5d', NULL, '0', '物料库区', NULL, 0, NULL, 0, 0, 1, '', '2020-12-17 09:40:58', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-17 09:41:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('0fb9b7d9-97c1-4702-b29c-845a692e61da', '2e440789-bd9b-46a5-9a64-190163f8a9cf', NULL, '1', '运行', NULL, 0, NULL, 1, 0, 1, '', '2020-11-30 14:45:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-11-30 14:46:37', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('1950efdf-8685-4341-8d2c-ac85ac7addd0', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '1', '小学', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('19EE595A-E775-409D-A48F-B33CF9F262C7', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'WorkGroup', '小组', NULL, 0, NULL, 7, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('1a18d92e-f55f-47e7-a28d-2bb3c32aca2c', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '3', '攻牙', NULL, 0, NULL, 3, 0, 1, '固定', '2020-11-30 15:04:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:53', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('1bc8abe3-abb4-41df-97fc-3f60299a5889', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '3', '产出上架', NULL, 0, NULL, 3, 0, 1, '', '2021-01-20 09:37:05', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('2146dbe0-6e99-42de-b717-66c84eef42e9', 'f948d392-2b2c-4c07-9143-13635e955ed6', NULL, '2', '成品', NULL, 0, NULL, 2, 0, 1, '', '2020-12-01 16:09:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-22 09:35:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('24e39617-f04e-4f6f-9209-ad71e870e7c6', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Submit', '提交', NULL, 0, NULL, 7, 0, 1, NULL, '2016-07-19 17:11:19', NULL, '2016-07-19 18:20:54', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('2533c1a9-3902-403e-81ee-9b82c5c2e68f', '3d2fc3d0-ef1c-41c2-9ca0-cf027dc7a854', NULL, '1', '流动', NULL, 0, NULL, 1, 0, 1, '', '2020-11-30 14:35:32', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('27e85cb8-04e7-447b-911d-dd1e97dfab83', '0DF5B725-5FB8-487F-B0E4-BC563A77EB04', NULL, 'Oracle', 'Oracle', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('27f4ae04-8c5b-4318-b259-2cf59c1bc72a', 'cd6a17c3-34ca-44d3-a072-4f75a94f5960', NULL, '1', '客户', NULL, 0, NULL, 1, 0, 1, '', '2020-12-01 09:37:43', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('28e1b5be-7532-4fa8-b382-e270d8e4b464', 'c2a3ec97-e4f0-46a5-addf-1ba4e40e2ab9', NULL, '2', '已完成', NULL, 0, NULL, 2, 0, 1, '', '2020-12-07 13:43:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('2B540AC5-6E64-4688-BB60-E0C01DFA982C', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'SubCompany', '子公司', NULL, 0, NULL, 4, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('2C3715AC-16F7-48FC-AB40-B0931DB1E729', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'Area', '区域', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('2bde0211-abd8-4186-9986-9258028a973d', '5da129a3-45ce-43cf-a483-e7f9ad90297d', NULL, '1', '冷冲型', NULL, 0, NULL, 1, 0, 1, '', '2020-12-01 10:16:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('34222d46-e0c6-446e-8150-dbefc47a1d5f', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '6', '本科', NULL, 0, NULL, 6, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('342baf8f-2cc4-4cca-a709-7b11b8dca510', '3d2fc3d0-ef1c-41c2-9ca0-cf027dc7a854', NULL, '0', '固定', NULL, 0, NULL, 0, 0, 1, '', '2020-11-30 14:35:23', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('34a642b2-44d4-485f-b3fc-6cce24f68b0f', '0DF5B725-5FB8-487F-B0E4-BC563A77EB04', NULL, 'MySql', 'MySql', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('355ad7a4-c4f8-4bd3-9c72-ff07983da0f0', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '9', '其他', NULL, 0, NULL, 9, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('376dfe19-9de6-45e8-ba5b-39ecff7e9794', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '11', '抛丸', NULL, 0, NULL, 11, 0, 1, '固定', '2020-11-30 15:06:05', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:21', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('392f88a8-02c2-49eb-8aed-b2acf474272a', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Update', '修改', NULL, 0, NULL, 6, 0, 1, NULL, '2016-07-19 17:11:14', NULL, '2016-07-19 18:20:49', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('3c884a03-4f34-4150-b134-966387f1de2a', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Exit', '退出', NULL, 0, NULL, 2, 0, 1, NULL, '2016-07-19 17:10:49', NULL, '2016-07-19 18:20:23', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('3f280e2b-92f6-466c-8cc3-d7c8ff48cc8d', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '7', '硕士', NULL, 0, NULL, 7, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('41053517-215d-4e11-81cd-367c0e9578d7', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '3', '通过', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('433511a9-78bd-41a0-ab25-e4d4b3423055', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '2', '初中', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('442a9185-439b-4c7a-943c-773ea57015e1', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '6', '工单结束', NULL, 0, NULL, 6, 0, 1, '', '2021-01-20 09:37:41', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('45000772-a0a7-4789-9cd1-793b5646d09e', 'c2a3ec97-e4f0-46a5-addf-1ba4e40e2ab9', NULL, '0', '等待中', NULL, 0, NULL, 0, 0, 1, '', '2020-12-07 13:43:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('477ea5b7-24d2-43e2-8e87-8e068a911d80', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '11', '出库装箱', NULL, 0, NULL, 11, 0, 1, '', '2021-05-24 15:11:44', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('486a82e3-1950-425e-b2ce-b5d98f33016a', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '5', '大专', NULL, 0, NULL, 5, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('48a01591-f00c-4a5e-a105-bc32858304b7', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '4', '出库检验', NULL, 0, NULL, 4, 0, 1, '', '2021-05-21 15:06:47', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('48c4e0f5-f570-4601-8946-6078762db3bf', '2748F35F-4EE2-417C-A907-3453146AAF67', NULL, '3', '军官证', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('49300258-1227-4b85-b6a2-e948dbbe57a4', '15023A4E-4856-44EB-BE71-36A106E2AA59', NULL, '汉族', '汉族', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('49b68663-ad01-4c43-b084-f98e3e23fee8', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '7', '废弃', NULL, 0, NULL, 7, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('4c2f2428-2e00-4336-b9ce-5a61f24193f6', '2748F35F-4EE2-417C-A907-3453146AAF67', NULL, '2', '士兵证', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('4d205f1f-9414-4beb-a9cf-4750cfee3e9e', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '12', '激光落料', NULL, 0, NULL, 12, 0, 1, '固定', '2020-11-30 15:06:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('4f7fd03e-af20-418a-9d68-25f0d756dca6', '3d2fc3d0-ef1c-41c2-9ca0-cf027dc7a854', NULL, '2', '其他', NULL, 0, NULL, 2, 0, 1, '', '2020-11-30 14:35:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('53fafeba-99af-4eb6-95e6-0481c8395556', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '8', '端拾器', NULL, 0, NULL, 8, 0, 1, '流动', '2020-11-30 15:05:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:15:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('54128d90-1cd0-4bce-a1dc-47e58ecc58c1', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '17', '行架', NULL, 0, NULL, 17, 0, 1, '固定', '2021-03-08 09:46:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('57eec4b3-6f50-4186-b82d-2d62ee306d0f', '885d3b97-ae33-4cb6-b7b0-e1a7e72f6de2', NULL, '2', 'H5', NULL, 0, NULL, 2, 0, 1, '', '2020-11-23 09:01:49', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-11-23 09:04:16', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('582e0b66-2ee9-4885-9f0c-3ce3ebf96e12', '8CEB2F71-026C-4FA6-9A61-378127AE7320', NULL, '1', '已育', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('5ba53647-a0d2-4e6b-8bce-fee2e589d872', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '4', '物料变动', NULL, 0, NULL, 4, 0, 1, '', '2021-01-20 09:37:24', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('5d6def0e-e2a7-48eb-b43c-cc3631f60dd7', 'BDD797C3-2323-4868-9A63-C8CC3437AEAA', NULL, '1', '男', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('616fc56d-bc05-43bf-942c-c23299255ac6', '2e440789-bd9b-46a5-9a64-190163f8a9cf', NULL, '3', '维修', NULL, 0, NULL, 3, 0, 1, '', '2020-11-30 14:45:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('62e0afc3-e194-4f75-ad75-434f30acf387', '8742966f-322c-4ed8-b737-ffee53d85a5d', NULL, '2', '产品库区', NULL, 0, NULL, 2, 0, 1, '', '2020-12-17 09:41:32', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-17 09:41:37', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('63acf96d-6115-4d76-a994-438f59419aad', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '5', '退回', NULL, 0, NULL, 5, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('643209c8-931b-4641-9e04-b8bdd11800af', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Login', '登录', NULL, 0, NULL, 1, 0, 1, NULL, '2016-07-19 17:10:39', NULL, '2016-07-19 18:20:17', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('65b7a5a2-ada2-4c8f-9b2e-bee2f0b5d8e7', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '2', '产品出库', NULL, 0, NULL, 2, 0, 1, '', '2021-01-20 09:36:57', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('6623a0f8-09a3-458c-82e7-e41710fb19bb', 'f948d392-2b2c-4c07-9143-13635e955ed6', NULL, '0', '原料', NULL, 0, NULL, 0, 0, 1, '', '2020-12-01 16:10:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-22 09:35:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('6b29542c-cb70-4d6b-9769-16f4fde65038', 'd56acc3d-39f2-41a0-a900-a6866139d348', NULL, '0', '次数', NULL, 0, NULL, 0, 0, 1, '', '2020-11-30 14:51:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-11-30 14:55:23', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('711ccaab-a8b1-46b4-89bc-474042e2acd1', '5da129a3-45ce-43cf-a483-e7f9ad90297d', NULL, '0', '热成型', NULL, 0, NULL, 0, 0, 1, '', '2020-12-01 10:16:28', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7306bc04-3e76-4925-92e3-d2b8638ec42c', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '15', '焊机', NULL, 0, NULL, 15, 0, 1, '固定', '2021-03-08 09:29:59', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('738edf2a-d59f-4992-97ef-d847db23bcb8', 'FA7537E2-1C64-4431-84BF-66158DD63269', NULL, '1', '已婚', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('795f2695-497a-4f5e-ab1d-706095c1edb9', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Other', '其他', NULL, 0, NULL, 0, 0, 1, NULL, '2016-07-19 17:10:33', NULL, '2016-07-19 18:20:09', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7a6d1bc4-3ec7-4c57-be9b-b4c97d60d5f6', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '1', '草稿', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7c1135be-0148-43eb-ae49-62a1e16ebbe3', 'FA7537E2-1C64-4431-84BF-66158DD63269', NULL, '5', '其他', NULL, 0, NULL, 5, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7d18b3d6-738b-4b63-8163-b14a5750a6d0', '2e440789-bd9b-46a5-9a64-190163f8a9cf', NULL, '4', '异常', NULL, 0, NULL, 4, 0, 1, '', '2020-11-30 14:45:56', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7d2d71e9-71f8-489c-b37e-8c684268af4b', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '13', '其他', NULL, 0, NULL, 13, 0, 1, '其他', '2020-11-30 15:06:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:16', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('7fc8fa11-4acf-409a-a771-aaf1eb81e814', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Exception', '异常', NULL, 0, NULL, 8, 0, 1, NULL, '2016-07-19 17:11:25', NULL, '2016-07-19 18:21:01', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('80aa1d96-8b52-43f3-bb1a-ad4733ac8dec', 'a7faf382-c88c-43e1-aff3-98f261a693ea', NULL, '0', '通用', NULL, 0, NULL, 0, 0, 1, '', '2020-12-14 12:39:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('822baf7c-abdb-4257-9b78-1f550806f544', 'BDD797C3-2323-4868-9A63-C8CC3437AEAA', NULL, '0', '女', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('835cb824-c29e-4275-a1bc-1624b32fa8de', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '5', '工单作业', NULL, 0, NULL, 5, 0, 1, '', '2021-01-20 09:37:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('84738997-117e-4e0a-9460-abd65df7c6a0', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '10', '冲压', NULL, 0, NULL, 10, 0, 1, '固定', '2020-11-30 15:05:47', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:17', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('85cf359c-80be-4bd7-9a0c-876b3048c19a', 'cd6a17c3-34ca-44d3-a072-4f75a94f5960', NULL, '0', '公司', NULL, 0, NULL, 0, 0, 1, '', '2020-12-01 09:37:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('8892186f-22ff-40c4-9907-e80721f9c5fe', '64c10822-0c85-4516-9b59-879b818547ae', NULL, '2', '待办', NULL, 0, NULL, 2, 0, 1, '', '2020-07-29 16:52:21', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-07-31 17:33:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('8b7b38bf-07c5-4f71-a853-41c5add4a94e', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '6', '完成', NULL, 0, NULL, 6, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('8bc2effa-5f12-4b27-bdb9-2e90152d7735', 'c2a3ec97-e4f0-46a5-addf-1ba4e40e2ab9', NULL, '1', '执行中', NULL, 0, NULL, 1, 0, 1, '', '2020-12-07 13:43:19', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('8d6ec317-0cb9-4db3-a6b2-97b1bbfa6b5a', '8742966f-322c-4ed8-b737-ffee53d85a5d', NULL, '3', '空置库区', NULL, 0, NULL, 3, 0, 1, '', '2020-12-17 09:41:47', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('929c380a-d11d-4983-8c9c-ca326a3b6331', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '1', '来料入库', NULL, 0, NULL, 1, 0, 1, '', '2021-01-20 09:36:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-05-24 15:11:53', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('930b8de2-049f-4753-b9fd-87f484911ee4', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '8', '博士', NULL, 0, NULL, 8, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('9638f236-260b-41fd-bb57-3ff897de2c57', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '2', '产出检验', NULL, 0, NULL, 2, 0, 1, '', '2021-05-21 15:06:23', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('9b6a2225-6138-4cf2-9845-1bbecdf9b3ed', '8CEB2F71-026C-4FA6-9A61-378127AE7320', NULL, '3', '其他', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('A64EBB80-6A24-48AF-A10E-B6A532C32CA6', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'Department', '部门', NULL, 0, NULL, 5, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('B97BD7F5-B212-40C1-A1F7-DD9A2E63EEF2', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'Group', '集团', NULL, 0, NULL, 1, 0, 1, '', NULL, NULL, '2020-06-29 17:35:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('D082BDB9-5C34-49BF-BD51-4E85D7BFF646', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'Company', '公司', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('D1F439B9-D80E-4547-9EF0-163391854AB5', '9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', NULL, 'SubDepartment', '子部门', NULL, 0, NULL, 6, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('a13ccf0d-ac8f-44ac-a522-4a54edf1f0fa', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Delete', '删除', NULL, 0, NULL, 5, 0, 1, NULL, '2016-07-19 17:11:09', NULL, '2016-07-19 18:20:43', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('a4974810-d88d-4d54-82cc-fd779875478f', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '4', '中专', NULL, 0, NULL, 4, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('a6f271f9-8653-4c5c-86cf-4cd00324b3c3', 'FA7537E2-1C64-4431-84BF-66158DD63269', NULL, '4', '丧偶', NULL, 0, NULL, 4, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('a7258605-6d35-4240-bb7e-b3a77252b0d3', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '7', '模具', NULL, 0, NULL, 7, 0, 1, '流动', '2020-11-30 15:05:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:15:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('a7c4aba2-a891-4558-9b0a-bd7a1100a645', 'FA7537E2-1C64-4431-84BF-66158DD63269', NULL, '2', '未婚', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('acb128a6-ff63-4e25-b1e8-0a336ed3ab18', '00F76465-DBBA-484A-B75C-E81DEE9313E6', NULL, '3', '高中', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('accdd4db-f825-4940-abdb-8f485e4d5927', 'e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', NULL, '1', '绑定', NULL, 0, NULL, 1, 0, 1, '', '2021-01-06 13:12:24', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-06 13:13:01', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ace2d5e8-56d4-4c8b-8409-34bc272df404', '2748F35F-4EE2-417C-A907-3453146AAF67', NULL, '5', '其它', NULL, 0, NULL, 5, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ad0700cb-1fef-4fd0-a500-d78924b0e91f', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '9', '加热炉', NULL, 0, NULL, 9, 0, 1, '固定', '2020-11-30 15:05:28', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:13', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('aec54116-8583-46e9-96ea-af9aca5827d0', '885d3b97-ae33-4cb6-b7b0-e1a7e72f6de2', NULL, '1', '三方Web', NULL, 0, NULL, 1, 0, 1, '', '2020-11-21 10:03:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-11-23 09:04:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('b63f7a2a-7f23-408a-8781-56b34475b0d1', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '0', '入库检验', NULL, 0, NULL, 0, 0, 1, '', '2021-05-21 15:06:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ba1d27db-cf19-4cc0-9b18-0745e98f8088', '64c10822-0c85-4516-9b59-879b818547ae', NULL, '0', '通知', NULL, 0, NULL, 0, 0, 1, '', '2020-07-29 16:51:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('bcaa8409-3597-4360-9d7f-11f0a6ad5488', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '9', '二次质检', NULL, 0, NULL, 9, 0, 1, '', '2021-05-24 12:03:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('c092c994-b763-4068-a425-0a4896a00999', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '0', '设备领料', NULL, 0, NULL, 0, 0, 1, '', '2021-01-20 09:36:37', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('c5ce1bd9-6971-4d76-8642-6ec7a5202c75', 'f948d392-2b2c-4c07-9143-13635e955ed6', NULL, '1', '半成品', NULL, 0, NULL, 1, 0, 1, '', '2020-12-01 16:09:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ca2fb710-57e0-4401-89ce-474f4fb0994d', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '4', '镟铆', NULL, 0, NULL, 4, 0, 1, '固定', '2020-11-30 15:04:27', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:58', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('cc6daa5c-a71c-4b2c-9a98-336bc3ee13c8', 'D94E4DC1-C2FD-4D19-9D5D-3886D39900CE', NULL, '3', '其他角色', NULL, 0, NULL, 3, 0, 1, '', NULL, NULL, '2020-06-18 10:15:51', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ccc8e274-75da-4eb8-bed0-69008ab7c41c', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Visit', '访问', NULL, 0, NULL, 3, 0, 1, NULL, '2016-07-19 17:10:55', NULL, '2016-07-19 18:20:29', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ccf113a8-4374-44be-aec0-2eddda1161dc', 'e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', NULL, '3', '使用', NULL, 0, NULL, 3, 0, 1, '', '2021-01-06 13:12:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ce340c73-5048-4940-b86e-e3b3d53fdb2c', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '2', '提交', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('cf05666d-07a6-4dbd-bafb-0c931874fe2a', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '8', '常规质检', NULL, 0, NULL, 8, 0, 1, '', '2021-05-24 12:03:27', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('d03c7953-f9af-4b26-8795-58f6d249e752', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '10', '入库上架', NULL, 0, NULL, 10, 0, 1, '', '2021-05-24 15:11:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('d14e661c-c921-4df8-a247-cadde6adc1bf', '8742966f-322c-4ed8-b737-ffee53d85a5d', NULL, '1', '半成品库区', NULL, 0, NULL, 1, 0, 1, '', '2020-12-17 09:41:20', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('d5e847ce-44d8-4e35-845d-d81ed0498cbf', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '5', '机械人', NULL, 0, NULL, 5, 0, 1, '固定', '2020-11-30 15:04:36', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:17:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('d69cb819-2bb3-4e1d-9917-33b9a439233d', '2748F35F-4EE2-417C-A907-3453146AAF67', NULL, '1', '身份证', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('de2167f3-40fe-4bf7-b8cb-5b1c554bad7a', '8CEB2F71-026C-4FA6-9A61-378127AE7320', NULL, '2', '未育', NULL, 0, NULL, 2, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('e1979a4f-7fc1-42b9-a0e2-52d7059e8fb9', '954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', NULL, '4', '待审', NULL, 0, NULL, 4, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('e2be96dd-e124-490d-8aa6-bcec4909651d', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '1', '液压机', NULL, 0, NULL, 1, 0, 1, '固定', '2020-11-30 15:04:00', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:44', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('e5079bae-a8c0-4209-9019-6a2b4a3a7dac', 'D94E4DC1-C2FD-4D19-9D5D-3886D39900CE', NULL, '1', '系统角色', NULL, 0, NULL, 1, 0, 1, '', NULL, NULL, '2020-06-24 09:08:22', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('e545061c-93fd-4ca2-ab29-b43db9db798b', '9a7079bd-0660-4549-9c2d-db5e8616619f', NULL, 'Create', '新增', NULL, 0, NULL, 4, 0, 1, NULL, '2016-07-19 17:11:03', NULL, '2016-07-19 18:20:35', NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('eba0de8f-ff66-4415-827d-336da3ea39f1', '885d3b97-ae33-4cb6-b7b0-e1a7e72f6de2', NULL, '0', '小程序', NULL, 0, NULL, 0, 0, 1, '', '2020-11-21 10:03:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('ed56c545-56f6-48e2-bfef-6a90ab8b1420', 'd56acc3d-39f2-41a0-a900-a6866139d348', NULL, '1', '时间(天)', NULL, 0, NULL, 1, 0, 1, '', '2020-11-30 14:51:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('f08a9823-e331-4837-a28d-f766668592b0', 'e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', NULL, '2', '在库', NULL, 0, NULL, 2, 0, 1, '', '2021-01-06 13:12:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('f29973bf-eb91-414e-959f-52e8251e1b87', 'e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', NULL, '0', '空闲', NULL, 0, NULL, 0, 0, 1, '', '2021-01-06 13:11:58', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('f9609400-7caf-49af-ae3c-7671a9292fb3', 'FA7537E2-1C64-4431-84BF-66158DD63269', NULL, '3', '离异', NULL, 0, NULL, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('fa6c1873-888c-4b70-a2cc-59fccbb22078', '0DF5B725-5FB8-487F-B0E4-BC563A77EB04', NULL, 'SqlServer', 'SqlServer', NULL, 0, NULL, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('faaac4dc-9413-4971-8f1b-348397c1a7b7', '2e440789-bd9b-46a5-9a64-190163f8a9cf', NULL, '2', '保养', NULL, 0, NULL, 2, 0, 1, '', '2020-11-30 14:45:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('fad061eb-9ec8-4d9f-ae47-0588194caf02', '2e440789-bd9b-46a5-9a64-190163f8a9cf', NULL, '0', '空闲', NULL, 0, NULL, 0, 0, 1, '', '2020-11-30 14:45:22', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('fc35d37e-1030-442a-9b2b-d153710f03ca', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '7', '物料退回', NULL, 0, NULL, 7, 0, 1, '', '2021-01-20 09:37:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('fc42e714-3fe9-429e-a1dd-6e4a30f7eddd', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '3', '库存检验', NULL, 0, NULL, 3, 0, 1, '', '2021-05-21 15:06:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('fe1668c9-362f-42b8-a868-ac9e59f39d26', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '2', '焊接', NULL, 0, NULL, 2, 0, 1, '固定', '2020-11-30 15:04:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab7e1-3d86-4e60-8743-965132ed3b6c', '08dab7e1-2118-47e0-8604-dbf1803eec08', NULL, 'B', '夜班', NULL, 0, NULL, 1, 0, 1, '20:00-8:00', '2022-10-27 14:05:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-27 14:10:57', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab7e1-34aa-4b58-8cc5-a95f6dafb32e', '08dab7e1-2118-47e0-8604-dbf1803eec08', NULL, 'A', '白班', NULL, 0, NULL, 0, 0, 1, '8:00-20:00', '2022-10-27 14:05:11', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-27 14:11:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_log
