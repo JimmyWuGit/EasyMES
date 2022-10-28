@@ -58,7 +58,7 @@ namespace WaterCloud.Service.SystemOrganize
             }
             else
             {
-                cachedata = cachedata.Where(t => t.F_Id == GlobalContext.SystemConfig.SysemMasterProject).ToList();
+                cachedata = cachedata.ToList();
             }
             if (cachedata.Count == 0)
             {

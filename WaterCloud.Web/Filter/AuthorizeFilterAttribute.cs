@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using WaterCloud.Code;
 using WaterCloud.Service.SystemOrganize;
 
-namespace WaterCloud.WebApi
+namespace WaterCloud.Web
 {
     /// <summary>
     /// 权限验证

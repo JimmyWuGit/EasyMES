@@ -12,7 +12,7 @@ using WaterCloud.Service.EquipmentManage;
 namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
 {
     [Area("EquipmentManage")]
-    public class EqpPqcCheckMDController : ControllerBase
+    public class EqpPqcCheckMDController : BaseController
     {
         public EquipmentService _eqpservice { get; set; }
         public EqpPqcCheckMDService _service { get; set; }

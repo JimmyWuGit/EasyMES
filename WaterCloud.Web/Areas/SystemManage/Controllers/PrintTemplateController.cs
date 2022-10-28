@@ -18,7 +18,7 @@ namespace WaterCloud.Web.Areas.SystemManage.Controllers
     /// 描 述：打印模板控制器类
     /// </summary>
     [Area("SystemManage")]
-    public class PrintTemplateController :  ControllerBase
+    public class PrintTemplateController :  BaseController
     {
         public PrintTemplateService _service {get;set;}
 

@@ -19,7 +19,7 @@ namespace WaterCloud.Web.Areas.ClassTask.Controllers
     /// 描 述：信息设置控制器类
     /// </summary>
     [Area("ClassTask")]
-    public class ControlJobUserBandingController :  ControllerBase
+    public class ControlJobUserBandingController :  BaseController
     {
         public ControlJobUserBandingService _service {get;set;}
         public ItemsDataService _typeService { get; set; }

@@ -14,7 +14,7 @@ using WaterCloud.Domain.ProcessManage;
 namespace WaterCloud.Web.Areas.ReportRecord.Controllers
 {
 	[Area("ReportRecord")]
-    public class EqpWorkTimeController : ControllerBase
+    public class EqpWorkTimeController : BaseController
     {
         public EqpWorkTimeService _service { get; set; }
         [HandlerAjaxOnly]

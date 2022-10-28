@@ -12,13 +12,13 @@ using WaterCloud.Service.ProductionReport;
 using WaterCloud.Service.SystemOrganize;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class EqpRepairController: ControllerBase
-    {
+	{
         public EqpRepairService eqpRepairService { get; set; }
         public LogService _logService { get; set; }
         public HelpClassService helpClassService { get; set; }

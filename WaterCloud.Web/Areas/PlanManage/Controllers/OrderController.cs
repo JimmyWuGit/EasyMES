@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.PlanManage.Controllers
     /// 描 述：订单管理控制器类
     /// </summary>
     [Area("PlanManage")]
-    public class OrderController :  ControllerBase
+    public class OrderController :  BaseController
     {
         public OrderService _service {get;set;}
         [HttpGet]

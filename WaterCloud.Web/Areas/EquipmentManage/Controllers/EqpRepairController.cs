@@ -18,7 +18,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
     /// 描 述：设备维修记录表控制器类
     /// </summary>
     [Area("EquipmentManage")]
-    public class EqpRepairController :  ControllerBase
+    public class EqpRepairController :  BaseController
     {
         public EqpRepairService _service {get;set;}
         public UserService _userService { get; set; }

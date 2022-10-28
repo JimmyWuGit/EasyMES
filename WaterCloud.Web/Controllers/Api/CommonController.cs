@@ -11,7 +11,7 @@ using WaterCloud.Service.MaterialManage;
 using WaterCloud.Service.ReportRecord;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     /// <summary>
     /// 常规接口
@@ -20,7 +20,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class CommonController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public EquipmentService _eqpService { get; set; }

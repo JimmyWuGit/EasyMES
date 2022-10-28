@@ -12,7 +12,7 @@ using WaterCloud.Service;
 using WaterCloud.Service.SystemOrganize;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     /// <summary>
     /// 用户接口
@@ -20,7 +20,7 @@ namespace WaterCloud.WebApi.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
-    {
+	{
         //自动注入服务
         public FilterIPService _filterIPService { get; set; }
         public UserService _userService { get; set; }
@@ -88,7 +88,7 @@ namespace WaterCloud.WebApi.Controllers
                 {
                     operatorModel.IsSystem = false;
                 }
-                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_",false);
+                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_");
                 logEntity.F_Account = userEntity.F_Account;
                 logEntity.F_NickName = userEntity.F_RealName;
                 logEntity.F_Result = true;
@@ -176,7 +176,7 @@ namespace WaterCloud.WebApi.Controllers
                 {
                     operatorModel.IsSystem = false;
                 }
-                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_", false);
+                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_");
                 logEntity.F_Account = userEntity.F_Account;
                 logEntity.F_NickName = userEntity.F_RealName;
                 logEntity.F_Result = true;
@@ -186,8 +186,6 @@ namespace WaterCloud.WebApi.Controllers
                 responseData.apitoken = apitoken;
                 responseData.userid = userEntity.F_DingTalkUnionId;
                 responseData.username = userEntity.F_DingTalkNick;
-                responseData.mainurl = GlobalContext.SystemConfig.MainProgram;
-
                 return new AlwaysResult<DingLoginResponse> { state = ResultType.success.ToString(), message = "登录成功。", data = responseData };
             }
             catch (Exception ex)
@@ -267,7 +265,7 @@ namespace WaterCloud.WebApi.Controllers
                     operatorModel.IsSystem = false;
                 }
                 //缓存保存用户信息
-                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_", false);
+                await OperatorProvider.Provider.AddLoginUser(operatorModel, apitoken, "api_");
                 logEntity.F_Account = userEntity.F_Account;
                 logEntity.F_NickName = userEntity.F_RealName;
                 logEntity.F_Result = true;
@@ -277,7 +275,6 @@ namespace WaterCloud.WebApi.Controllers
                 responseData.apitoken = apitoken;
                 responseData.userid = info.Unionid;
                 responseData.username = info.UserName;
-                responseData.mainurl = GlobalContext.SystemConfig.MainProgram;
                 return new AlwaysResult<DingLoginResponse> { state = ResultType.success.ToString(), message = "绑定成功。", data = responseData };
             }
             catch (Exception ex)

@@ -14,7 +14,7 @@ using System.Linq;
 namespace WaterCloud.Web.Areas.ReportRecord.Controllers
 {
     [Area("ReportRecord")]
-    public class EqpMaterialUseReportController : ControllerBase
+    public class EqpMaterialUseReportController : BaseController
     {
         public ReportRecordService _service { get; set; }
         [HttpGet]

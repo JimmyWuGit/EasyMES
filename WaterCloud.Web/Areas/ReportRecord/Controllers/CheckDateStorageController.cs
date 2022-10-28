@@ -14,7 +14,7 @@ using WaterCloud.Domain.ReportRecord;
 namespace WaterCloud.Web.Areas.ReportRecord.Controllers
 {
     [Area("ReportRecord")]
-    public class CheckDateStorageController : ControllerBase
+    public class CheckDateStorageController : BaseController
     {
         public CheckDateStorageService _service { get; set; }
         [HttpGet]

@@ -18,7 +18,7 @@ namespace WaterCloud.Web.Areas.SystemManage.Controllers
     /// 描 述：报表模板控制器类
     /// </summary>
     [Area("SystemManage")]
-    public class ReportTemplateController :  ControllerBase
+    public class ReportTemplateController :  BaseController
     {
         public ReportTemplateService _service {get;set;}
 

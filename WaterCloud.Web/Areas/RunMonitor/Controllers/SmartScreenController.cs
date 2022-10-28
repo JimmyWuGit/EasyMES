@@ -21,7 +21,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// </summary>
     [Area("RunMonitor")]
     [HandlerBoard]
-    public class SmartScreenController :  ControllerBase
+    public class SmartScreenController :  BaseController
     {
         public SystemSetService _setService { get; set; }
         public ModuleService _moduleService { get; set; }

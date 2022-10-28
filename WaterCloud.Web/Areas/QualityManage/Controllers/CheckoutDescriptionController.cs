@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.QualityManage.Controllers
     /// 描 述：质检参数控制器类
     /// </summary>
     [Area("QualityManage")]
-    public class CheckoutDescriptionController :  ControllerBase
+    public class CheckoutDescriptionController :  BaseController
     {
         public CheckoutDescriptionService _service {get;set;}
 

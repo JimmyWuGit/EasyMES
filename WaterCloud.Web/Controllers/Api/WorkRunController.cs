@@ -13,7 +13,7 @@ using WaterCloud.Service.ProcessManage;
 using WaterCloud.Service.QualityManage;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     /// <summary>
     /// 生产接口
@@ -22,7 +22,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class WorkRunController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public MaterialService _materialService { get; set; }

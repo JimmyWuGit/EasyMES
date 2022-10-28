@@ -18,7 +18,7 @@ namespace WaterCloud.Web.Areas.QualityManage.Controllers
     /// 描 述：质检单管理控制器类
     /// </summary>
     [Area("QualityManage")]
-    public class NeedCheckController :  ControllerBase
+    public class NeedCheckController :  BaseController
     {
         public NeedCheckService _service {get;set;}
         public TransferBoxBatchService _batchService { get; set; }

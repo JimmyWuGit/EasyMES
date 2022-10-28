@@ -19,7 +19,7 @@ namespace WaterCloud.Web.Areas.ClassTask.Controllers
     /// 描 述：待执行任务控制器类
     /// </summary>
     [Area("ClassTask")]
-    public class ControlJobPlanerController :  ControllerBase
+    public class ControlJobPlanerController :  BaseController
     {
         public ControlJobPlanerService _service {get;set;}
         #region 获取数据

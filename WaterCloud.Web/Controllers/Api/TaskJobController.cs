@@ -11,7 +11,7 @@ using WaterCloud.Service.ClassTask;
 using WaterCloud.Service.MaterialManage;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
 	/// <summary>
 	/// 调度任务接口
@@ -20,7 +20,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class TaskJobController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public StorageService _storageService { get; set; }

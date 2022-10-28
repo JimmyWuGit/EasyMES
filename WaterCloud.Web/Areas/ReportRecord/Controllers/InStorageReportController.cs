@@ -13,7 +13,7 @@ using WaterCloud.Domain.MaterialManage;
 namespace WaterCloud.Web.Areas.ReportRecord.Controllers
 {
     [Area("ReportRecord")]
-    public class InStorageReportController : ControllerBase
+    public class InStorageReportController : BaseController
     {
         public ReportRecordService _service { get; set; }
         [HttpGet]

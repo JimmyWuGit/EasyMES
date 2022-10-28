@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：库区管理控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class AreaController :  ControllerBase
+    public class AreaController :  BaseController
     {
         public AreaService _service {get;set;}
 

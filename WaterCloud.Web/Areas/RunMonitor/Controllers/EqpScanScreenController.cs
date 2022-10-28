@@ -22,7 +22,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// </summary>
     [Area("RunMonitor")]
     [HandlerBoard]
-    public class EqpScanScreenController :  ControllerBase
+    public class EqpScanScreenController :  BaseController
     {
         public SystemSetService _setService { get; set; }
         public ModuleService _moduleService { get; set; }

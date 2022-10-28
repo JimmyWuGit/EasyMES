@@ -16,7 +16,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：流转箱管理控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class TransferTypeController : ControllerBase
+    public class TransferTypeController : BaseController
     {
         public TransferTypeService _service { get; set; }
         public ItemsDataService _itemService { get; set; }

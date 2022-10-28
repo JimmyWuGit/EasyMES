@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.PlanManage.Controllers
     /// 描 述：采购计划控制器类
     /// </summary>
     [Area("PlanManage")]
-    public class InStoragePlanController :  ControllerBase
+    public class InStoragePlanController :  BaseController
     {
         public InStoragePlanService _service {get;set;}
 

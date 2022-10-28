@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：流转箱打印控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class TransferBoxBatchController :  ControllerBase
+    public class TransferBoxBatchController :  BaseController
     {
         public TransferBoxBatchService _service {get;set;}
 

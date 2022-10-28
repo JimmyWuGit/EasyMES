@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
     /// 描 述：设备停机控制器类
     /// </summary>
     [Area("EquipmentManage")]
-    public class EqpStopRecordController :  ControllerBase
+    public class EqpStopRecordController :  BaseController
     {
         public EqpStopRecordService _service {get;set;}
 

@@ -13,6 +13,7 @@ using WaterCloud.Service.SystemManage;
 using WaterCloud.Service.MaterialManage;
 using WaterCloud.Domain.MaterialManage;
 using WaterCloud.Service.ClassTask;
+using iTextSharp.text;
 
 namespace WaterCloud.Web.Areas.ProcessManage.Controllers
 {
@@ -23,7 +24,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// </summary>
     [Area("RunMonitor")]
     [HandlerBoard]
-    public class LogisticScanScreenController :  ControllerBase
+    public class LogisticScanScreenController :  BaseController
     {
         public SystemSetService _setService { get; set; }
         public ModuleService _moduleService { get; set; }
@@ -136,7 +137,23 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
             return Content(list.ToJson());
         }
 
-        [HttpGet]
+		/// <summary>
+		/// 获取区域列表
+		/// </summary>
+		/// <param name="keyword">关键词</param>
+		/// <param name="type">类型</param>
+		/// <returns></returns>
+		[HttpGet]
+		[HandlerAjaxOnly]
+		public async Task<ActionResult> GetAreaList(string keyword = "", int? type = null)
+		{
+			var data = await _areaService.GetList(keyword);
+			data = data.Where(a => a.F_EnabledMark == true).OrderBy(a => a.F_AreaType).ToList();
+			if (type != null)
+				data = data.Where(a => a.F_AreaType == type).ToList();
+			return Content(data.ToJson());
+		}
+		[HttpGet]
         [HandlerAjaxOnly]
         public async Task<ActionResult> GetUseLocation(string materialCode, string eqpName,string areaCode, bool isAll = false)
         {

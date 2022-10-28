@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
     /// 描 述：设备清单控制器类
     /// </summary>
     [Area("EquipmentManage")]
-    public class EquipmentController :  ControllerBase
+    public class EquipmentController :  BaseController
     {
         public EquipmentService _service {get;set;}
         public ItemsDataService _itemsService {get;set; }
