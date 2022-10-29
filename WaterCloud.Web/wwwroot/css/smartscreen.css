@@ -9,7 +9,7 @@
 *, body {
     padding: 0px;
     margin: 0px;
-    color: #222;
+    color: #fff;
     font-family: "微软雅黑";
 }
 
@@ -109,9 +109,16 @@ a:hover {
 
 .allnav {
     min-height: 200px;
-    height: 2.3rem
+    height: 2.25rem
 }
-
+.allnav2 {
+    min-height: 350px;
+    height: 3.9rem
+}
+.allnav3 {
+    min-height: 700px;
+    height: 8.85rem
+}
 .loading {
     position: fixed;
     left: 0;
@@ -329,7 +336,6 @@ a:hover {
     padding-top: .2rem;
     padding-bottom: .4rem;
 }
-
 .map {
     position: relative;
     height: 4.6rem;
@@ -620,16 +626,28 @@ a:hover {
     body {
         background: #000d4a;
     }
+    .head h1 {
+        color: #fff;
+        text-align: center;
+        font-size: 20px;
+        line-height:20px;
+    }
+    .alltitle {
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        line-height: 16px;
+    }
 }
 .layuimini-site-mobile {
     display: block !important;
     position: absolute;
     z-index: 100000;
-    top: 5px;
-    right: 5px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    top: 10px;
+    right: 40px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     border-radius: 2px;
     text-align: center;
     background-color: rgba(0, 0, 0, .7);
@@ -643,4 +661,40 @@ a:hover {
 body.demo.layui-layer-content {
     background-color: #c00;
     color: #fff;
+}
+table{
+
+}
+    table th {
+        font-size: .2rem;
+        text-align: left;
+        border: 1px solid rgba(25,186,139,.17);
+        background:#06c;
+    }
+    table td {
+        font-size: .18rem;
+        text-align: left;
+        border: 1px solid rgba(25,186,139,.17);
+    }
+.textbox{
+}
+    .textbox .textboxheader {
+        font-size: .31rem;
+        color: rgba(255,255,255,.7);
+        padding-top: .2rem;
+        text-align:center;
+    }
+    .textbox .textboxnav {
+        font-size: .5rem;
+        color: #ffeb7b;
+        font-family: electronicFont;
+        font-weight: bold;
+        text-align: center;
+    }
+.half {
+    width: 50%;
+    float: left;
+}
+.layui-layer-dialog .layui-layer-padding {
+    color: black;
 }
