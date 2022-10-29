@@ -1,18 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 80027
- Source Host           : localhost:3306
- Source Schema         : szprslmes
-
- Target Server Type    : MySQL
- Target Server Version : 80027
- File Encoding         : 65001
-
- Date: 24/10/2022 13:43:47
-*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -22,23 +7,23 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_area`;
 CREATE TABLE `mes_area`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_AREACODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库区编号',
-  `F_AREATYPE` int NOT NULL COMMENT '库区类型',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_NEEDRULE` tinyint NULL DEFAULT NULL COMMENT '是否需要先进先出',
-  `F_STACKTYPE` tinyint NULL DEFAULT NULL COMMENT 'true货架 false叠加',
-  `F_PREFIX` int NOT NULL COMMENT '库位前缀',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_AreaCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库区编号',
+  `F_AreaType` int NOT NULL COMMENT '库区类型',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_NeedRule` tinyint NULL DEFAULT NULL COMMENT '是否需要先进先出',
+  `F_StackType` tinyint NULL DEFAULT NULL COMMENT 'true货架 false叠加',
+  `F_Prefix` int NULL DEFAULT NULL COMMENT '库位前缀',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_area
@@ -52,25 +37,25 @@ INSERT INTO `mes_area` VALUES ('08dab312-72b4-47bb-8c5e-597e0dbb348d', '成品�
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_batchinfo`;
 CREATE TABLE `mes_batchinfo`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_FLOWTYPE` int NULL DEFAULT NULL COMMENT '流转类型(0入库绑定，1领用，2产出，3库存，4出库，5检验)',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号编号',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '库位号',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_DONENUM` double NOT NULL COMMENT '使用数量',
-  `F_PARENTID` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '父级',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_FlowType` int NULL DEFAULT NULL COMMENT '流转类型(0入库绑定，1领用，2产出，3库存，4出库，5检验)',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号编号',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库位号',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_DoneNum` double NOT NULL COMMENT '使用数量',
+  `F_ParentId` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '父级',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_batchinfo
@@ -81,19 +66,20 @@ CREATE TABLE `mes_batchinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_boardaccount`;
 CREATE TABLE `mes_boardaccount`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'Id',
-  `F_ACCOUNT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '账号',
-  `F_PASSWORD` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '是否启用',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL COMMENT '逻辑删除标志',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL COMMENT '最后修改时间',
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '最后修改人',
-  `F_DELETETIME` datetime NULL DEFAULT NULL COMMENT '删除时间',
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '删除人',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '内容',
-  PRIMARY KEY (`F_ID`) USING BTREE
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '账户',
+  `F_Password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属设备',
+  PRIMARY KEY (`F_Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -105,23 +91,23 @@ CREATE TABLE `mes_boardaccount`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_bomform`;
 CREATE TABLE `mes_bomform`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号主键-1',
-  `F_SONMATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '组成主键-n',
-  `F_BOMTYPE` int NULL DEFAULT NULL COMMENT 'Bom类型（0erp,1mes）',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序主键',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号主键-1',
+  `F_SonMaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '组成主键-n',
+  `F_BomType` int NULL DEFAULT NULL COMMENT 'Bom类型（0erp,1mes）',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序主键',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_bomform
@@ -136,24 +122,24 @@ INSERT INTO `mes_bomform` VALUES ('08dab322-fad7-40d9-81f5-74e56aac21b4', '08dab
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_checkdatestorage`;
 CREATE TABLE `mes_checkdatestorage`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_CHECKSTORAGETYPE` int NOT NULL COMMENT '盘点类型',
-  `F_CHECKDATE` date NOT NULL COMMENT '盘点日期',
-  `F_CLASSNUM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '班别（A白班，B夜班）',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_BEGINNUM` double NOT NULL COMMENT '上一班数量',
-  `F_CURRENTNUM` double NULL DEFAULT NULL COMMENT '当前数量',
-  `F_CURRENTPALLET` int NULL DEFAULT NULL COMMENT '当前托数',
-  `F_INNUM` double NULL DEFAULT NULL COMMENT '入库数量',
-  `F_OUTNUM` double NULL DEFAULT NULL COMMENT '出库数量',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  UNIQUE INDEX `MES_CHECKDATESTORAGE`(`F_CHECKSTORAGETYPE`, `F_CHECKDATE`, `F_CLASSNUM`, `F_MATERIALID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_CheckStorageType` int NOT NULL COMMENT '盘点类型',
+  `F_CheckDate` date NOT NULL COMMENT '盘点日期',
+  `F_ClassNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '班别（A白班，B夜班）',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_BeginNum` double NOT NULL COMMENT '上一班数量',
+  `F_CurrentNum` double NULL DEFAULT NULL COMMENT '当前数量',
+  `F_CurrentPallet` int NULL DEFAULT NULL COMMENT '当前托数',
+  `F_InNum` double NULL DEFAULT NULL COMMENT '入库数量',
+  `F_OutNum` double NULL DEFAULT NULL COMMENT '出库数量',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  UNIQUE INDEX `mes_checkdatestorage`(`F_CheckStorageType`, `F_CheckDate`, `F_ClassNum`, `F_MaterialId`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_checkdatestorage
@@ -164,15 +150,15 @@ CREATE TABLE `mes_checkdatestorage`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_checkoutdescription`;
 CREATE TABLE `mes_checkoutdescription`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键',
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '父级id',
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '描述',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_LAYERS` int NULL DEFAULT NULL COMMENT '层级',
-  `F_CLICKNUM` bigint NOT NULL COMMENT '选择次数',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键',
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '父级id',
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '描述',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_Layers` int NULL DEFAULT NULL COMMENT '层级',
+  `F_ClickNum` bigint NOT NULL COMMENT '选择次数',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_checkoutdescription
@@ -353,31 +339,31 @@ INSERT INTO `mes_checkoutdescription` VALUES ('fb6eec89-5820-40a5-9b83-ed145eea3
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_consumeinfo`;
 CREATE TABLE `mes_consumeinfo`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序Id',
-  `F_PROCESSNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序名称',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_WORKORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单Id',
-  `F_WORKORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单编号',
-  `F_WORKORDERRUNSORT` int NULL DEFAULT NULL COMMENT '执行顺序',
-  `F_OUTPUTID` bigint NULL DEFAULT NULL COMMENT '产出id',
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单明细Id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序Id',
+  `F_ProcessName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序名称',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_WorkOrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单Id',
+  `F_WorkOrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单编号',
+  `F_WorkOrderRunSort` int NULL DEFAULT NULL COMMENT '执行顺序',
+  `F_OutPutId` bigint NULL DEFAULT NULL COMMENT '产出id',
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单明细Id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_consumeinfo
@@ -388,31 +374,31 @@ CREATE TABLE `mes_consumeinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_controljob`;
 CREATE TABLE `mes_controljob`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_JOBCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '调度编号',
-  `F_JOBINFO` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '调度信息',
-  `F_ISTOPLANMAN` tinyint NOT NULL COMMENT '是否发送计划人员',
-  `F_ISNOTICE` tinyint NOT NULL COMMENT '是否通知',
-  `F_PRIORITY` int NOT NULL COMMENT '优先级（从大到小执行）',
-  `F_DONETIME` datetime NULL DEFAULT NULL COMMENT '执行时间',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_JOBTYPE` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
-  `F_NEEDID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '需求id',
-  `F_FINISHTIME` datetime NULL DEFAULT NULL COMMENT '完成时间',
-  `F_JOBSTATE` int NOT NULL COMMENT '任务状态（0等待，1执行，2完成,3结束）',
-  `F_NEEDEQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '需求设备id',
-  `F_NEEDNUM` double NULL DEFAULT NULL COMMENT '数量',
-  `F_NEEDTIME` datetime NULL DEFAULT NULL COMMENT '需求时间',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_JobCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '调度编号',
+  `F_JobInfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '调度信息',
+  `F_IsToPlanMan` tinyint NOT NULL COMMENT '是否发送计划人员',
+  `F_IsNotice` tinyint NOT NULL COMMENT '是否通知',
+  `F_Priority` int NOT NULL COMMENT '优先级（从大到小执行）',
+  `F_DoneTime` datetime NULL DEFAULT NULL COMMENT '执行时间',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_JobType` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
+  `F_NeedId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '需求id',
+  `F_FinishTime` datetime NULL DEFAULT NULL COMMENT '完成时间',
+  `F_JobState` int NOT NULL COMMENT '任务状态（0等待，1执行，2完成,3结束）',
+  `F_NeedEqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '需求设备id',
+  `F_NeedNum` double NULL DEFAULT NULL COMMENT '数量',
+  `F_NeedTime` datetime NULL DEFAULT NULL COMMENT '需求时间',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_controljob
@@ -427,11 +413,11 @@ INSERT INTO `mes_controljob` VALUES ('08dab331-cb0b-449c-827b-1935eafade1a', 'CJ
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_controljobmusttime`;
 CREATE TABLE `mes_controljobmusttime`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_JOBTYPE` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
-  `F_NEEDTIME` int NOT NULL COMMENT '任务响应时间(分)',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_JobType` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
+  `F_NeedTime` int NOT NULL COMMENT '任务响应时间(分)',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_controljobmusttime
@@ -454,14 +440,14 @@ INSERT INTO `mes_controljobmusttime` VALUES ('08d92a2d-58fc-4a14-8c55-88444f7086
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_controljobuserbanding`;
 CREATE TABLE `mes_controljobuserbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_JOBTYPE` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
-  `F_USERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '用户ID',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备ID',
-  `F_USERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '用户名',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_JobType` int NOT NULL COMMENT '0补货，1入库，2出库，3产出上架，4移库，5作业开始，6作业结束,7领用退回',
+  `F_UserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户ID',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备ID',
+  `F_UserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_controljobuserbanding
@@ -484,11 +470,11 @@ INSERT INTO `mes_controljobuserbanding` VALUES ('08dab311-e24e-42f5-885b-714f138
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpareabanding`;
 CREATE TABLE `mes_eqpareabanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_AREAID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库区Id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_AreaId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库区Id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpareabanding
@@ -503,18 +489,18 @@ INSERT INTO `mes_eqpareabanding` VALUES ('08dab324-dc12-4b12-808e-2d0d8c73b684',
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpmaterialbanding`;
 CREATE TABLE `mes_eqpmaterialbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备ID',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_NUM` double NOT NULL COMMENT '产量数量',
-  `F_PRODUCETYPE` int NOT NULL COMMENT '生产模式(0独立，1共享)',
-  `F_PRIORITY` int NOT NULL COMMENT '从大到小',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_Num` double NOT NULL COMMENT '产量数量',
+  `F_ProduceType` int NOT NULL COMMENT '生产模式(0独立，1共享)',
+  `F_Priority` int NOT NULL COMMENT '从大到小',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpmaterialbanding
@@ -528,32 +514,32 @@ INSERT INTO `mes_eqpmaterialbanding` VALUES ('08dab325-39be-4660-8588-6ac3c87d46
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpmaterialuse`;
 CREATE TABLE `mes_eqpmaterialuse`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_DONENUM` double NULL DEFAULT NULL COMMENT '消耗数量',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序Id',
-  `F_PROCESSNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序名称',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_WORKORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单Id',
-  `F_WORKORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单编号',
-  `F_WORKORDERRUNSORT` int NULL DEFAULT NULL COMMENT '执行顺序',
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单明细Id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '库位号',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_DoneNum` double NULL DEFAULT NULL COMMENT '消耗数量',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序Id',
+  `F_ProcessName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序名称',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_WorkOrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单Id',
+  `F_WorkOrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单编号',
+  `F_WorkOrderRunSort` int NULL DEFAULT NULL COMMENT '执行顺序',
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单明细Id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库位号',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpmaterialuse
@@ -564,22 +550,22 @@ CREATE TABLE `mes_eqpmaterialuse`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqppqccheckitem`;
 CREATE TABLE `mes_eqppqccheckitem`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备ID',
-  `F_SEQUENCE` int NULL DEFAULT NULL COMMENT '顺序',
-  `F_CHECKITEM` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '点检项目',
-  `F_CHECKSTAND` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '检验基准',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
+  `F_Sequence` int NULL DEFAULT NULL COMMENT '顺序',
+  `F_CheckItem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '点检项目',
+  `F_CheckStand` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '检验基准',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqppqccheckitem
@@ -590,44 +576,44 @@ CREATE TABLE `mes_eqppqccheckitem`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqppqcdetail`;
 CREATE TABLE `mes_eqppqcdetail`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_CHECKITEMID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY5` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY6` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY7` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY8` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY9` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY10` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY11` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY12` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY13` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY14` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY15` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY16` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY17` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY18` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY19` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY20` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY21` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY22` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY23` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY24` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY25` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY26` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY27` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY28` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY29` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY30` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DAY31` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CHECKITEM` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '检测项名字',
-  `F_CHECKSTAND` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '检测标准',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_PId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_CheckItemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day5` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day6` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day7` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day8` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day9` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day10` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day11` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day12` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day13` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day14` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day15` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day16` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day17` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day18` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day19` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day20` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day21` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day22` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day23` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day24` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day25` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day26` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day27` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day28` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day29` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day30` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Day31` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CheckItem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '检测项名字',
+  `F_CheckStand` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '检测标准',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqppqcdetail
@@ -638,13 +624,13 @@ CREATE TABLE `mes_eqppqcdetail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqppqcmaster`;
 CREATE TABLE `mes_eqppqcmaster`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备ID',
-  `F_CHECKMONTH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '点检月份',
-  `F_SHIFT` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '班别',
-  `F_REMARK` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
+  `F_CheckMonth` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '点检月份',
+  `F_Shift` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '班别',
+  `F_Remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqppqcmaster
@@ -657,34 +643,34 @@ INSERT INTO `mes_eqppqcmaster` VALUES ('08d92bb8-3c72-4e39-8cb6-987449c3ca27', '
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqprepair`;
 CREATE TABLE `mes_eqprepair`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_REPAIRNO` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '维修单号',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PROBLEMTYPE` int NULL DEFAULT NULL COMMENT '故障分类',
-  `F_PROBLEMCLASS` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '故障等级：1低级，2中级，3高级',
-  `F_PROBLEMDESC` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '故障描述',
-  `F_PHOTOPATH` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '故障图片路径',
-  `F_CALLREPAIRMAN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '报修人ID',
-  `F_CALLREPAIRTIME` datetime NULL DEFAULT NULL COMMENT '报修时间',
-  `F_DISTRIBUTETIME` datetime NULL DEFAULT NULL COMMENT '派工时间',
-  `F_STARTREPAIRTIME` datetime NULL DEFAULT NULL COMMENT '维修开始时间',
-  `F_ENDREPAIRTIME` datetime NULL DEFAULT NULL COMMENT '维修结束时间',
-  `F_STATUS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '状态：1,报修；2，已派工；3,维修中；4，确认中，99，关闭',
-  `F_CONFIRMMAN` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '确认人ID,同报修人',
-  `F_CONFIRMTIME` datetime NULL DEFAULT NULL COMMENT '确认时间',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_EQPNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CALLREPAIRMANNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '报修人姓名',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '设备维修记录表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_RepairNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '维修单号',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ProblemType` int NULL DEFAULT NULL COMMENT '故障分类',
+  `F_ProblemClass` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '故障等级：1低级，2中级，3高级',
+  `F_ProblemDesc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '故障描述',
+  `F_PhotoPath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '故障图片路径',
+  `F_CallRepairMan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '报修人ID',
+  `F_CallRepairTime` datetime NULL DEFAULT NULL COMMENT '报修时间',
+  `F_DistributeTime` datetime NULL DEFAULT NULL COMMENT '派工时间',
+  `F_StartRepairTime` datetime NULL DEFAULT NULL COMMENT '维修开始时间',
+  `F_EndRepairTime` datetime NULL DEFAULT NULL COMMENT '维修结束时间',
+  `F_Status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '状态：1,报修；2，已派工；3,维修中；4，确认中，99，关闭',
+  `F_ConfirmMan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '确认人ID,同报修人',
+  `F_ConfirmTime` datetime NULL DEFAULT NULL COMMENT '确认时间',
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EqpName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CallRepairManName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '报修人姓名',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '设备维修记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqprepair
@@ -695,26 +681,26 @@ CREATE TABLE `mes_eqprepair`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqprepairmanrecord`;
 CREATE TABLE `mes_eqprepairmanrecord`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_REPAIRID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备维修记录表主键',
-  `F_REPAIRMAN` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '维修人Id',
-  `F_DISTRIBUTETIME` datetime NULL DEFAULT NULL COMMENT '派工时间',
-  `F_STARTREPAIRTIME` datetime NULL DEFAULT NULL COMMENT '维修开始时间',
-  `F_ENDREPAIRTIME` datetime NULL DEFAULT NULL COMMENT '维修结束时间',
-  `F_REPAIRRESULT` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '维修结果',
-  `F_STATUS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '状态：1,派工，2，维修中，99，完成',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_REPAIRMANNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '维修人姓名',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '维修人员记录表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_RepairId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备维修记录表主键',
+  `F_RepairMan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '维修人Id',
+  `F_DistributeTime` datetime NULL DEFAULT NULL COMMENT '派工时间',
+  `F_StartRepairTime` datetime NULL DEFAULT NULL COMMENT '维修开始时间',
+  `F_EndRepairTime` datetime NULL DEFAULT NULL COMMENT '维修结束时间',
+  `F_RepairResult` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '维修结果',
+  `F_Status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '状态：1,派工，2，维修中，99，完成',
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_RepairManName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '维修人姓名',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '维修人员记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqprepairmanrecord
@@ -725,10 +711,10 @@ CREATE TABLE `mes_eqprepairmanrecord`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqprepairprocess`;
 CREATE TABLE `mes_eqprepairprocess`  (
-  `F_REPAIRID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '维修单主键',
-  `F_ADDTIME` datetime NULL DEFAULT NULL COMMENT '动作时间',
-  `F_ACTIONDESC` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '动作描述'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_RepairId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '维修单主键',
+  `F_AddTime` datetime NULL DEFAULT NULL COMMENT '动作时间',
+  `F_ActionDesc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '动作描述'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqprepairprocess
@@ -739,32 +725,32 @@ CREATE TABLE `mes_eqprepairprocess`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpstoprecord`;
 CREATE TABLE `mes_eqpstoprecord`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_STOPTYPE` int NULL DEFAULT NULL COMMENT '1：故障停机，2：计划内停机，3:急停停机',
-  `F_PLANSTOPSTARTTIME` datetime NULL DEFAULT NULL COMMENT '计划停机开始时间',
-  `F_PLANSTOPENDTIME` datetime NULL DEFAULT NULL COMMENT '计划停机结束时间',
-  `F_STOPREASONTYPE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '停机原因分类：1人2机3料4法5环',
-  `F_STOPREASON` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '停机原因',
-  `F_REALSTOPSTARTTIME` datetime NULL DEFAULT NULL COMMENT '实际停机开始时间',
-  `F_REALSTOPENDTIME` datetime NULL DEFAULT NULL COMMENT '实际停机结束时间',
-  `F_SOLUTION` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '解决措施',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_EQPNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISRECOVERY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '是否恢复，Y是，N否',
-  `F_SHIFT` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '班别',
-  `F_DAY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '当班日期',
-  `F_REPEATWEEKDAY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '周几重复，空不重复',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '停机记录表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_StopType` int NULL DEFAULT NULL COMMENT '1：故障停机，2：计划内停机，3:急停停机',
+  `F_PlanStopStartTime` datetime NULL DEFAULT NULL COMMENT '计划停机开始时间',
+  `F_PlanStopEndTime` datetime NULL DEFAULT NULL COMMENT '计划停机结束时间',
+  `F_StopReasonType` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '停机原因分类：1人2机3料4法5环',
+  `F_StopReason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '停机原因',
+  `F_RealStopStartTime` datetime NULL DEFAULT NULL COMMENT '实际停机开始时间',
+  `F_RealStopEndTime` datetime NULL DEFAULT NULL COMMENT '实际停机结束时间',
+  `F_Solution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '解决措施',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_EqpName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsRecovery` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '是否恢复，Y是，N否',
+  `F_Shift` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '班别',
+  `F_Day` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '当班日期',
+  `F_RepeatWeekday` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '周几重复，空不重复',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '停机记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpstoprecord
@@ -775,15 +761,15 @@ CREATE TABLE `mes_eqpstoprecord`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_eqpworktime`;
 CREATE TABLE `mes_eqpworktime`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `F_STARTTIME` datetime NOT NULL COMMENT '结束时间',
-  `F_ENDTIME` datetime NOT NULL COMMENT '开始时间',
-  `F_TIMENUM` double NOT NULL COMMENT '计算以半小时算',
-  `F_USERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '用户id',
-  `F_USERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '用户名称',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `F_StartTime` datetime NOT NULL COMMENT '结束时间',
+  `F_EndTime` datetime NOT NULL COMMENT '开始时间',
+  `F_TimeNum` double NOT NULL COMMENT '计算以半小时算',
+  `F_UserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户id',
+  `F_UserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名称',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_eqpworktime
@@ -795,43 +781,43 @@ INSERT INTO `mes_eqpworktime` VALUES (1, '2022-10-21 08:00:00', '2022-10-21 20:0
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_equipment`;
 CREATE TABLE `mes_equipment`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备名称',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '设备描述',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_EQPSTATE` int NOT NULL,
-  `F_EQPOWNER` int NULL DEFAULT NULL COMMENT '财产所属',
-  `F_USEDATE` datetime NULL DEFAULT NULL COMMENT '接收日期',
-  `F_PLANUSERNUM` int NULL DEFAULT NULL COMMENT '预计使用次数',
-  `F_USEDNUM` int NULL DEFAULT NULL COMMENT '已使用次数',
-  `F_MAINTAINNUM` int NULL DEFAULT NULL COMMENT '保养周期',
-  `F_EQPTYPE` int NOT NULL COMMENT '设备类型',
-  `F_ISMAINTAIN` tinyint NOT NULL COMMENT '是否需要保养',
-  `F_ISOTHEREQP` tinyint NOT NULL COMMENT '是否加载流动设备',
-  `F_MAINTAINTYPE` int NULL DEFAULT NULL COMMENT '保养类型',
-  `F_EQPUSE` int NOT NULL COMMENT '设备用途',
-  `F_MOLDINGNUM` int NULL DEFAULT NULL COMMENT '模具模数',
-  `F_COMPANYNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属公司',
-  `F_MOULDTYPE` int NULL DEFAULT NULL COMMENT '模具类型',
-  `F_DIENUM` int NULL DEFAULT NULL COMMENT '模具号',
-  `F_PLCSTATE` int NULL DEFAULT NULL COMMENT 'plc状态',
-  `F_BATCHPREFIX` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '批次前缀',
-  `F_BATCHTYPE` int NULL DEFAULT NULL COMMENT '批次类型(0、年月日班，1、年月日时分秒)',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定物料',
-  `F_OUTTRANSFERNUM` int NULL DEFAULT NULL COMMENT '产出容器限制',
-  `F_PLANSTOPTIME` int NULL DEFAULT NULL COMMENT '固定停机时间分钟(min)',
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备名称',
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '设备描述',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EqpState` int NOT NULL,
+  `F_EqpOwner` int NULL DEFAULT NULL COMMENT '财产所属',
+  `F_UseDate` datetime NULL DEFAULT NULL COMMENT '接收日期',
+  `F_PlanUserNum` int NULL DEFAULT NULL COMMENT '预计使用次数',
+  `F_UsedNum` int NULL DEFAULT NULL COMMENT '已使用次数',
+  `F_MaintainNum` int NULL DEFAULT NULL COMMENT '保养周期',
+  `F_EqpType` int NOT NULL COMMENT '设备类型',
+  `F_IsMaintain` tinyint NOT NULL COMMENT '是否需要保养',
+  `F_IsOtherEqp` tinyint NOT NULL COMMENT '是否加载流动设备',
+  `F_MaintainType` int NULL DEFAULT NULL COMMENT '保养类型',
+  `F_EqpUse` int NOT NULL COMMENT '设备用途',
+  `F_MoldingNum` int NULL DEFAULT NULL COMMENT '模具模数',
+  `F_CompanyName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属公司',
+  `F_MouldType` int NULL DEFAULT NULL COMMENT '模具类型',
+  `F_DieNum` int NULL DEFAULT NULL COMMENT '模具号',
+  `F_PlcState` int NULL DEFAULT NULL COMMENT 'plc状态',
+  `F_BatchPrefix` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '批次前缀',
+  `F_BatchType` int NULL DEFAULT NULL COMMENT '批次类型(0、年月日班，1、年月日时分秒)',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定物料',
+  `F_OutTransferNum` int NULL DEFAULT NULL COMMENT '产出容器限制',
+  `F_PlanStopTime` int NULL DEFAULT NULL COMMENT '固定停机时间分钟(min)',
   `F_OEE` int NULL DEFAULT NULL COMMENT 'OEE(%)',
-  `F_BEAT` double NULL DEFAULT NULL COMMENT '节拍(s)',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Beat` double NULL DEFAULT NULL COMMENT '节拍(s)',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_equipment
@@ -840,23 +826,22 @@ INSERT INTO `mes_equipment` VALUES ('08dab324-2b7c-4c57-836d-e3db2073193d', '0',
 INSERT INTO `mes_equipment` VALUES ('08dab324-9e2b-47bc-80d4-5a9cdfc728cd', '0', '切割1号线', 0, 1, '', '2022-10-21 13:25:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 6, 0, NULL, NULL, NULL, NULL, 'QG1', 1, NULL, 1, 30, 98, 126);
 INSERT INTO `mes_equipment` VALUES ('08dab324-d447-4b9e-8933-a50e21483734', '0', '冲压1号线', 0, 1, '冲压1号线', '2022-10-21 13:26:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, NULL, 0, 0, 1, 0, 10, 0, NULL, NULL, NULL, NULL, 'CY1', 1, NULL, 1, 30, 98, 32);
 INSERT INTO `mes_equipment` VALUES ('08dab326-31e6-45f1-80d1-3ddc20eb7577', '0', '模具', 0, 1, '', '2022-10-21 13:36:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, NULL, 1, 0, 0, 0, 7, 2, NULL, NULL, NULL, NULL, '', NULL, NULL, 1, 0, 0, 0);
-
 -- ----------------------------
 -- Table structure for mes_equipmentstatusdate
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_equipmentstatusdate`;
 CREATE TABLE `mes_equipmentstatusdate`  (
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备的ID，（无主键）',
-  `F_OFFLINETIMES` int NULL DEFAULT NULL COMMENT '离线累计秒数',
-  `F_RUNTIMES` int NULL DEFAULT NULL COMMENT '运行累计秒数',
-  `F_WARNINGTIMES` int NULL DEFAULT NULL COMMENT '报警累计秒数',
-  `F_ERRORTIMES` int NULL DEFAULT NULL COMMENT '故障累计秒数',
-  `F_OFFTIMES` int NULL DEFAULT NULL COMMENT '停机累计秒数',
-  `F_DATE` date NULL DEFAULT NULL COMMENT '日期',
-  `F_CURRQTY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '实时下料数',
-  `F_LASTUPDATETIME` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
-  `F_MSGSENDED` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '是否已钉钉通知'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备的ID，（无主键）',
+  `F_OfflineTimes` int NULL DEFAULT NULL COMMENT '离线累计秒数',
+  `F_RunTimes` int NULL DEFAULT NULL COMMENT '运行累计秒数',
+  `F_WarningTimes` int NULL DEFAULT NULL COMMENT '报警累计秒数',
+  `F_ErrorTimes` int NULL DEFAULT NULL COMMENT '故障累计秒数',
+  `F_OffTimes` int NULL DEFAULT NULL COMMENT '停机累计秒数',
+  `F_Date` date NULL DEFAULT NULL COMMENT '日期',
+  `F_CurrQty` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '实时下料数',
+  `F_LastUpdateTime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
+  `F_MsgSended` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '是否已通知'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_equipmentstatusdate
@@ -867,15 +852,15 @@ CREATE TABLE `mes_equipmentstatusdate`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_equipmentstatusdatebyhour`;
 CREATE TABLE `mes_equipmentstatusdatebyhour`  (
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备的ID，（无主键）',
-  `F_OFFLINETIMES` int NULL DEFAULT NULL COMMENT '离线累计秒数',
-  `F_RUNTIMES` int NULL DEFAULT NULL COMMENT '运行累计秒数',
-  `F_WARNINGTIMES` int NULL DEFAULT NULL COMMENT '报警累计秒数',
-  `F_ERRORTIMES` int NULL DEFAULT NULL COMMENT '故障累计秒数',
-  `F_OFFTIMES` int NULL DEFAULT NULL COMMENT '停机累计秒数',
-  `F_DATEHOUR` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '日期小时',
-  `F_DATE` date NULL DEFAULT NULL COMMENT '日期'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备的ID，（无主键）',
+  `F_OfflineTimes` int NULL DEFAULT NULL COMMENT '离线累计秒数',
+  `F_RunTimes` int NULL DEFAULT NULL COMMENT '运行累计秒数',
+  `F_WarningTimes` int NULL DEFAULT NULL COMMENT '报警累计秒数',
+  `F_ErrorTimes` int NULL DEFAULT NULL COMMENT '故障累计秒数',
+  `F_OffTimes` int NULL DEFAULT NULL COMMENT '停机累计秒数',
+  `F_DateHour` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '日期小时',
+  `F_Date` date NULL DEFAULT NULL COMMENT '日期'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_equipmentstatusdatebyhour
@@ -886,10 +871,10 @@ CREATE TABLE `mes_equipmentstatusdatebyhour`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_equipmentstatuslog`;
 CREATE TABLE `mes_equipmentstatuslog`  (
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备的ID，（无主键）',
-  `F_PLCSTATUS` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '状态',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备的ID，（无主键）',
+  `F_PLCSTATUS` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '状态',
   `F_DATE` datetime NULL DEFAULT NULL COMMENT '日期'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_equipmentstatuslog
@@ -900,29 +885,29 @@ CREATE TABLE `mes_equipmentstatuslog`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_instorage`;
 CREATE TABLE `mes_instorage`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_INSTORAGECODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '入库单编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_DONENUM` double NOT NULL COMMENT '完成数量',
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_INSTORAGESTATE` int NOT NULL COMMENT '入库单状态',
-  `F_BADNUM` double NULL DEFAULT NULL COMMENT '不良数量',
-  `F_BATCHJSON` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '批号列表',
-  `F_PLANTIME` datetime NULL DEFAULT NULL COMMENT '计划时间',
-  `F_CARNO` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '车牌',
-  `F_ISUSEREDIT` tinyint NULL DEFAULT NULL COMMENT '是否修改',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_InStorageCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '入库单编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_DoneNum` double NOT NULL COMMENT '完成数量',
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_InStorageState` int NOT NULL COMMENT '入库单状态',
+  `F_BadNum` double NULL DEFAULT NULL COMMENT '不良数量',
+  `F_BatchJson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '批号列表',
+  `F_PlanTime` datetime NULL DEFAULT NULL COMMENT '计划时间',
+  `F_CarNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '车牌',
+  `F_IsUserEdit` tinyint NULL DEFAULT NULL COMMENT '是否修改',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_instorage
@@ -941,29 +926,29 @@ INSERT INTO `mes_instorage` VALUES ('08dab32d-aa05-4431-8c0e-08d3b5f674db', 'IN-
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_instorageinfo`;
 CREATE TABLE `mes_instorageinfo`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_INSTORAGEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '入库单id',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_BANDINGUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人id',
-  `F_BANDINGUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人',
-  `F_BANDINGTIME` datetime NULL DEFAULT NULL COMMENT '绑定时间',
-  `F_ORIGINALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '原始批次',
-  `F_ISTEMP` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_InStorageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '入库单id',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_BandingUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人id',
+  `F_BandingUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人',
+  `F_BandingTime` datetime NULL DEFAULT NULL COMMENT '绑定时间',
+  `F_OriginalBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '原始批次',
+  `F_IsTemp` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_instorageinfo
@@ -974,26 +959,26 @@ CREATE TABLE `mes_instorageinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_location`;
 CREATE TABLE `mes_location`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_AREAID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库区id',
-  `F_AREACODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库区编号',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库位编号',
-  `F_SORTCODE` int NOT NULL COMMENT '顺序',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LOCATIONSTATE` tinyint NOT NULL,
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '物料编号',
-  `F_MATERIALNAME` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '物料名称',
-  `F_LOCATIONTYPE` int NOT NULL COMMENT '库位类型(0正常，1临时)',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_AreaId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库区id',
+  `F_AreaCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库区编号',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库位编号',
+  `F_SortCode` int NOT NULL COMMENT '顺序',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LocationState` tinyint NOT NULL,
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '物料编号',
+  `F_MaterialName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '物料名称',
+  `F_LocationType` int NOT NULL COMMENT '库位类型(0正常，1临时)',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_location
@@ -1052,13 +1037,13 @@ INSERT INTO `mes_location` VALUES ('08dab321-b3ff-4746-8123-4045d356da02', '08da
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_locationmaterialbanding`;
 CREATE TABLE `mes_locationmaterialbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_LOCATIONID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '库位id',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '物料id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '物料编号',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '物料名称',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_LocationId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '库位id',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物料id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物料编号',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物料名称',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_locationmaterialbanding
@@ -1069,56 +1054,55 @@ CREATE TABLE `mes_locationmaterialbanding`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_material`;
 CREATE TABLE `mes_material`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号编号',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号名称',
-  `F_MATERIALDESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALSIZE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号规格',
-  `F_MATERIALBY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号材质',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALPIC` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '图片路径',
-  `F_CUSTOMER` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '客户',
-  `F_CUSTOMERPRONO` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '客户品号',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CPKSTDATA` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '零件cpk标准Json字符串',
-  `F_MODELREFER` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '参考模型',
-  `F_NEEDCHECKOUT` tinyint NULL DEFAULT NULL COMMENT '是否需要检验',
-  `F_WARMNUM` int NULL DEFAULT NULL COMMENT '预警值',
-  `F_CONTAINERNUM` int NULL DEFAULT NULL COMMENT '容器值',
-  `F_CHECKOUTDESCRIPTIONID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '检验说明id',
-  `F_RECEIVENUM` int NOT NULL COMMENT '领料倍数限制',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号编号',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号名称',
+  `F_MaterialDescription` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialSize` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号规格',
+  `F_MaterialBy` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号材质',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialPic` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片路径',
+  `F_Customer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户',
+  `F_CustomerProNO` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户品号',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CpkStData` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '零件cpk标准Json字符串',
+  `F_ModelRefer` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '参考模型',
+  `F_NeedCheckout` tinyint NULL DEFAULT NULL COMMENT '是否需要检验',
+  `F_WarmNum` int NULL DEFAULT NULL COMMENT '最小预警值',
+  `F_ContainerNum` int NULL DEFAULT NULL COMMENT '容器值',
+  `F_CheckoutDescriptionId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '检验说明id',
+  `F_ReceiveNum` int NOT NULL COMMENT '领料倍数限制',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_material
 -- ----------------------------
-INSERT INTO `mes_material` VALUES ('08dab322-86bf-4acb-8885-4be1add9d3f0', 'MC_20221021130926', '原材料01', '', 'PCB', '', '', 0, NULL, '', '', 0, 1, '', '2022-10-21 13:10:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '', 0, 1000, 50, NULL, 2);
+INSERT INTO mes_material VALUES ('08dab322-86bf-4acb-8885-4be1add9d3f0', 'MC_20221021130926', '原材料01', '', 'PCB', '', '', 0, NULL, '', '', 0, 1, '', '2022-10-21 13:10:10', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '', 0, 1000, 50, NULL, 2);
 INSERT INTO `mes_material` VALUES ('08dab322-9964-41de-869c-23a5db1688a5', 'MC_20221021131028', '原材料02', '', 'PCB', '', '', 0, NULL, '', '', 0, 1, '', '2022-10-21 13:10:41', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '', 0, 1000, 50, NULL, 2);
 INSERT INTO `mes_material` VALUES ('08dab322-a5a1-47c6-855e-81cc3c1bedb5', 'MC_20221021131051', '半成品01', '', 'PCB', '', '', 1, NULL, '', '', 0, 1, '', '2022-10-21 13:11:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-21 13:11:26', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, '', 0, 1000, 50, NULL, 2);
 INSERT INTO `mes_material` VALUES ('08dab322-aed6-482a-8330-ef6180dac558', 'MC_20221021131103', '半成品02', '', 'PCB', '', '', 1, NULL, '', '', 0, 1, '', '2022-10-21 13:11:17', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-21 13:11:32', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, '', 0, 1000, 50, NULL, 2);
 INSERT INTO `mes_material` VALUES ('08dab322-c1e7-452f-8149-d2a52b033213', 'MC_20221021131133', '成品', '', 'PCB', '', '', 2, NULL, '', '', 0, 1, '', '2022-10-21 13:11:49', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL, '', 0, 1000, 20, NULL, 2);
-
 -- ----------------------------
 -- Table structure for mes_materialeqpbanding
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_materialeqpbanding`;
 CREATE TABLE `mes_materialeqpbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号主键-1',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备主键-n',
-  `F_EQPUSE` int NULL DEFAULT NULL COMMENT '设备用途',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号主键-1',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备主键-n',
+  `F_EqpUse` int NULL DEFAULT NULL COMMENT '设备用途',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_materialeqpbanding
@@ -1130,29 +1114,29 @@ INSERT INTO `mes_materialeqpbanding` VALUES ('08dab32f-01ef-4ba8-8b8d-72e9e56082
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_needcheck`;
 CREATE TABLE `mes_needcheck`  (
-  `F_ID` bigint NOT NULL COMMENT '主键',
-  `F_ISCHECK` tinyint NOT NULL COMMENT '检验标识',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CHECKTYPE` int NOT NULL COMMENT '检验类型',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号名称',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '库位号',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_NUM` double NULL DEFAULT NULL COMMENT '检验数量',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '质检信息',
-  `F_ISTWOCHECK` tinyint NULL DEFAULT NULL COMMENT '二次检验标识',
-  `F_ISNEEDTWOCHECK` tinyint NULL DEFAULT NULL COMMENT '是否二次检验',
-  `F_FINISHTIME` datetime NULL DEFAULT NULL COMMENT '检验完成时间',
-  `F_TWOFINISHTIME` datetime NULL DEFAULT NULL COMMENT '二次检验完成时间',
-  `F_SOURCEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '来源id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `F_IsCheck` tinyint NOT NULL COMMENT '检验标识',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CheckType` int NOT NULL COMMENT '检验类型',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号名称',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库位号',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_Num` double NULL DEFAULT NULL COMMENT '检验数量',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '质检信息',
+  `F_IsTwoCheck` tinyint NULL DEFAULT NULL COMMENT '二次检验标识',
+  `F_IsNeedTwoCheck` tinyint NULL DEFAULT NULL COMMENT '是否二次检验',
+  `F_FinishTime` datetime NULL DEFAULT NULL COMMENT '检验完成时间',
+  `F_TwoFinishTime` datetime NULL DEFAULT NULL COMMENT '二次检验完成时间',
+  `F_SourceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '来源id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_needcheck
@@ -1163,26 +1147,26 @@ CREATE TABLE `mes_needcheck`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_order`;
 CREATE TABLE `mes_order`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_ORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '订单编号',
-  `F_CUSTOMER` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '客户',
-  `F_PLANSTARTTIME` datetime NOT NULL COMMENT '计划开始时间',
-  `F_PLANENDTIME` datetime NOT NULL COMMENT '计划结束时间',
-  `F_DAYNUM` int NOT NULL COMMENT '天数',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISFINISH` tinyint NOT NULL COMMENT '完成状态',
-  `F_PREDICTOVERTIME` datetime NULL DEFAULT NULL COMMENT '预期完成时间',
-  `F_ACTUALOVERTIME` datetime NULL DEFAULT NULL COMMENT '实际完成时间',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_OrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '订单编号',
+  `F_Customer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客户',
+  `F_PlanStartTime` datetime NOT NULL COMMENT '计划开始时间',
+  `F_PlanEndTime` datetime NOT NULL COMMENT '计划结束时间',
+  `F_DayNum` int NOT NULL COMMENT '天数',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsFinish` tinyint NOT NULL COMMENT '完成状态',
+  `F_PredictOverTime` datetime NULL DEFAULT NULL COMMENT '预期完成时间',
+  `F_ActualOverTime` datetime NULL DEFAULT NULL COMMENT '实际完成时间',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_order
@@ -1194,12 +1178,12 @@ INSERT INTO `mes_order` VALUES ('08dab329-f28e-41d7-8b91-5c4961920daf', 'OR-2022
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_orderdetail`;
 CREATE TABLE `mes_orderdetail`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_ORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '订单Id',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_NEEDNUM` double NOT NULL COMMENT '需求数量',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_OrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '订单Id',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_NeedNum` double NOT NULL COMMENT '需求数量',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_orderdetail
@@ -1211,35 +1195,35 @@ INSERT INTO `mes_orderdetail` VALUES ('08dab329-f28f-4254-8931-6a5f81def94a', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_outputinfo`;
 CREATE TABLE `mes_outputinfo`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序Id',
-  `F_PROCESSNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序名称',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_WORKORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单Id',
-  `F_WORKORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单编号',
-  `F_WORKORDERRUNSORT` int NULL DEFAULT NULL COMMENT '执行顺序',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单明细Id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_BANDINGUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人id',
-  `F_BANDINGUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人',
-  `F_BANDINGTIME` datetime NULL DEFAULT NULL COMMENT '绑定时间',
-  `F_ISTEMP` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序Id',
+  `F_ProcessName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序名称',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_WorkOrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单Id',
+  `F_WorkOrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单编号',
+  `F_WorkOrderRunSort` int NULL DEFAULT NULL COMMENT '执行顺序',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单明细Id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_BandingUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人id',
+  `F_BandingUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人',
+  `F_BandingTime` datetime NULL DEFAULT NULL COMMENT '绑定时间',
+  `F_IsTemp` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_outputinfo
@@ -1250,28 +1234,28 @@ CREATE TABLE `mes_outputinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_outstorage`;
 CREATE TABLE `mes_outstorage`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_OUTSTORAGECODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '出库单编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_DONENUM` double NOT NULL COMMENT '完成数量',
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_OUTSTORAGESTATE` int NOT NULL COMMENT '出库单状态',
-  `F_PLANTIME` datetime NULL DEFAULT NULL COMMENT '计划时间',
-  `F_CARNO` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '车牌',
-  `F_ORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '订单Id',
-  `F_ISUSEREDIT` tinyint NULL DEFAULT NULL COMMENT '是否修改',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_OutStorageCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '出库单编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_DoneNum` double NOT NULL COMMENT '完成数量',
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_OutStorageState` int NOT NULL COMMENT '出库单状态',
+  `F_PlanTime` datetime NULL DEFAULT NULL COMMENT '计划时间',
+  `F_CarNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '车牌',
+  `F_OrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '订单Id',
+  `F_IsUserEdit` tinyint NULL DEFAULT NULL COMMENT '是否修改',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_outstorage
@@ -1289,29 +1273,29 @@ INSERT INTO `mes_outstorage` VALUES ('08dab32d-aa05-4d81-8975-fa50d1dfc028', 'ON
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_outstorageinfo`;
 CREATE TABLE `mes_outstorageinfo`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_OUTSTORAGEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '出库单id',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_BANDINGUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人id',
-  `F_BANDINGUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '绑定人',
-  `F_BANDINGTIME` datetime NULL DEFAULT NULL COMMENT '绑定时间',
-  `F_TARGETTRANSFERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '装箱容器',
-  `F_ISTEMP` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_OutStorageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '出库单id',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_BandingUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人id',
+  `F_BandingUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '绑定人',
+  `F_BandingTime` datetime NULL DEFAULT NULL COMMENT '绑定时间',
+  `F_TargetTransferCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '装箱容器',
+  `F_IsTemp` tinyint NULL DEFAULT NULL COMMENT '临时标识绑定中',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_outstorageinfo
@@ -1322,11 +1306,11 @@ CREATE TABLE `mes_outstorageinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_processeqpbanding`;
 CREATE TABLE `mes_processeqpbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工序主键-1',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备主键-1',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工序主键-1',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备主键-1',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_processeqpbanding
@@ -1340,19 +1324,19 @@ INSERT INTO `mes_processeqpbanding` VALUES ('08dab325-2015-42e6-807f-7a7326d5960
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_processflow`;
 CREATE TABLE `mes_processflow`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工序id',
-  `F_PROCESSFLOWNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工序名称',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '工序备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工序id',
+  `F_ProcessFlowName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工序名称',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '工序备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_processflow
@@ -1366,13 +1350,13 @@ INSERT INTO `mes_processflow` VALUES ('08dab311-f7ad-40f5-88c8-8780e1b2fca3', '�
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_readytransferbox`;
 CREATE TABLE `mes_readytransferbox`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流转箱编号',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  UNIQUE INDEX `MES_READYTRANSFERBOX_KEY1`(`F_TRANSFERBOXCODE`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流转箱编号',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  UNIQUE INDEX `mes_ReadyTransferBox_key1`(`F_TransferBoxCode`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_readytransferbox
@@ -1383,31 +1367,31 @@ CREATE TABLE `mes_readytransferbox`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_returnmaterial`;
 CREATE TABLE `mes_returnmaterial`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序Id',
-  `F_PROCESSNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序名称',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_WORKORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单Id',
-  `F_WORKORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单编号',
-  `F_WORKORDERRUNSORT` int NULL DEFAULT NULL COMMENT '执行顺序',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工单明细Id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序Id',
+  `F_ProcessName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序名称',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_WorkOrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单Id',
+  `F_WorkOrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单编号',
+  `F_WorkOrderRunSort` int NULL DEFAULT NULL COMMENT '执行顺序',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工单明细Id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_returnmaterial
@@ -1418,13 +1402,13 @@ CREATE TABLE `mes_returnmaterial`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapimage`;
 CREATE TABLE `mes_scapimage`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_SCAPID` bigint NOT NULL COMMENT '可疑id',
-  `F_FILEPATH` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '上传路径',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '缺陷信息',
-  `F_DESCRIPTIONID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '缺陷id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_ScapId` bigint NOT NULL COMMENT '可疑id',
+  `F_FilePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '上传路径',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '缺陷信息',
+  `F_DescriptionId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '缺陷id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_scapimage
@@ -1435,26 +1419,26 @@ CREATE TABLE `mes_scapimage`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapmaterial`;
 CREATE TABLE `mes_scapmaterial`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_BATCHCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '条码编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_CHECKID` bigint NOT NULL COMMENT '检验id',
-  `F_CHECKTYPE` int NOT NULL COMMENT '检验类型',
-  `F_ISCHECK` tinyint NOT NULL COMMENT '检验完成',
-  `F_ISTEMP` tinyint NOT NULL COMMENT '临时表示还在常规质检',
-  `F_NUM` double NOT NULL COMMENT '可疑数量',
-  `F_SCAPNUM` double NOT NULL COMMENT '报废数量',
-  `F_RETURNNUM` double NOT NULL COMMENT '退回数量',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_BatchCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '条码编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_CheckId` bigint NOT NULL COMMENT '检验id',
+  `F_CheckType` int NOT NULL COMMENT '检验类型',
+  `F_IsCheck` tinyint NOT NULL COMMENT '检验完成',
+  `F_IsTemp` tinyint NOT NULL COMMENT '临时表示还在常规质检',
+  `F_Num` double NOT NULL COMMENT '可疑数量',
+  `F_ScapNum` double NOT NULL COMMENT '报废数量',
+  `F_ReturnNum` double NOT NULL COMMENT '退回数量',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_scapmaterial
@@ -1465,24 +1449,24 @@ CREATE TABLE `mes_scapmaterial`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_scapmaterialreturn`;
 CREATE TABLE `mes_scapmaterialreturn`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_BATCHCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '条码编号',
-  `F_SCAPMATERIALID` bigint NOT NULL COMMENT '可疑物料Id',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_NUM` double NOT NULL COMMENT '退回数量',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '退回流转箱编号',
-  `F_BACKMATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '退回料号批次',
-  `F_ISPRODUCE` tinyint NOT NULL COMMENT '是否生产',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_BatchCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '条码编号',
+  `F_ScapMaterialId` bigint NOT NULL COMMENT '可疑物料Id',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_Num` double NOT NULL COMMENT '退回数量',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '退回流转箱编号',
+  `F_BackMaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '退回料号批次',
+  `F_IsProduce` tinyint NOT NULL COMMENT '是否生产',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_scapmaterialreturn
@@ -1493,24 +1477,24 @@ CREATE TABLE `mes_scapmaterialreturn`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_storage`;
 CREATE TABLE `mes_storage`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '数量',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISCHECKOUT` tinyint NOT NULL,
-  `F_BATCHID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '批次Id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '数量',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsCheckout` tinyint NOT NULL,
+  `F_BatchId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '批次Id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_storage
@@ -1521,27 +1505,27 @@ CREATE TABLE `mes_storage`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_storagechangeinfo`;
 CREATE TABLE `mes_storagechangeinfo`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_TRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_MATERIALCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号描述',
-  `F_MATERIALUNIT` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号单位',
-  `F_MATERIALTYPE` int NOT NULL COMMENT '料号分类',
-  `F_MATERIALBATCH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号批次',
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人id',
-  `F_NUM` double NOT NULL COMMENT '转移数量',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '库位编号',
-  `F_NEWLOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '新库位编号',
-  `F_NEWTRANSFERBOXCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '新流转箱编号',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_STORAGEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CHANGETYPE` int NULL DEFAULT NULL COMMENT '变动类型',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_TransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_MaterialCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号描述',
+  `F_MaterialUnit` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号单位',
+  `F_MaterialType` int NOT NULL COMMENT '料号分类',
+  `F_MaterialBatch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号批次',
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `F_Num` double NOT NULL COMMENT '转移数量',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库位编号',
+  `F_NewLocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '新库位编号',
+  `F_NewTransferBoxCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '新流转箱编号',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_StorageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ChangeType` int NULL DEFAULT NULL COMMENT '变动类型',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_storagechangeinfo
@@ -1552,24 +1536,24 @@ CREATE TABLE `mes_storagechangeinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_transferbox`;
 CREATE TABLE `mes_transferbox`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_TRANSFERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱编号',
-  `F_TRANSFERTYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱类型',
-  `F_TRANSFERMAXNUM` double NOT NULL COMMENT '流转箱最大数',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_TRANSFERSTATE` int NULL DEFAULT NULL COMMENT '流转箱状态',
-  `F_LOCATIONCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '库位编号',
-  `F_ISTEMP` tinyint NULL DEFAULT NULL COMMENT '是否一次性',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_TransferCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱编号',
+  `F_TransferType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱类型',
+  `F_TransferMaxNum` double NOT NULL COMMENT '流转箱最大数',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_TransferState` int NULL DEFAULT NULL COMMENT '流转箱状态',
+  `F_LocationCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库位编号',
+  `F_IsTemp` tinyint NULL DEFAULT NULL COMMENT '是否一次性',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_transferbox
@@ -1730,15 +1714,15 @@ INSERT INTO `mes_transferbox` VALUES ('08dab322-4794-4a1b-8725-0910827dfaac', 'C
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_transferboxbatch`;
 CREATE TABLE `mes_transferboxbatch`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_BATCHNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '容器条码名称',
-  `F_MAXNUM` int NOT NULL COMMENT '容器最大数',
-  `F_BATCHCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '编号前缀',
-  `F_BATCHNUM` bigint NULL DEFAULT NULL COMMENT '当前编号',
-  `F_ISCHECK` tinyint NULL DEFAULT NULL COMMENT '是否质检',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  UNIQUE INDEX `MES_TRANFERBOXBATCH_KEY1`(`F_BATCHCODE`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_BatchName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '容器条码名称',
+  `F_MaxNum` int NOT NULL COMMENT '容器最大数',
+  `F_BatchCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '编号前缀',
+  `F_BatchNum` bigint NULL DEFAULT NULL COMMENT '当前编号',
+  `F_IsCheck` tinyint NULL DEFAULT NULL COMMENT '是否质检',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  UNIQUE INDEX `mes_TranferBoxBatch_key1`(`F_BatchCode`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_transferboxbatch
@@ -1752,11 +1736,11 @@ INSERT INTO `mes_transferboxbatch` VALUES ('08dab322-3794-4d4f-8134-78e2d44068db
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_transfertypematerialbanding`;
 CREATE TABLE `mes_transfertypematerialbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_TRANSFERTYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流转箱类型',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '物料Id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_TransferType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流转箱类型',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物料Id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_transfertypematerialbanding
@@ -1767,15 +1751,15 @@ CREATE TABLE `mes_transfertypematerialbanding`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workdetaileqpbanding`;
 CREATE TABLE `mes_workdetaileqpbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工单明细Id',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备Id',
-  `F_EQPTYPE` int NOT NULL COMMENT '设备类型',
-  `F_EQPUSE` int NOT NULL COMMENT '设备用途',
-  `F_MOULDNUM` int NOT NULL COMMENT '模块使用数',
-  `F_ISMASTER` tinyint NOT NULL COMMENT '是否主设备',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工单明细Id',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备Id',
+  `F_EqpType` int NOT NULL COMMENT '设备类型',
+  `F_EqpUse` int NOT NULL COMMENT '设备用途',
+  `F_MouldNum` int NOT NULL COMMENT '模块使用数',
+  `F_IsMaster` tinyint NOT NULL COMMENT '是否主设备',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workdetaileqpbanding
@@ -1790,11 +1774,11 @@ INSERT INTO `mes_workdetaileqpbanding` VALUES ('08dab331-a82d-4876-87ba-2769f9d4
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workdetailprocessbanding`;
 CREATE TABLE `mes_workdetailprocessbanding`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工单明细Id',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工序Id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工单明细Id',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工序Id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workdetailprocessbanding
@@ -1808,11 +1792,11 @@ INSERT INTO `mes_workdetailprocessbanding` VALUES ('08dab32d-d699-4601-8009-dc88
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workdetailtimebanding`;
 CREATE TABLE `mes_workdetailtimebanding`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '明细id',
-  `F_EQPWORKTIMEID` bigint NOT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '明细id',
+  `F_EqpWorkTimeId` bigint NOT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workdetailtimebanding
@@ -1826,30 +1810,30 @@ INSERT INTO `mes_workdetailtimebanding` VALUES (3, '08dab32d-d54e-49ab-807e-dbdd
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workorder`;
 CREATE TABLE `mes_workorder`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_WORKORDERCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工单编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_PLANNUM` int NOT NULL COMMENT '计划数量',
-  `F_DONENUM` int NOT NULL COMMENT '完成数量',
-  `F_BADNUM` int NOT NULL COMMENT '不良数量',
-  `F_WORKORDERSTATE` int NOT NULL COMMENT '工单状态',
-  `F_PLANSTARTTIME` datetime NULL DEFAULT NULL COMMENT '计划开始时间',
-  `F_PLANENDTIME` datetime NULL DEFAULT NULL COMMENT '计划结束时间',
-  `F_REALSTARTTIME` datetime NULL DEFAULT NULL COMMENT '开始时间',
-  `F_REALENDTIME` datetime NULL DEFAULT NULL COMMENT '结束时间',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SPLITTYPE` int NOT NULL,
-  `F_WORKPLANID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '计划ID',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_WorkOrderCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工单编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_PlanNum` int NOT NULL COMMENT '计划数量',
+  `F_DoneNum` int NOT NULL COMMENT '完成数量',
+  `F_BadNum` int NOT NULL COMMENT '不良数量',
+  `F_WorkOrderState` int NOT NULL COMMENT '工单状态',
+  `F_PlanStartTime` datetime NULL DEFAULT NULL COMMENT '计划开始时间',
+  `F_PlanEndTime` datetime NULL DEFAULT NULL COMMENT '计划结束时间',
+  `F_RealStartTime` datetime NULL DEFAULT NULL COMMENT '开始时间',
+  `F_RealEndTime` datetime NULL DEFAULT NULL COMMENT '结束时间',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_SplitType` int NOT NULL,
+  `F_WorkPlanId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '计划ID',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workorder
@@ -1863,29 +1847,29 @@ INSERT INTO `mes_workorder` VALUES ('08dab32d-d698-4562-82ae-d4c431acfbc4', 'WC_
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workorderdetail`;
 CREATE TABLE `mes_workorderdetail`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_WORKORDERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '工单编号',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '料号Id',
-  `F_PLANNUM` double NOT NULL COMMENT '计划数量',
-  `F_DONENUM` double NOT NULL COMMENT '完成数量',
-  `F_BADNUM` double NOT NULL COMMENT '不良数量',
-  `F_WORKORDERSTATE` int NOT NULL COMMENT '工单状态',
-  `F_PLANSTARTTIME` datetime NULL DEFAULT NULL COMMENT '计划开始时间',
-  `F_PLANENDTIME` datetime NULL DEFAULT NULL COMMENT '计划结束时间',
-  `F_REALSTARTTIME` datetime NULL DEFAULT NULL COMMENT '开始时间',
-  `F_REALENDTIME` datetime NULL DEFAULT NULL COMMENT '结束时间',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_RUNSORT` int NULL DEFAULT NULL COMMENT '执行顺序',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_WorkOrderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '工单编号',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '料号Id',
+  `F_PlanNum` double NOT NULL COMMENT '计划数量',
+  `F_DoneNum` double NOT NULL COMMENT '完成数量',
+  `F_BadNum` double NOT NULL COMMENT '不良数量',
+  `F_WorkOrderState` int NOT NULL COMMENT '工单状态',
+  `F_PlanStartTime` datetime NULL DEFAULT NULL COMMENT '计划开始时间',
+  `F_PlanEndTime` datetime NULL DEFAULT NULL COMMENT '计划结束时间',
+  `F_RealStartTime` datetime NULL DEFAULT NULL COMMENT '开始时间',
+  `F_RealEndTime` datetime NULL DEFAULT NULL COMMENT '结束时间',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_RunSort` int NULL DEFAULT NULL COMMENT '执行顺序',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workorderdetail
@@ -1899,12 +1883,12 @@ INSERT INTO `mes_workorderdetail` VALUES ('08dab32d-d698-4632-846a-c2d93b382ef2'
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workorderdetaildata`;
 CREATE TABLE `mes_workorderdetaildata`  (
-  `F_WORKORDERDETAILID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '子工单ID',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '设备ID',
-  `F_DATATABLE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '数据采集表名（HotlineData,WeldlineData,LaserlineData）',
-  `F_DATATABLEID` bigint NULL DEFAULT NULL COMMENT '数据采集表记录ID',
-  `F_MOULDNUM` int NULL DEFAULT NULL COMMENT '每次产出数'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_WorkOrderDetailId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '子工单ID',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '设备ID',
+  `F_DataTable` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '数据采集表名（HotlineData,WeldlineData,LaserlineData）',
+  `F_DataTableId` bigint NULL DEFAULT NULL COMMENT '数据采集表记录ID',
+  `F_MouldNum` int NULL DEFAULT NULL COMMENT '每次产出数'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workorderdetaildata
@@ -1915,28 +1899,28 @@ CREATE TABLE `mes_workorderdetaildata`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mes_workplan`;
 CREATE TABLE `mes_workplan`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'id',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '计划说明',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DATE` date NULL DEFAULT NULL COMMENT '计划日期',
-  `F_CLASSNUM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '班别（A白班，B夜班）',
-  `F_EQPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备Id',
-  `F_EQPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '设备名称',
-  `F_MATERIALID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '料号Id',
-  `F_PLANNUM` double NOT NULL COMMENT '计划数量',
-  `F_DONENUM` double NOT NULL COMMENT '完成数量',
-  `F_WORKPLANTYPE` int NOT NULL COMMENT '计划类型',
-  `F_ISUSEREDIT` tinyint NULL DEFAULT NULL COMMENT '是否修改',
-  `F_PROCESSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工序',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '计划说明',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Date` date NULL DEFAULT NULL COMMENT '计划日期',
+  `F_ClassNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '班别（A白班，B夜班）',
+  `F_EqpId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备Id',
+  `F_EqpName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '设备名称',
+  `F_MaterialId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '料号Id',
+  `F_PlanNum` double NOT NULL COMMENT '计划数量',
+  `F_DoneNum` double NOT NULL COMMENT '完成数量',
+  `F_WorkPlanType` int NOT NULL COMMENT '计划类型',
+  `F_IsUserEdit` tinyint NULL DEFAULT NULL COMMENT '是否修改',
+  `F_ProcessId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mes_workplan
@@ -1967,30 +1951,30 @@ INSERT INTO `mes_workplan` VALUES ('08dab32d-d0e8-4e41-8101-b49eefe99b14', 0, 1,
 -- ----------------------------
 DROP TABLE IF EXISTS `mob_dingtalkconfig`;
 CREATE TABLE `mob_dingtalkconfig`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_DINGTYPE` int NOT NULL,
-  `F_ISWEBLOGIN` tinyint NOT NULL,
-  `F_APPNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_REDIRECTURL` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_APPID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_APPSECRET` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_AGENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_APPKEY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISDINGINFO` tinyint NOT NULL,
-  `F_URL` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISBOARDLOGIN` tinyint NOT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_DingType` int NOT NULL,
+  `F_IsWebLogin` tinyint NOT NULL,
+  `F_AppName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_RedirectUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AppId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_AppSecret` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_AgentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_AppKey` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsDingInfo` tinyint NOT NULL,
+  `F_Url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsBoardLogin` tinyint NOT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mob_dingtalkconfig
@@ -2005,32 +1989,32 @@ INSERT INTO `mob_dingtalkconfig` VALUES ('fb494f74-e9f5-4ce6-8dac-2a922cf5c8a8',
 -- ----------------------------
 DROP TABLE IF EXISTS `mob_dinguser`;
 CREATE TABLE `mob_dinguser`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_SYSUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '系统用户Id',
-  `F_USERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '员工唯一标识ID',
-  `F_USERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '成员名称',
-  `F_ACTIVE` tinyint NULL DEFAULT NULL COMMENT '是否已经激活',
-  `F_ORDERINDEPTS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '在对应的部门中的排序，Map结构的json字符串，key是部门的Id，value是人员在这个部门的排序值',
-  `F_ISADMIN` tinyint NULL DEFAULT NULL COMMENT '是否为企业的管理员',
-  `F_ISBOSS` tinyint NULL DEFAULT NULL COMMENT '是否为企业的老板',
-  `F_UNIONID` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '在当前isv全局范围内唯一标识一个用户的身份,用户无法修改',
-  `F_ISLEADERINDEPTS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '在对应的部门中是否为主管：Map结构的json字符串，key是部门的Id，value是人员在这个部门中是否为主管，true表示是，false表示不是',
-  `F_ISLEADER` tinyint NULL DEFAULT NULL COMMENT ' 是否是部门的主管',
-  `F_ISHIDE` tinyint NULL DEFAULT NULL COMMENT '是否号码隐藏',
-  `F_DEPARTMENTID` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '成员所属部门id列表',
-  `F_POSITION` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '职位信息',
-  `F_AVATAR` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '头像url',
-  `F_HIREDDATE` datetime NULL DEFAULT NULL COMMENT '入职时间',
-  `F_JOBNUMBER` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '员工工号',
-  `F_ISSENIOR` tinyint NULL DEFAULT NULL COMMENT '是否是高管',
-  `F_EMAIL` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '电子邮件',
-  `F_MOBILE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '手机号码',
-  `F_ORDER` int NULL DEFAULT NULL COMMENT '部门排序',
-  `F_WORKPLACE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '工作地',
-  `F_ROLESID` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '新增的钉钉用户在系统中的角色',
-  `F_ISWORK` tinyint NULL DEFAULT NULL COMMENT '是否在班',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_SysUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '系统用户Id',
+  `F_UserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '员工唯一标识ID',
+  `F_UserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '成员名称',
+  `F_Active` tinyint NULL DEFAULT NULL COMMENT '是否已经激活',
+  `F_OrderInDepts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '在对应的部门中的排序，Map结构的json字符串，key是部门的Id，value是人员在这个部门的排序值',
+  `F_IsAdmin` tinyint NULL DEFAULT NULL COMMENT '是否为企业的管理员',
+  `F_IsBoss` tinyint NULL DEFAULT NULL COMMENT '是否为企业的老板',
+  `F_UnionId` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '在当前isv全局范围内唯一标识一个用户的身份,用户无法修改',
+  `F_IsLeaderInDepts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '在对应的部门中是否为主管：Map结构的json字符串，key是部门的Id，value是人员在这个部门中是否为主管，true表示是，false表示不是',
+  `F_IsLeader` tinyint NULL DEFAULT NULL COMMENT ' 是否是部门的主管',
+  `F_IsHide` tinyint NULL DEFAULT NULL COMMENT '是否号码隐藏',
+  `F_DepartmentId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '成员所属部门id列表',
+  `F_Position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '职位信息',
+  `F_Avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '头像url',
+  `F_HiredDate` datetime NULL DEFAULT NULL COMMENT '入职时间',
+  `F_JobNumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '员工工号',
+  `F_IsSenior` tinyint NULL DEFAULT NULL COMMENT '是否是高管',
+  `F_Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '电子邮件',
+  `F_Mobile` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '手机号码',
+  `F_Order` int NULL DEFAULT NULL COMMENT '部门排序',
+  `F_WorkPlace` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工作地',
+  `F_RolesId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '新增的钉钉用户在系统中的角色',
+  `F_IsWork` tinyint NULL DEFAULT NULL COMMENT '是否在班',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mob_dinguser
@@ -2042,35 +2026,35 @@ INSERT INTO `mob_dinguser` VALUES ('08dab57c-d307-43ff-8e9c-eebe80228b02', '08da
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_flowinstance`;
 CREATE TABLE `oms_flowinstance`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键Id',
-  `F_INSTANCESCHEMEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '流程实例模板Id',
-  `F_CODE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '实例编号',
-  `F_CUSTOMNAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '自定义名称',
-  `F_ACTIVITYID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '当前节点ID',
-  `F_ACTIVITYTYPE` int NULL DEFAULT NULL COMMENT '当前节点类型（0会签节点）',
-  `F_ACTIVITYNAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '当前节点名称',
-  `F_PREVIOUSID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '前一个ID',
-  `F_SCHEMECONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '流程模板内容',
-  `F_SCHEMEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程模板ID',
-  `F_DBNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '数据库名称',
-  `F_FRMDATA` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单数据',
-  `F_FRMTYPE` int NOT NULL COMMENT '表单类型',
-  `F_FRMCONTENTDATA` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单字段',
-  `F_FRMCONTENTPARSE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单参数（冗余）',
-  `F_FRMID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '表单ID',
-  `F_SCHEMETYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程类型',
-  `F_FLOWLEVEL` int NOT NULL COMMENT '等级',
-  `F_DESCRIPTION` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '实例备注',
-  `F_ISFINISH` int NOT NULL COMMENT '是否完成',
-  `F_MAKERLIST` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '执行人',
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属部门',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '有效',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  `F_FRMCONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单元素json',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '工作流流程实例表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键Id',
+  `F_InstanceSchemeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '流程实例模板Id',
+  `F_Code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '实例编号',
+  `F_CustomName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '自定义名称',
+  `F_ActivityId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '当前节点ID',
+  `F_ActivityType` int NULL DEFAULT NULL COMMENT '当前节点类型（0会签节点）',
+  `F_ActivityName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '当前节点名称',
+  `F_PreviousId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '前一个ID',
+  `F_SchemeContent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '流程模板内容',
+  `F_SchemeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程模板ID',
+  `F_DbName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '数据库名称',
+  `F_FrmData` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单数据',
+  `F_FrmType` int NOT NULL COMMENT '表单类型',
+  `F_FrmContentData` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单字段',
+  `F_FrmContentParse` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单参数（冗余）',
+  `F_FrmId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '表单ID',
+  `F_SchemeType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程类型',
+  `F_FlowLevel` int NOT NULL COMMENT '等级',
+  `F_Description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '实例备注',
+  `F_IsFinish` int NOT NULL COMMENT '是否完成',
+  `F_MakerList` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '执行人',
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属部门',
+  `F_EnabledMark` tinyint NULL DEFAULT NULL COMMENT '有效',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  `F_FrmContent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单元素json',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工作流流程实例表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_flowinstance
@@ -2081,21 +2065,21 @@ CREATE TABLE `oms_flowinstance`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_flowinstancehis`;
 CREATE TABLE `oms_flowinstancehis`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键Id',
-  `F_INSTANCEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '实例Id',
-  `F_FROMNODEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '开始节点Id',
-  `F_FROMNODETYPE` int NULL DEFAULT NULL COMMENT '开始节点类型',
-  `F_FROMNODENAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '开始节点名称',
-  `F_TONODEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '结束节点Id',
-  `F_TONODETYPE` int NULL DEFAULT NULL COMMENT '结束节点类型',
-  `F_TONODENAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '结束节点名称',
-  `F_TRANSITIONSATE` tinyint NOT NULL COMMENT '转化状态',
-  `F_ISFINISH` tinyint NOT NULL COMMENT '是否结束',
-  `F_CREATORTIME` datetime NOT NULL COMMENT '转化时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '操作人Id',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '操作人名称',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '工作流实例流转历史记录' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键Id',
+  `F_InstanceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '实例Id',
+  `F_FromNodeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '开始节点Id',
+  `F_FromNodeType` int NULL DEFAULT NULL COMMENT '开始节点类型',
+  `F_FromNodeName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '开始节点名称',
+  `F_ToNodeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '结束节点Id',
+  `F_ToNodeType` int NULL DEFAULT NULL COMMENT '结束节点类型',
+  `F_ToNodeName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '结束节点名称',
+  `F_TransitionSate` tinyint NOT NULL COMMENT '转化状态',
+  `F_IsFinish` tinyint NOT NULL COMMENT '是否结束',
+  `F_CreatorTime` datetime NOT NULL COMMENT '转化时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '操作人Id',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '操作人名称',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工作流实例流转历史记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_flowinstancehis
@@ -2106,14 +2090,14 @@ CREATE TABLE `oms_flowinstancehis`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_flowinstanceinfo`;
 CREATE TABLE `oms_flowinstanceinfo`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键Id',
-  `F_INSTANCEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '实例进程Id',
-  `F_CONTENT` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '操作内容',
-  `F_CREATORTIME` datetime NOT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '工作流实例操作记录' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键Id',
+  `F_InstanceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '实例进程Id',
+  `F_Content` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '操作内容',
+  `F_CreatorTime` datetime NOT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工作流实例操作记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_flowinstanceinfo
@@ -2124,19 +2108,19 @@ CREATE TABLE `oms_flowinstanceinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_formtest`;
 CREATE TABLE `oms_formtest`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT 'ID',
-  `F_USERNAME` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '请假人姓名',
-  `F_REQUESTTYPE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '请假分类，病假，事假，公休等',
-  `F_STARTTIME` datetime NULL DEFAULT NULL COMMENT '开始时间',
-  `F_ENDTIME` datetime NULL DEFAULT NULL COMMENT '结束时间',
-  `F_REQUESTCOMMENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '请假说明',
-  `F_ATTACHMENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '附件，用于提交病假证据等',
-  `F_CREATORTIME` datetime NOT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  `F_FLOWINSTANCEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属流程ID',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '模拟一个自定页面的表单，该数据会关联到流程实例FrmData，可用于复杂页面的设计及后期的数据分析' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ID',
+  `F_UserName` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '请假人姓名',
+  `F_RequestType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '请假分类，病假，事假，公休等',
+  `F_StartTime` datetime NULL DEFAULT NULL COMMENT '开始时间',
+  `F_EndTime` datetime NULL DEFAULT NULL COMMENT '结束时间',
+  `F_RequestComment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '请假说明',
+  `F_Attachment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '附件，用于提交病假证据等',
+  `F_CreatorTime` datetime NOT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  `F_FlowInstanceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属流程ID',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '模拟一个自定页面的表单，该数据会关联到流程实例FrmData，可用于复杂页面的设计及后期的数据分析' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_formtest
@@ -2147,21 +2131,21 @@ CREATE TABLE `oms_formtest`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_message`;
 CREATE TABLE `oms_message`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
-  `F_MESSAGETYPE` int NULL DEFAULT NULL COMMENT '信息类型（通知、私信、处理）',
-  `F_TOUSERID` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '收件人主键',
-  `F_TOUSERNAME` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '收件人',
-  `F_MESSAGEINFO` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '内容',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '有效',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  `F_HREFTARGET` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '跳转类型',
-  `F_HREF` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '跳转地址',
-  `F_KEYVALUE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '待办关联键',
-  `F_CLICKREAD` tinyint NULL DEFAULT NULL COMMENT '点击已读',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+  `F_MessageType` int NULL DEFAULT NULL COMMENT '信息类型（通知、私信、处理）',
+  `F_ToUserId` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '收件人主键',
+  `F_ToUserName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '收件人',
+  `F_MessageInfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
+  `F_EnabledMark` tinyint NULL DEFAULT NULL COMMENT '有效',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  `F_HrefTarget` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '跳转类型',
+  `F_Href` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '跳转地址',
+  `F_KeyValue` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '待办关联键',
+  `F_ClickRead` tinyint NULL DEFAULT NULL COMMENT '点击已读',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_message
@@ -2176,13 +2160,13 @@ INSERT INTO `oms_message` VALUES (4, 2, '08dab311-971f-40e5-8f63-83a1e1b16a44', 
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_messagehis`;
 CREATE TABLE `oms_messagehis`  (
-  `F_ID` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
-  `F_MESSAGEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '信息Id',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+  `F_MessageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '信息Id',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_messagehis
@@ -2193,22 +2177,22 @@ CREATE TABLE `oms_messagehis`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_uploadfile`;
 CREATE TABLE `oms_uploadfile`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键Id',
-  `F_FILEPATH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '文件路径',
-  `F_FILENAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '文件名称',
-  `F_FILETYPE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '文件类型（0 文件，1 图片）',
-  `F_FILESIZE` int NULL DEFAULT NULL COMMENT '文件大小',
-  `F_FILEEXTENSION` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '文件扩展名',
-  `F_FILEBY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '文件所属',
-  `F_DESCRIPTION` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '备注',
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属部门',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '有效',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_OMS_UPLOADFILE`(`F_FILENAME`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键Id',
+  `F_FilePath` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件路径',
+  `F_FileName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '文件名称',
+  `F_FileType` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件类型（0 文件，1 图片）',
+  `F_FileSize` int NULL DEFAULT NULL COMMENT '文件大小',
+  `F_FileExtension` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件扩展名',
+  `F_FileBy` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件所属',
+  `F_Description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属部门',
+  `F_EnabledMark` tinyint NULL DEFAULT NULL COMMENT '有效',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_OMS_UPLOADFile`(`F_FileName`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_uploadfile
@@ -2219,23 +2203,23 @@ CREATE TABLE `oms_uploadfile`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dataprivilegerule`;
 CREATE TABLE `sys_dataprivilegerule`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MODULEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MODULECODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PRIVILEGERULES` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `XK_DATAPRIVILEGERULE_1`(`F_MODULEID`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ModuleId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ModuleCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_PrivilegeRules` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `XK_DataPrivilegeRule_1`(`F_ModuleId`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dataprivilegerule
@@ -2246,23 +2230,23 @@ CREATE TABLE `sys_dataprivilegerule`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_filterip`;
 CREATE TABLE `sys_filterip`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_TYPE` tinyint NULL DEFAULT NULL,
-  `F_STARTIP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ENDIP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ENDTIME` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Type` tinyint NULL DEFAULT NULL,
+  `F_StartIP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EndIP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_EndTime` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_filterip
@@ -2273,31 +2257,31 @@ CREATE TABLE `sys_filterip`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_flowscheme`;
 CREATE TABLE `sys_flowscheme`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '主键Id',
-  `F_SCHEMECODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程编号',
-  `F_SCHEMENAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程名称',
-  `F_SCHEMETYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程分类',
-  `F_SCHEMEVERSION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '流程内容版本',
-  `F_SCHEMECANUSER` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '流程模板使用者',
-  `F_SCHEMECONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '流程内容',
-  `F_FRMID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '表单ID',
-  `F_FRMTYPE` int NOT NULL COMMENT '表单类型',
-  `F_AUTHORIZETYPE` int NOT NULL COMMENT '模板权限类型：0完全公开,1指定部门/人员',
-  `F_SORTCODE` int NULL DEFAULT NULL COMMENT '排序码',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL COMMENT '删除标记',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '有效',
-  `F_DESCRIPTION` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户主键',
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建用户',
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL COMMENT '修改时间',
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '修改用户主键',
-  `F_LASTMODIFYUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '修改用户',
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属部门',
-  `F_DELETETIME` datetime NULL DEFAULT NULL COMMENT '删除时间',
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '删除人',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '工作流模板信息表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键Id',
+  `F_SchemeCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程编号',
+  `F_SchemeName` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程名称',
+  `F_SchemeType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程分类',
+  `F_SchemeVersion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '流程内容版本',
+  `F_SchemeCanUser` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '流程模板使用者',
+  `F_SchemeContent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '流程内容',
+  `F_FrmId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '表单ID',
+  `F_FrmType` int NOT NULL COMMENT '表单类型',
+  `F_AuthorizeType` int NOT NULL COMMENT '模板权限类型：0完全公开,1指定部门/人员',
+  `F_SortCode` int NULL DEFAULT NULL COMMENT '排序码',
+  `F_DeleteMark` tinyint NULL DEFAULT NULL COMMENT '删除标记',
+  `F_EnabledMark` tinyint NULL DEFAULT NULL COMMENT '有效',
+  `F_Description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户主键',
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建用户',
+  `F_LastModifyTime` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改用户主键',
+  `F_LastModifyUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改用户',
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属部门',
+  `F_DeleteTime` datetime NULL DEFAULT NULL COMMENT '删除时间',
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '删除人',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工作流模板信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_flowscheme
@@ -2309,29 +2293,29 @@ INSERT INTO `sys_flowscheme` VALUES ('08dab582-250a-4d2d-866f-416eaf3eadb0', '16
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_form`;
 CREATE TABLE `sys_form`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '表单模板Id',
-  `F_NAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '表单名称',
-  `F_FRMTYPE` int NULL DEFAULT NULL COMMENT '表单类型，0：默认动态表单；1：Web自定义表单',
-  `F_WEBID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '系统页面标识，当表单类型为用Web自定义的表单时，需要标识加载哪个页面',
-  `F_FIELDS` int NULL DEFAULT NULL COMMENT '字段个数',
-  `F_CONTENTDATA` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单中的控件属性描述',
-  `F_CONTENTPARSE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单控件位置模板',
-  `F_CONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '表单原html模板未经处理的',
-  `F_SORTCODE` int NULL DEFAULT NULL COMMENT '排序码',
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL COMMENT '是否启用',
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL COMMENT '逻辑删除标志',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '创建人',
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL COMMENT '最后修改时间',
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '最后修改人',
-  `F_DELETETIME` datetime NULL DEFAULT NULL COMMENT '删除时间',
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '删除人',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '内容',
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '所属组织',
-  `F_DBNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '数据库名称',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_FORM`(`F_NAME`) USING BTREE COMMENT '唯一'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin COMMENT = '表单模板表' ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '表单模板Id',
+  `F_Name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '表单名称',
+  `F_FrmType` int NULL DEFAULT NULL COMMENT '表单类型，0：默认动态表单；1：Web自定义表单',
+  `F_WebId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '系统页面标识，当表单类型为用Web自定义的表单时，需要标识加载哪个页面',
+  `F_Fields` int NULL DEFAULT NULL COMMENT '字段个数',
+  `F_ContentData` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单中的控件属性描述',
+  `F_ContentParse` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单控件位置模板',
+  `F_Content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单原html模板未经处理的',
+  `F_SortCode` int NULL DEFAULT NULL COMMENT '排序码',
+  `F_EnabledMark` tinyint NULL DEFAULT NULL COMMENT '是否启用',
+  `F_DeleteMark` tinyint NULL DEFAULT NULL COMMENT '逻辑删除标志',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人',
+  `F_LastModifyTime` datetime NULL DEFAULT NULL COMMENT '最后修改时间',
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '最后修改人',
+  `F_DeleteTime` datetime NULL DEFAULT NULL COMMENT '删除时间',
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '删除人',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属组织',
+  `F_DbName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '数据库名称',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_SYS_FORM`(`F_Name`) USING BTREE COMMENT '唯一'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '表单模板表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_form
@@ -2343,25 +2327,25 @@ INSERT INTO `sys_form` VALUES ('08dab582-1329-4e22-8687-3509f147029d', '2222', 0
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_items`;
 CREATE TABLE `sys_items`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISTREE` tinyint NULL DEFAULT NULL,
-  `F_LAYERS` int NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_ITEMS`(`F_ENCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsTree` tinyint NULL DEFAULT NULL,
+  `F_Layers` int NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_Items`(`F_EnCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_items
@@ -2385,46 +2369,47 @@ INSERT INTO `sys_items` VALUES ('879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', '0', 'Me
 INSERT INTO `sys_items` VALUES ('885d3b97-ae33-4cb6-b7b0-e1a7e72f6de2', '7e0b19a6-89f5-4802-bf76-0a692a518473', 'Mob_DingType', '钉钉应用类型', 0, 2, 0, 0, 1, '', '2020-11-21 10:02:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-11-21 10:31:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 INSERT INTO `sys_items` VALUES ('8CEB2F71-026C-4FA6-9A61-378127AE7320', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '102', '生育', 0, 2, 13, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('954AB9A1-9928-4C6D-820A-FC1CDC85CDE0', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'AuditState', '审核状态', 0, 2, 6, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_items` VALUES ('9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'OrganizeCategory', '机构分类', 0, 2, 2, 0, 1, NULL, NULL, NULL, '2020-04-28 09:07:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 INSERT INTO `sys_items` VALUES ('9a7079bd-0660-4549-9c2d-db5e8616619f', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'DbLogType', '系统日志', 0, 2, 16, 0, 1, NULL, '2016-07-19 17:09:45', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_items` VALUES ('BDD797C3-2323-4868-9A63-C8CC3437AEAA', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '104', '性别', 0, 2, 15, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_items` VALUES ('D94E4DC1-C2FD-4D19-9D5D-3886D39900CE', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'RoleType', '角色类型', 0, 2, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_items` VALUES ('FA7537E2-1C64-4431-84BF-66158DD63269', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '101', '婚姻', 0, 2, 12, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_items` VALUES ('9EB4602B-BF9A-4710-9D80-C73CE89BEC5D', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'OrganizeCategory', '机构分类', 0, 2, 2, 0, 1, NULL, NULL, NULL, '2020-04-28 09:07:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 INSERT INTO `sys_items` VALUES ('a7faf382-c88c-43e1-aff3-98f261a693ea', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_TransferType', '流转箱类型', 0, 2, 8, 0, 1, '', '2020-12-14 12:39:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_items` VALUES ('BDD797C3-2323-4868-9A63-C8CC3437AEAA', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '104', '性别', 0, 2, 15, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('bf06d1e0-cfde-40c9-954c-df930e26e319', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_EqpUse', '设备用途', 0, 2, 3, 0, 1, '', '2020-11-30 15:03:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-01 15:51:53', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 INSERT INTO `sys_items` VALUES ('c2a3ec97-e4f0-46a5-addf-1ba4e40e2ab9', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_WorkOrderState', '工单状态', 0, 2, 7, 0, 1, '', '2020-12-07 13:39:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('cd6a17c3-34ca-44d3-a072-4f75a94f5960', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_EqpOwner', '财产所属', 0, 2, 4, 0, 1, '', '2020-12-01 09:37:13', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-01 15:51:58', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 INSERT INTO `sys_items` VALUES ('d56acc3d-39f2-41a0-a900-a6866139d348', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_MaintainType', '保养周期类型', 0, 2, 2, 0, 1, '', '2020-11-30 14:50:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-01 15:51:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_items` VALUES ('D94E4DC1-C2FD-4D19-9D5D-3886D39900CE', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', 'RoleType', '角色类型', 0, 2, 3, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('e3c2ee7c-14e8-42c9-bb0d-29fc4c42ec37', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_TransferState', '流转箱状态', 0, 2, 11, 0, 1, '', '2021-01-06 13:11:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('f948d392-2b2c-4c07-9143-13635e955ed6', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_MaterialType', '物料分类', 0, 2, 6, 0, 1, '', '2020-12-01 15:52:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_items` VALUES ('FA7537E2-1C64-4431-84BF-66158DD63269', '77070117-3F1A-41BA-BF81-B8B85BF10D5E', '101', '婚姻', 0, 2, 12, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_items` VALUES ('faff6e57-5a15-4ba7-a971-d5453e3040c2', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_CheckType', '检验类型', 0, 2, 13, 0, 1, '', '2021-05-21 15:05:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_items` VALUES ('08dab7e1-2118-47e0-8604-dbf1803eec08', '879dc37f-8b6e-44d5-a153-ce4bdc3e66e1', 'Mes_ClassNumber', '班别', 0, 2, 17, 0, 1, '', '2022-10-27 14:04:38', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_itemsdetail
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_itemsdetail`;
 CREATE TABLE `sys_itemsdetail`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_ITEMID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ITEMCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ITEMNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SIMPLESPELLING` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ISDEFAULT` tinyint NULL DEFAULT NULL,
-  `F_LAYERS` int NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_ITEMSDETAIL`(`F_ITEMID`, `F_ITEMCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ItemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ItemCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ItemName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_SimpleSpelling` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_IsDefault` tinyint NULL DEFAULT NULL,
+  `F_Layers` int NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_ItemsDetail`(`F_ItemId`, `F_ItemCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_itemsdetail
@@ -2561,29 +2546,31 @@ INSERT INTO `sys_itemsdetail` VALUES ('fad061eb-9ec8-4d9f-ae47-0588194caf02', '2
 INSERT INTO `sys_itemsdetail` VALUES ('fc35d37e-1030-442a-9b2b-d153710f03ca', '002eeaa9-c804-4c98-afd9-7ddc7c1e4c46', NULL, '7', '物料退回', NULL, 0, NULL, 7, 0, 1, '', '2021-01-20 09:37:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_itemsdetail` VALUES ('fc42e714-3fe9-429e-a1dd-6e4a30f7eddd', 'faff6e57-5a15-4ba7-a971-d5453e3040c2', NULL, '3', '库存检验', NULL, 0, NULL, 3, 0, 1, '', '2021-05-21 15:06:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_itemsdetail` VALUES ('fe1668c9-362f-42b8-a868-ac9e59f39d26', 'bf06d1e0-cfde-40c9-954c-df930e26e319', NULL, '2', '焊接', NULL, 0, NULL, 2, 0, 1, '固定', '2020-11-30 15:04:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-09 20:16:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab7e1-3d86-4e60-8743-965132ed3b6c', '08dab7e1-2118-47e0-8604-dbf1803eec08', NULL, 'B', '夜班', NULL, 0, NULL, 1, 0, 1, '20:00-8:00', '2022-10-27 14:05:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-27 14:10:57', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
+INSERT INTO `sys_itemsdetail` VALUES ('08dab7e1-34aa-4b58-8cc5-a95f6dafb32e', '08dab7e1-2118-47e0-8604-dbf1803eec08', NULL, 'A', '白班', NULL, 0, NULL, 0, 0, 1, '8:00-20:00', '2022-10-27 14:05:11', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-27 14:11:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_log`;
 CREATE TABLE `sys_log`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_DATE` datetime NULL DEFAULT NULL,
-  `F_ACCOUNT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_NICKNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_TYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_IPADDRESS` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_IPADDRESSNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MODULEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MODULENAME` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_RESULT` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_KEYVALUE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_COMPANYID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Date` datetime NULL DEFAULT NULL,
+  `F_Account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_NickName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IPAddress` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IPAddressName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ModuleId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ModuleName` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_Result` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_KeyValue` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CompanyId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -2705,41 +2692,48 @@ INSERT INTO `sys_log` VALUES ('08dab582-250e-401a-8509-c834c3db2722', '2022-10-2
 INSERT INTO `sys_log` VALUES ('08dab582-4594-4eb3-8b6e-345a9aedec9e', '2022-10-24 13:40:34', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-系统菜单', 1, '系统菜单操作,修改操作成功。', '2022-10-24 13:40:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08d92a3f-bdb2-42be-89c7-fae5d3a4fec3', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
 INSERT INTO `sys_log` VALUES ('08dab582-4fb0-4ed9-8d1a-31479c00a689', '2022-10-24 13:40:51', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-系统菜单', 1, '系统菜单操作,修改操作成功。', '2022-10-24 13:40:51', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08d92fb7-7754-4c3b-8341-c60bc590212d', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
 INSERT INTO `sys_log` VALUES ('08dab582-78c5-473b-8719-e738478ddc79', '2022-10-24 13:42:00', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-系统菜单', 1, '系统菜单操作,修改操作成功。', '2022-10-24 13:42:00', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08d92fb7-7754-4c3b-8341-c60bc590212d', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58a-5bff-40f3-8392-a77e1ebdd299', '2022-10-24 14:38:28', '管理员', '管理员', 'Login', '127.0.0.1', '本地局域网', NULL, '用户Api', 1, '登录成功', '2022-10-24 14:38:28', NULL, NULL, 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58c-bd5d-4477-8249-3e195e14d8bb', '2022-10-24 14:55:30', 'admin', '超级管理员', 'Create', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-菜单按钮', 1, '菜单按钮操作,新增克隆成功。', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', 'cf235c14-e4ad-478a-8e9c-9f7ec5a80255,897b1de8-3710-439f-b252-b1d6d06a082c,83690e2c-43f0-489f-9481-4b72ad828d4e', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58c-d260-4035-88b3-62d818d776e1', '2022-10-24 14:56:06', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-菜单按钮', 1, '菜单按钮操作,修改操作成功。', '2022-10-24 14:56:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08dab58c-bd53-4793-85de-bd4bd3aa4a35', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58c-e82f-4cf3-8c3d-9cf73eb43fd7', '2022-10-24 14:56:42', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-菜单按钮', 1, '菜单按钮操作,修改操作成功。', '2022-10-24 14:56:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08dab58c-bd53-49c1-8a1e-ff507ece06ab', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58c-fb3a-4875-852a-7fdcf5b5eebc', '2022-10-24 14:57:14', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-系统管理-菜单按钮', 1, '菜单按钮操作,修改操作成功。', '2022-10-24 14:57:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08dab58c-bd53-4a2f-8a6b-1403129ee16c', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab58d-0c15-494f-8f25-84efd9335581', '2022-10-24 14:57:42', 'admin', '超级管理员', 'Update', '0.0.0.1', 'iana保留地址', NULL, '常规管理-单位组织-角色管理', 1, '角色管理操作,修改操作成功。', '2022-10-24 14:57:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '08dab311-74dd-44c4-898f-d0a8134f1f48', 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
+INSERT INTO `sys_log` VALUES ('08dab594-ad93-4344-89d2-b816d725cb11', '2022-10-24 15:52:20', 'admin', '超级管理员', 'Exit', '0.0.0.1', 'iana保留地址', NULL, '系统登录', 1, '安全退出系统', '2022-10-24 15:52:20', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, 'd69fd66a-6a77-4011-8a25-53a79bdf5001');
 
 -- ----------------------------
 -- Table structure for sys_module
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_module`;
 CREATE TABLE `sys_module`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LAYERS` int NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ICON` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_URLADDRESS` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_TARGET` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISMENU` tinyint NULL DEFAULT NULL,
-  `F_ISEXPAND` tinyint NULL DEFAULT NULL,
-  `F_ISFIELDS` tinyint NULL DEFAULT NULL,
-  `F_ISPUBLIC` tinyint NULL DEFAULT NULL,
-  `F_ALLOWEDIT` tinyint NULL DEFAULT NULL,
-  `F_ALLOWDELETE` tinyint NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISBOARD` tinyint NULL DEFAULT NULL COMMENT '是否看板',
-  `F_AUTHORIZE` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_MODULE`(`F_FULLNAME`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Layers` int NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_UrlAddress` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_Target` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsMenu` tinyint NULL DEFAULT NULL,
+  `F_IsExpand` tinyint NULL DEFAULT NULL,
+  `F_IsFields` tinyint NULL DEFAULT NULL,
+  `F_IsPublic` tinyint NULL DEFAULT NULL,
+  `F_AllowEdit` tinyint NULL DEFAULT NULL,
+  `F_AllowDelete` tinyint NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsBoard` tinyint NULL DEFAULT NULL COMMENT '是否看板',
+  `F_Authorize` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_Module`(`F_FullName`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_module
@@ -2815,7 +2809,6 @@ INSERT INTO `sys_module` VALUES ('8968b428-2a8b-4dbe-ad47-73dd408ddd5e', '3e431a
 INSERT INTO `sys_module` VALUES ('91448822-e10b-4146-b9fe-2669073cc7f1', 'a955a782-35d2-4a47-b6de-2c93a0e524b2', 2, 'MesProduceApp', '生产应用', '', NULL, 'expand', 0, 0, 0, 0, 0, 0, 0, 0, 1, '', '2021-04-27 15:17:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 0, 'MesProduceApp');
 INSERT INTO `sys_module` VALUES ('91A6CFAD-B2F9-4294-BDAE-76DECF412C6C', '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 2, 'Role', '角色管理', 'fa fa-user-circle', '/SystemOrganize/Role/Index', 'iframe', 1, 0, 0, 0, 0, 0, 4, 0, 1, '', NULL, NULL, '2020-06-16 08:11:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('96EE855E-8CD2-47FC-A51D-127C131C9FB9', '73FD1267-79BA-4E23-A152-744AF73117E9', 3, 'Log', '操作日志', 'fa fa-clock-o', '/SystemSecurity/Log/Index', 'iframe', 1, 0, 0, 0, 0, 0, 1, 0, 1, '', NULL, NULL, '2020-07-08 10:13:23', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
-INSERT INTO `sys_module` VALUES ('F298F868-B689-4982-8C8B-9268CBF0308D', '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 2, 'Duty', '岗位管理', 'fa fa-users', '/SystemOrganize/Duty/Index', 'iframe', 1, 0, 0, 0, 0, 0, 5, 0, 1, '', NULL, NULL, '2020-06-16 08:11:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('a083a171-932a-48b8-b053-13f9b39d555a', 'a955a782-35d2-4a47-b6de-2c93a0e524b2', 2, 'MesLogisticsApp', '物流应用', '', NULL, 'expand', 0, 0, 0, 0, 0, 0, 1, 0, 1, '', '2021-04-27 15:19:01', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 0, 'MesLogisticsApp');
 INSERT INTO `sys_module` VALUES ('a2cae27f-0b49-4181-8760-4be3a3560988', '5c841e96-00f1-47ea-aec7-d197278562de', 3, 'DoingControlJob', '当前任务', 'fa fa-snowflake-o', '/ClassTask/ControlJob/Doing', 'iframe', 1, 0, 0, 0, 0, 0, 2, 0, 1, '', '2021-01-18 14:28:15', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-22 09:16:26', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('a303cbe1-60eb-437b-9a69-77ff8b48f173', '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 3, 'SystemSet', '租户设置', 'fa fa-connectdevelop', '/SystemOrganize/SystemSet/Index', 'iframe', 0, 0, 0, 0, 0, 0, 1, 0, 0, '', '2020-06-12 13:54:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-14 16:40:27', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
@@ -2848,6 +2841,7 @@ INSERT INTO `sys_module` VALUES ('ed757a25-82d5-43cc-89f4-ed26a51fb4f0', '462027
 INSERT INTO `sys_module` VALUES ('ed896675-541a-4d34-bf77-29c87d7a26bb', '101358e6-eb92-431a-9f05-949f05738506', 3, 'Material', '物料管理', 'fa fa-product-hunt', '/MaterialManage/Material/Index', 'iframe', 1, 0, 0, 0, 0, 0, 3, 0, 1, '', '2020-12-01 14:31:51', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-17 09:50:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('ee136db7-178a-4bb0-b878-51287a5e2e2b', '5f9873e9-0308-4a8e-84b7-1c4c61f37654', 3, 'DoneFlow', '已处理流程', 'fa fa-history', '/FlowManage/Flowinstance/DoneFlow', 'iframe', 1, 0, 0, 0, 0, 0, 2, 0, 1, '', '2020-07-15 15:05:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('eeb05603-45d5-4205-88fc-0fe60357710d', 'a955a782-35d2-4a47-b6de-2c93a0e524b2', 2, 'MesInstorageApp', '入库应用', '', NULL, 'expand', 0, 0, 0, 0, 0, 0, 2, 0, 1, '', '2021-04-27 15:19:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 0, 'MesInstorageApp');
+INSERT INTO `sys_module` VALUES ('F298F868-B689-4982-8C8B-9268CBF0308D', '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 2, 'Duty', '岗位管理', 'fa fa-users', '/SystemOrganize/Duty/Index', 'iframe', 1, 0, 0, 0, 0, 0, 5, 0, 1, '', NULL, NULL, '2020-06-16 08:11:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, NULL);
 INSERT INTO `sys_module` VALUES ('f82fd629-5f3a-45d6-8681-5ec47e66a807', '462027E0-0848-41DD-BCC3-025DCAE65555', 3, 'Flowscheme', '流程设计', 'fa fa-list-alt', '/SystemManage/Flowscheme/Index', 'iframe', 1, 0, 0, 0, 0, 0, 9, 0, 1, '', '2020-07-10 08:50:52', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-03-02 09:47:26', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
 INSERT INTO `sys_module` VALUES ('ffcf9006-570e-44f5-80d4-32c213813a92', '5c4c18b1-88be-4819-ab5a-199bba8ae070', 3, 'OutputReport', '产出记录', '', '/ReportRecord/OutputReport/Index', 'iframe', 1, 0, 0, 0, 0, 0, 8, 0, 1, '', '2021-02-26 08:52:04', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-02-26 08:55:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 0, '');
 
@@ -2856,34 +2850,34 @@ INSERT INTO `sys_module` VALUES ('ffcf9006-570e-44f5-80d4-32c213813a92', '5c4c18
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_modulebutton`;
 CREATE TABLE `sys_modulebutton`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MODULEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LAYERS` int NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ICON` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LOCATION` int NULL DEFAULT NULL,
-  `F_JSEVENT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_URLADDRESS` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_SPLIT` tinyint NULL DEFAULT NULL,
-  `F_ISPUBLIC` tinyint NULL DEFAULT NULL,
-  `F_ALLOWEDIT` tinyint NULL DEFAULT NULL,
-  `F_ALLOWDELETE` tinyint NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_AUTHORIZE` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_MODULEBUTTON`(`F_MODULEID`, `F_LAYERS`, `F_ENCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ModuleId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Layers` int NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Location` int NULL DEFAULT NULL,
+  `F_JsEvent` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_UrlAddress` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_Split` tinyint NULL DEFAULT NULL,
+  `F_IsPublic` tinyint NULL DEFAULT NULL,
+  `F_AllowEdit` tinyint NULL DEFAULT NULL,
+  `F_AllowDelete` tinyint NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Authorize` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_ModuleButton`(`F_ModuleId`, `F_Layers`, `F_EnCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_modulebutton
@@ -2964,6 +2958,9 @@ INSERT INTO `sys_modulebutton` VALUES ('08d98157-6104-4adb-8951-3fc82d041189', '
 INSERT INTO `sys_modulebutton` VALUES ('08d98256-54bc-4b73-807e-4d3e7dba2b5d', '69f6aebb-965b-4380-910f-99aba0776261', '0', 1, 'NF-done', '批量删除', NULL, 2, 'done', '/MaterialManage/Storage/DoneForm', 0, 0, 0, 0, 2, 0, 1, '', '2021-09-28 16:02:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-09-28 16:03:13', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, '');
 INSERT INTO `sys_modulebutton` VALUES ('08d9a4b8-24a5-4b3e-8682-169a9ab29c04', '39226710-b665-489e-aaa0-a8c15d29ed4c', '0', 1, 'NF-add', '新增', NULL, 1, 'add', '/MaterialManage/BomInfo/Form', NULL, 0, 0, 0, 1, 0, 1, '', '2021-11-11 10:08:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '');
 INSERT INTO `sys_modulebutton` VALUES ('08d9a573-f1e5-4726-8a35-4feb68fdb31f', '50cdea18-b06a-43c8-963c-8f52fb9d94de', '0', 1, 'NF-add', '新增', NULL, 1, 'add', '/MaterialManage/BomInfo/Form', NULL, 0, 0, 0, 1, 0, 1, '', '2021-11-12 08:32:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '');
+INSERT INTO `sys_modulebutton` VALUES ('08dab58c-bd53-4793-85de-bd4bd3aa4a35', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpCallRepair', '故障报修', NULL, 1, 'EqpCallRepair', '', NULL, 0, 0, 0, 1, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:56:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpCallRepair');
+INSERT INTO `sys_modulebutton` VALUES ('08dab58c-bd53-49c1-8a1e-ff507ece06ab', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpRepairInfo', '设备维修', NULL, 1, 'EqpRepairInfo', '', NULL, 0, 0, 0, 2, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:56:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpRepairInfo');
+INSERT INTO `sys_modulebutton` VALUES ('08dab58c-bd53-4a2f-8a6b-1403129ee16c', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpRepairRecord', '维修记录', NULL, 1, 'EqpRepairRecord', '', NULL, 0, 0, 0, 3, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:57:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpRepairRecord');
 INSERT INTO `sys_modulebutton` VALUES ('094d05bd-f2d8-47c1-989c-76525539b457', 'e093b2d3-ec49-4b4d-91ec-63f57f4e3f1d', '0', 1, 'NF-import', '导入', NULL, 1, 'import', '/MaterialManage/TransferBox/Import', NULL, 0, 0, 0, 5, 0, 1, '', '2021-01-12 12:14:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-12 12:14:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('09711a0c-18c9-42e0-9cc4-ebfbc2745200', 'beaddc98-9037-4fc6-8d21-493fe47f20e8', '0', 1, 'TF-add', '新增', NULL, 1, 'add', '/MaterialManage/TransferType/Form', NULL, 0, 0, 0, 4, 0, 1, '', '2020-12-14 14:09:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-12-14 14:10:04', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('0a1ba1d7-b4f3-45a4-a4da-e70fb25bb766', 'e9190a56-e173-4483-8a3e-f17b86e4766e', '0', 1, 'NF-delete', '删除', NULL, 2, 'delete', '/InfoManage/Message/DeleteForm', 0, 0, 0, 0, 2, 0, 1, NULL, '2020-07-29 16:44:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
@@ -3085,8 +3082,8 @@ INSERT INTO `sys_modulebutton` VALUES ('832f5195-f3ab-4683-82ad-a66a71735ffc', '
 INSERT INTO `sys_modulebutton` VALUES ('83690e2c-43f0-489f-9481-4b72ad828d4e', '4666f434-3178-42e5-a44f-1f34cadb3c43', '0', 1, 'StorageChange', '流转箱转移', NULL, 1, 'StorageChange', '', NULL, 0, 0, 0, 3, 0, 1, '', '2021-04-27 16:09:52', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 'StorageChange');
 INSERT INTO `sys_modulebutton` VALUES ('8379135e-5b13-4236-bfb1-9289e6129034', 'a3a4742d-ca39-42ec-b95a-8552a6fae579', '0', 1, 'NF-delete', '删除策略', NULL, 2, 'delete', '/SystemSecurity/FilterIP/DeleteForm', 0, 0, 0, 0, 3, 0, 1, NULL, NULL, NULL, '2016-07-25 15:57:57', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('84445468-0716-400e-8072-100a292246b6', '84e5ec65-f803-485e-b703-4d07eaaf6c05', '0', 1, 'NF-print', '打印', NULL, 2, 'print', 'print', NULL, 0, 0, 0, 6, 0, 1, '', '2021-03-29 08:38:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-03-29 08:38:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, '');
-INSERT INTO `sys_modulebutton` VALUES ('85F5212F-E321-4124-B155-9374AA5D9C10', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-delete', '删除菜单', NULL, 2, 'delete', '/SystemManage/Module/DeleteForm', 0, 0, 0, 0, 3, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:15', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('85bfbb9d-24f0-4a6f-8bb8-0f87826d04fa', '152a8e93-cebb-4574-ae74-2a86595ff986', '0', 1, 'NF-add', '新增字段', NULL, 1, 'add', '/SystemManage/ModuleFields/Form', 0, 0, 0, 0, 0, 0, 1, '', '2020-05-21 14:39:20', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-05-21 15:38:53', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
+INSERT INTO `sys_modulebutton` VALUES ('85F5212F-E321-4124-B155-9374AA5D9C10', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-delete', '删除菜单', NULL, 2, 'delete', '/SystemManage/Module/DeleteForm', 0, 0, 0, 0, 3, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:15', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('87068c95-42c8-4f20-b786-27cb9d3d5ff7', 'e3188a69-de3a-40ef-a5ff-5eaf460f5d20', '0', 1, 'NF-add', '新建任务', NULL, 1, 'add', '/SystemSecurity/OpenJobs/Form', 0, 0, 0, 0, 1, 0, 1, '', '2020-05-26 13:55:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-05-26 13:56:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('88f7b3a8-fd6d-4f8e-a861-11405f434868', 'F298F868-B689-4982-8C8B-9268CBF0308D', '0', 1, 'NF-details', '查看岗位', NULL, 2, 'details', '/SystemOrganize/Duty/Details', 0, 0, 0, 0, 4, 0, 1, '', NULL, NULL, '2020-06-16 08:14:01', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('897b1de8-3710-439f-b252-b1d6d06a082c', '4666f434-3178-42e5-a44f-1f34cadb3c43', '0', 1, 'StorageMove', '流转箱移库', NULL, 1, 'StorageMove', '', NULL, 0, 0, 0, 2, 0, 1, '', '2021-04-27 16:09:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 'StorageMove');
@@ -3107,12 +3104,9 @@ INSERT INTO `sys_modulebutton` VALUES ('957a355d-d931-40f6-9da0-dddfd9135fe0', '
 INSERT INTO `sys_modulebutton` VALUES ('95c46c7a-41d9-45ad-8633-913bece2fafe', 'ed896675-541a-4d34-bf77-29c87d7a26bb', '0', 1, 'NF-edit', '修改', NULL, 2, 'edit', '/MaterialManage/Material/Form', 0, 0, 0, 0, 1, 0, 1, NULL, '2020-12-01 14:31:51', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('9685d895-e557-4212-8afb-c9b4170faeaf', '828084e8-4361-40f2-bd3e-96acb4bc229b', '0', 1, 'NF-details', '查看', NULL, 2, 'details', '/RunMonitor/BoardAccount/Details', 0, 0, 0, 0, 3, 0, 1, NULL, '2021-01-25 09:03:45', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('98c2519c-b39f-4bf3-9543-5cc2630a4bbd', '152a8e93-cebb-4574-ae74-2a86595ff986', '0', 1, 'NF-clonefields', '克隆字段', NULL, 1, 'clonefields', '/SystemManage/ModuleFields/CloneFields', 0, 0, 0, 0, 5, 0, 1, '', '2020-05-21 15:39:48', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-05-21 15:40:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
-INSERT INTO `sys_modulebutton` VALUES ('9FD543DB-C5BB-4789-ACFF-C5865AFB032C', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-add', '新增菜单', NULL, 1, 'add', '/SystemManage/Module/Form', 0, 0, 0, 0, 1, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('9a908e26-f348-45d1-a470-15d20f798a84', 'e093b2d3-ec49-4b4d-91ec-63f57f4e3f1d', '0', 1, 'NF-details', '查看', NULL, 2, 'details', '/MaterialManage/TransferBox/Details', 0, 0, 0, 0, 3, 0, 1, NULL, '2020-12-14 12:44:38', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('9fc77888-bbca-4996-9240-a0f389819f6f', '7e4e4a48-4d51-4159-a113-2a211186f13a', '0', 1, 'NF-edit', '修改公告', NULL, 2, 'edit', '/SystemOrganize/Notice/Form', 0, 0, 0, 0, 2, 0, 1, '', NULL, NULL, '2020-06-16 08:12:21', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
-INSERT INTO `sys_modulebutton` VALUES ('D4FCAFED-7640-449E-80B7-622DDACD5012', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-details', '查看菜单', NULL, 2, 'details', '/SystemManage/Module/Details', 0, 0, 0, 0, 4, 0, 1, NULL, NULL, NULL, '2020-04-27 17:37:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
-INSERT INTO `sys_modulebutton` VALUES ('E29FCBA7-F848-4A8B-BC41-A3C668A9005D', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-edit', '修改菜单', NULL, 2, 'edit', '/SystemManage/Module/Form', 0, 0, 0, 0, 2, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
-INSERT INTO `sys_modulebutton` VALUES ('FD3D073C-4F88-467A-AE3B-CDD060952CE6', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-modulebutton', '按钮管理', NULL, 2, 'modulebutton', '/SystemManage/ModuleButton/Index', 0, 0, 0, 0, 5, 0, 1, NULL, NULL, NULL, '2020-04-07 14:34:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
+INSERT INTO `sys_modulebutton` VALUES ('9FD543DB-C5BB-4789-ACFF-C5865AFB032C', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-add', '新增菜单', NULL, 1, 'add', '/SystemManage/Module/Form', 0, 0, 0, 0, 1, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('a2d11fb0-767d-4ed6-8f7d-7e2f2d47a7cb', 'a2cae27f-0b49-4181-8760-4be3a3560988', '0', 1, 'NF-details', '查看', NULL, 2, 'details', '/ClassTask/ControlJob/Details', 0, 0, 0, 0, 0, 0, 1, '', '2021-01-18 14:30:41', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-19 08:41:24', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('a361156a-db2c-40b9-8449-189ce27da27c', 'ea9864ce-e397-42b0-8819-0680b78fcf4c', '0', 1, 'OutStorageBanding', '出库装箱', NULL, 1, 'OutStorageBanding', '', NULL, 0, 0, 0, 1, 0, 1, '', '2021-04-27 16:06:36', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 'OutStorageBanding');
 INSERT INTO `sys_modulebutton` VALUES ('a3a37705-a4cb-4f26-b247-dfc68e00046d', '8968b428-2a8b-4dbe-ad47-73dd408ddd5e', '0', 1, 'NF-add', '工序-新增', NULL, 1, 'add', '/ProcessManage/ProcessFlow/Form', 0, 0, 0, 0, 0, 0, 1, '', '2020-12-03 09:49:20', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-01-06 09:13:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
@@ -3167,6 +3161,7 @@ INSERT INTO `sys_modulebutton` VALUES ('d30ff0f3-39da-4033-a320-56f26edd5b51', '
 INSERT INTO `sys_modulebutton` VALUES ('d4074121-0d4f-465e-ad37-409bbe15bf8a', 'a3a4742d-ca39-42ec-b95a-8552a6fae579', '0', 1, 'NF-add', '新建策略', NULL, 1, 'add', '/SystemSecurity/FilterIP/Form', 0, 0, 0, 0, 1, 0, 1, NULL, NULL, NULL, '2016-07-25 15:57:40', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('d42aaaae-4973-427c-ad86-7a6b20b09325', '605444e5-704f-4cca-8d00-75175e2aef05', '0', 1, 'NF-vft', '处理', NULL, 1, 'vft', '/FlowManage/Flowinstance/Verification', 0, 0, 0, 0, 0, 0, 1, '', '2020-07-15 15:03:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-07-15 15:04:24', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('d4a4bb19-36f5-4267-b264-1a3ea2c510e6', '91448822-e10b-4146-b9fe-2669073cc7f1', '0', 1, 'FinishWorkOrderJob', '工单结束申请', NULL, 1, 'FinishWorkOrderJob', '', NULL, 0, 0, 0, 2, 0, 1, '', '2021-04-27 16:01:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 'FinishWorkOrderJob');
+INSERT INTO `sys_modulebutton` VALUES ('D4FCAFED-7640-449E-80B7-622DDACD5012', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-details', '查看菜单', NULL, 2, 'details', '/SystemManage/Module/Details', 0, 0, 0, 0, 4, 0, 1, NULL, NULL, NULL, '2020-04-27 17:37:29', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('d5d5de3c-2182-420d-b44e-6c71c5ab1537', 'af863666-a357-4e06-bffd-df98e1d29ab8', '0', 1, 'NF-delete', '删除', NULL, 2, 'delete', '/EquipmentManage/Equipment/DeleteForm', 0, 0, 0, 0, 2, 0, 1, NULL, '2020-11-30 14:05:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('d6251574-692e-4fce-a3a0-fa1ed64cd05b', 'd9078b9a-5db6-4429-b489-3700e56f367f', '0', 1, 'NF-edit', '修改', NULL, 2, 'edit', '/SystemManage/PrintTemplate/Form', 0, 0, 0, 0, 1, 0, 1, NULL, '2021-01-14 13:24:01', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('d63212a7-5977-43e9-a162-9ff5763f20e2', '240eb9e4-d5f8-4097-8611-dcdb30c2f49a', '0', 1, 'NF-delete', '删除', NULL, 2, 'delete', '/QualityManage/CheckoutDescription/DeleteForm', 0, 0, 0, 0, 3, 0, 1, '', '2021-05-18 08:18:07', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-05-18 08:18:34', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, '');
@@ -3183,6 +3178,7 @@ INSERT INTO `sys_modulebutton` VALUES ('dddaa429-6ebb-4d0e-ab1f-86307fa8a385', '
 INSERT INTO `sys_modulebutton` VALUES ('df626d9c-e3ba-4851-8926-3e175055cc8b', '8941c6fe-7413-40cb-9852-695ecf69662a', '0', 1, 'NF-delete', '删除', NULL, 2, 'delete', '/ProductionReport/AutoCpkLog/DeleteForm', 0, 0, 0, 0, 5, 0, 1, '', '2021-02-05 08:58:05', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-02-05 09:00:49', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('e06965bc-b693-4b91-96f9-fc10ca2aa1f0', 'e3188a69-de3a-40ef-a5ff-5eaf460f5d20', '0', 1, 'NF-disabled', '关闭', NULL, 2, 'disabled', '/SystemSecurity/OpenJobs/ChangeStatus', 0, 0, 0, 0, 5, 0, 1, '', '2020-05-26 13:55:50', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-05-27 08:42:32', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('e12bc302-e651-463a-a159-68968ece733a', 'b26cea9c-21ba-42fa-98fc-b8fe0b92451d', '0', 1, 'NF-details', '查看', NULL, 2, 'details', '/QualityManage/NeedCheck/Details', 0, 0, 0, 0, 2, 0, 1, '', '2021-05-21 13:57:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-06-18 13:27:24', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, '');
+INSERT INTO `sys_modulebutton` VALUES ('E29FCBA7-F848-4A8B-BC41-A3C668A9005D', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-edit', '修改菜单', NULL, 2, 'edit', '/SystemManage/Module/Form', 0, 0, 0, 0, 2, 0, 1, NULL, NULL, NULL, '2016-07-25 15:41:02', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('e376d482-023e-4715-a9c8-2a393c24426e', '605444e5-704f-4cca-8d00-75175e2aef05', '0', 1, 'NF-details', '进度', NULL, 2, 'details', '/FlowManage/Flowinstance/Details', 0, 0, 0, 0, 1, 0, 1, '', '2020-07-15 15:03:33', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2020-07-15 15:04:15', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('e46372b7-7c30-4f62-af2b-33a4f3393ddc', 'b5ff9591-f939-41c0-8c68-3b9c2fe02bdd', '0', 1, 'CheckoutInfo', '不良查询', NULL, 1, 'CheckoutInfo', '', NULL, 0, 0, 0, 0, 0, 1, '', '2021-04-27 16:07:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-05-26 09:22:18', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'CheckoutInfo');
 INSERT INTO `sys_modulebutton` VALUES ('e4ddb5b5-d576-4c50-847c-aa501ac5a38c', 'b5ff9591-f939-41c0-8c68-3b9c2fe02bdd', '0', 1, 'FirstCheckout', '常规检验', NULL, 1, 'FirstCheckout', '', NULL, 0, 0, 0, 2, 0, 1, '', '2021-04-27 16:07:54', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2021-05-26 09:23:03', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'FirstCheckout');
@@ -3207,6 +3203,7 @@ INSERT INTO `sys_modulebutton` VALUES ('f85f3bd5-ad1b-43d2-84f6-bbae465c65d9', '
 INSERT INTO `sys_modulebutton` VALUES ('f8c0cd71-e206-4991-91cf-fa96d5652eac', 'a083a171-932a-48b8-b053-13f9b39d555a', '0', 1, 'ConsumeMaterial', '物流领用物料', NULL, 1, 'ConsumeMaterial', '', NULL, 0, 0, 0, 0, 0, 1, '', '2021-04-27 16:03:39', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, 'ConsumeMaterial');
 INSERT INTO `sys_modulebutton` VALUES ('f93763ff-51a1-478d-9585-3c86084c54f3', '91A6CFAD-B2F9-4294-BDAE-76DECF412C6C', '0', 1, 'NF-details', '查看角色', NULL, 2, 'details', '/SystemOrganize/Role/Details', 0, 0, 0, 0, 4, 0, 1, '', NULL, NULL, '2020-06-16 08:13:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('fcb4d9f0-63f0-4bd0-9779-eed26da5c4b3', 'e9190a56-e173-4483-8a3e-f17b86e4766e', '0', 1, 'NF-add', '新增', NULL, 1, 'add', '/InfoManage/Message/Form', 0, 0, 0, 0, 0, 0, 1, NULL, '2020-07-29 16:44:08', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_modulebutton` VALUES ('FD3D073C-4F88-467A-AE3B-CDD060952CE6', '64A1C550-2C61-4A8C-833D-ACD0C012260F', '0', 1, 'NF-modulebutton', '按钮管理', NULL, 2, 'modulebutton', '/SystemManage/ModuleButton/Index', 0, 0, 0, 0, 5, 0, 1, NULL, NULL, NULL, '2020-04-07 14:34:09', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 INSERT INTO `sys_modulebutton` VALUES ('ffffe7f8-900c-413a-9970-bee7d6599cce', '91A6CFAD-B2F9-4294-BDAE-76DECF412C6C', '0', 1, 'NF-edit', '修改角色', NULL, 2, 'edit', '/SystemOrganize/Role/Form', 0, 0, 0, 0, 2, 0, 1, '', NULL, NULL, '2020-06-16 08:13:35', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL);
 
 -- ----------------------------
@@ -3214,23 +3211,23 @@ INSERT INTO `sys_modulebutton` VALUES ('ffffe7f8-900c-413a-9970-bee7d6599cce', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_modulefields`;
 CREATE TABLE `sys_modulefields`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MODULEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISPUBLIC` tinyint NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_MODULEFIELDS`(`F_MODULEID`, `F_ENCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ModuleId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsPublic` tinyint NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_ModuleFields`(`F_ModuleId`, `F_EnCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_modulefields
@@ -3615,22 +3612,22 @@ INSERT INTO `sys_modulefields` VALUES ('ff60fd1e-d0df-4847-bc5a-1bf4c3310c9c', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_TITLE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CREATORUSERNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_NOTICE`(`F_TITLE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CreatorUserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_Notice`(`F_Title`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_notice
@@ -3641,25 +3638,25 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_openjob`;
 CREATE TABLE `sys_openjob`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_FILENAME` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_JOBNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_JOBGROUP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_STARRUNTIME` datetime NULL DEFAULT NULL,
-  `F_ENDRUNTIME` datetime NULL DEFAULT NULL,
-  `F_CRONEXPRESS` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTRUNTIME` datetime NULL DEFAULT NULL COMMENT '最后一次执行时间',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_FileName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_JobName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_JobGroup` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_StarRunTime` datetime NULL DEFAULT NULL,
+  `F_EndRunTime` datetime NULL DEFAULT NULL,
+  `F_CronExpress` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastRunTime` datetime NULL DEFAULT NULL COMMENT '最后一次执行时间',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_openjob
@@ -3677,14 +3674,14 @@ INSERT INTO `sys_openjob` VALUES ('b57a4ea0-e8f5-4df8-addc-8f0920fab395', 'Water
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_openjoblog`;
 CREATE TABLE `sys_openjoblog`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_JOBID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '任务Id',
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '任务信息',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL COMMENT '执行时间',
-  `F_ENABLEDMARK` tinyint NOT NULL COMMENT '执行状态',
-  `F_JOBNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '任务名称',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_JobId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '任务Id',
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '任务信息',
+  `F_CreatorTime` datetime NULL DEFAULT NULL COMMENT '执行时间',
+  `F_EnabledMark` tinyint NOT NULL COMMENT '执行状态',
+  `F_JobName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '任务名称',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_openjoblog
@@ -3797,36 +3794,36 @@ INSERT INTO `sys_openjoblog` VALUES ('08d9bdc3-1fd9-4479-8ab6-5b4965d5f0d6', '08
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_organize`;
 CREATE TABLE `sys_organize`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LAYERS` int NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SHORTNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CATEGORYID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MANAGERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_TELEPHONE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MOBILEPHONE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WECHAT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FAX` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_EMAIL` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_AREAID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ADDRESS` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ALLOWEDIT` tinyint NULL DEFAULT NULL,
-  `F_ALLOWDELETE` tinyint NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_ORGANIZE`(`F_ENCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Layers` int NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ShortName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CategoryId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ManagerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_TelePhone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_MobilePhone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WeChat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Fax` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AreaId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_AllowEdit` tinyint NULL DEFAULT NULL,
+  `F_AllowDelete` tinyint NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_Organize`(`F_EnCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_organize
@@ -3838,21 +3835,21 @@ INSERT INTO `sys_organize` VALUES ('5AB270C0-5D33-4203-A54F-4552699FDA3C', '0', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_printtemplate`;
 CREATE TABLE `sys_printtemplate`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PRINTTEMPLATENAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板名称',
-  `F_PRINTTEMPLATEPATH` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板地址',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PRINTTEMPLATEDESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板描述',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_PrintTemplateName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板名称',
+  `F_PrintTemplatePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板地址',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_PrintTemplateDescription` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板描述',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_printtemplate
@@ -3865,13 +3862,13 @@ INSERT INTO `sys_printtemplate` VALUES ('08dab30e-5e26-442c-8ad3-8cb4bb9409dd', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_printtemplatehis`;
 CREATE TABLE `sys_printtemplatehis`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PRINTTEMPLATEPATH` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板地址',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '父级id',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_PrintTemplatePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板地址',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '父级id',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_printtemplatehis
@@ -3882,20 +3879,20 @@ CREATE TABLE `sys_printtemplatehis`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_quickmodule`;
 CREATE TABLE `sys_quickmodule`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_MODULEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_QUICKMODULE`(`F_MODULEID`, `F_CREATORUSERID`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ModuleId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_QuickModule`(`F_ModuleId`, `F_CreatorUserId`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_quickmodule
@@ -3929,22 +3926,22 @@ INSERT INTO `sys_quickmodule` VALUES ('08dab311-b02a-4392-8cb9-e2468c814af0', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_reporttemplate`;
 CREATE TABLE `sys_reporttemplate`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PRINTTEMPLATENAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板名称',
-  `F_PRINTTEMPLATEPATH` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板地址',
-  `F_DELETEMARK` tinyint NOT NULL,
-  `F_ENABLEDMARK` tinyint NOT NULL,
-  `F_DESCRIPTION` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '备注',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PRINTTEMPLATETYPE` int NOT NULL COMMENT '模板类型 0json 1xlsx',
-  `F_PRINTTEMPLATEJSON` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '模板内容',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_PrintTemplateName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板名称',
+  `F_PrintTemplatePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板地址',
+  `F_DeleteMark` tinyint NOT NULL,
+  `F_EnabledMark` tinyint NOT NULL,
+  `F_Description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '备注',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_PrintTemplateType` int NOT NULL COMMENT '模板类型 0json 1xlsx',
+  `F_PrintTemplateJson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '模板内容',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_reporttemplate
@@ -3955,15 +3952,15 @@ CREATE TABLE `sys_reporttemplate`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_reporttemplatehis`;
 CREATE TABLE `sys_reporttemplatehis`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_PARENTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '父级id',
-  `F_PRINTTEMPLATEPATH` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL COMMENT '模板地址',
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PRINTTEMPLATETYPE` int NOT NULL COMMENT '模板类型 0json 1xlsx',
-  `F_PRINTTEMPLATEJSON` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL COMMENT '模板内容',
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ParentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '父级id',
+  `F_PrintTemplatePath` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '模板地址',
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_PrintTemplateType` int NOT NULL COMMENT '模板类型 0json 1xlsx',
+  `F_PrintTemplateJson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '模板内容',
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_reporttemplatehis
@@ -3974,27 +3971,27 @@ CREATE TABLE `sys_reporttemplatehis`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CATEGORY` int NULL DEFAULT NULL,
-  `F_ENCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_FULLNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_TYPE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ALLOWEDIT` tinyint NULL DEFAULT NULL,
-  `F_ALLOWDELETE` tinyint NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_ROLE`(`F_ENCODE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Category` int NULL DEFAULT NULL,
+  `F_EnCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_FullName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AllowEdit` tinyint NULL DEFAULT NULL,
+  `F_AllowDelete` tinyint NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_Role`(`F_EnCode`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -4007,432 +4004,435 @@ INSERT INTO `sys_role` VALUES ('08dab311-84b7-4e7e-818b-0bcf5dedd3e4', 'd69fd66a
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_roleauthorize`;
 CREATE TABLE `sys_roleauthorize`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_ITEMTYPE` int NULL DEFAULT NULL,
-  `F_ITEMID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_OBJECTTYPE` int NULL DEFAULT NULL,
-  `F_OBJECTID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_ItemType` int NULL DEFAULT NULL,
+  `F_ItemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ObjectType` int NULL DEFAULT NULL,
+  `F_ObjectId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_roleauthorize
 -- ----------------------------
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4e33-8748-14f1db373e44', 1, '87dc2de3-ccbc-4dab-bb90-89fc68cbde4f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f3b-8b75-a7ed8dd028ed', 1, '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f3f-896c-7e6da9375d53', 1, '26452c9a-243d-4c81-97b9-a3ad581c3bf4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f42-8bbd-2c85d6824a40', 2, '7e10a7ac-8b65-4c7c-8eee-92d69d7dcbd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f46-804f-c13ce2d99abf', 2, '0b1b307b-2aac-456b-acfb-484a05c71bd7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f4c-87d7-e047c8f54d42', 2, 'f51da6f6-8511-49f3-982b-a30ed0946706', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f4e-8bd9-43a5187088ca', 2, '1b72be70-e44d-43d6-91d0-dc3ad628d22e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f50-8d34-4b609c7044fd', 1, '262ca754-1c73-436c-a9a2-b6374451a845', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f53-8542-9a970680f879', 2, 'b83c84e4-6264-4b8e-b319-a49fbf34860d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f54-8a2b-47a1867fe85c', 2, '82b2f4a2-55a1-4f44-b667-3449739643f6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f56-8149-48e5a2fa4dd4', 2, '0fa5e0a8-c786-40af-81af-b133b42dded5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f57-8cf9-6e4c21c034ce', 1, '91A6CFAD-B2F9-4294-BDAE-76DECF412C6C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f5b-8f34-8da431002ef0', 2, '5d708d9d-6ebe-40ea-8589-e3efce9e74ec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f5d-8787-b89875a2a1d6', 2, 'ffffe7f8-900c-413a-9970-bee7d6599cce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f5f-865c-a034f021db1c', 2, '239077ff-13e1-4720-84e1-67b6f0276979', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f61-8522-7be7d49bcfd0', 2, 'f93763ff-51a1-478d-9585-3c86084c54f3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f63-89f0-e404b592692a', 1, 'F298F868-B689-4982-8C8B-9268CBF0308D', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f66-802c-2666a82e81cc', 2, '13c9a15f-c50d-4f09-8344-fd0050f70086', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f68-8f47-153bddf74366', 2, 'e75e4efc-d461-4334-a764-56992fec38e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f6a-8e32-f33d55de53f9', 2, '8a9993af-69b2-4d8a-85b3-337745a1f428', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f6c-8f84-e80b01050354', 2, '88f7b3a8-fd6d-4f8e-a861-11405f434868', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f6f-8295-8b8a84802469', 2, '29306956-f9b2-4e76-bc23-4b8f02d21be3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f71-875f-1aca03c28870', 2, 'd7a452f3-3596-4339-8803-d61fb4eec013', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f74-81fc-c6c4d625700f', 1, '38CA5A66-C993-4410-AF95-50489B22939C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f76-8871-56bafde995e1', 2, '74eecdfb-3bee-405d-be07-27a78219c179', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f79-8dfc-e80edb668bbd', 2, '4727adf7-5525-4c8c-9de5-39e49c268349', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f7b-8ae3-cfbcf7bb62c3', 2, '14617a4f-bfef-4bc2-b943-d18d3ff8d22f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f7d-8a1b-8a5e4fce30aa', 2, '08d96da9-64f0-49d7-8528-fe30b78e529d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f7f-8c34-fbe96fd945b7', 2, 'abfdff21-8ebf-4024-8555-401b4df6acd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f81-8ff8-d6bdd8175d79', 2, '38e39592-6e86-42fb-8f72-adea0c82cbc1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f84-8398-0afbd135d4e1', 2, '15362a59-b242-494a-bc6e-413b4a63580e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f88-85e2-a3a7862db540', 2, '2a8f5342-5eb7-491c-a1a9-a2631d8eb5d6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f8a-8dc5-8b87645d83b5', 2, '7667ca4d-9f37-48af-9c2e-a11801c0ae33', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f8d-87e5-bc67967f8b7a', 1, '462027E0-0848-41DD-BCC3-025DCAE65555', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f8f-88ce-e67e732d9061', 1, '484269cb-9aea-4af1-b7f6-f99e7e396ad1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f91-8943-c18de6d3f15c', 1, '64A1C550-2C61-4A8C-833D-ACD0C012260F', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f93-8c28-389419c684cc', 2, '9FD543DB-C5BB-4789-ACFF-C5865AFB032C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f95-844d-0e8fab828a1d', 2, 'E29FCBA7-F848-4A8B-BC41-A3C668A9005D', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f98-8f2f-4706501aae4a', 2, '85F5212F-E321-4124-B155-9374AA5D9C10', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f9b-8008-dbd4105913c5', 2, 'D4FCAFED-7640-449E-80B7-622DDACD5012', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f9d-85c2-691782bf1ca8', 2, 'FD3D073C-4F88-467A-AE3B-CDD060952CE6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4f9f-8ad3-9b023deb0af2', 2, '23780fa8-b92c-4c0e-830e-ddcbe6cf4463', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fa2-8420-8c87aa9c05bc', 1, '01849cc9-c6da-4184-92f8-34875dac1d42', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fa4-8726-fac2a183c6cf', 2, '8f32069f-20f3-48c9-8e35-cd245fffcf64', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fa7-827c-8674ec068c29', 2, 'e6514544-1436-431d-acbc-c44802831ea8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fa8-8c1c-292022b06f65', 2, 'ba72435b-1185-4108-8020-7310c5a70233', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4faa-8af3-4f25cf14a33e', 1, 'ed757a25-82d5-43cc-89f4-ed26a51fb4f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fac-8f3e-5c7c971b711c', 2, '071f5982-efb2-4fa3-a6cf-a02f3f1f9d92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fae-8364-a16578c896da', 2, '3d0e99d1-a150-43dc-84ae-f0e2e0ad2217', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4faf-8f1c-74ab51839946', 2, '4f727b61-0aa4-45f0-83b5-7fcddfe034e8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fb1-8eda-050f49115bde', 2, '746629aa-858b-4c5e-9335-71b0fa08a584', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fb8-8121-ff0503063b48', 2, '43e09a61-c2b0-46c1-9b81-76d686b390d4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fba-8860-25d8940ec9dd', 1, '152a8e93-cebb-4574-ae74-2a86595ff986', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fbc-8db6-61f37d13751e', 2, '85bfbb9d-24f0-4a6f-8bb8-0f87826d04fa', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fbe-8008-89a7ebcea84c', 2, 'd1086ccf-e605-44a4-9777-629810cec02d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fbf-88ae-01d39fb7703e', 2, '01600a2b-c218-48d6-bb37-842daa727248', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fc1-82b9-90abc2ad118d', 2, '63cd2162-ab5f-4b7f-9bbd-5c2e7625e639', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fc4-881d-42a1f2e93cb1', 2, '98c2519c-b39f-4bf3-9543-5cc2630a4bbd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fc7-807c-7b212ac65ebd', 1, '423A200B-FA5F-4B29-B7B7-A3F5474B725F', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fc9-87ae-c767390cae93', 2, '104bcc01-0cfd-433f-87f4-29a8a3efb313', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fca-8eed-c8587d2f0264', 2, '4b876abc-1b85-47b0-abc7-96e313b18ed8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fcc-8a0a-7577bdadeed1', 2, '0d777b07-041a-4205-a393-d1a009aaafc7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fce-891a-9aa2c2afb12b', 2, '1ee1c46b-e767-4532-8636-936ea4c12003', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fd0-8bd6-836848367261', 2, '82f162cb-beb9-4a79-8924-cd1860e26e2e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fd4-8b33-7f733d4f1d06', 1, 'd742c96e-b61c-4cea-afeb-81805789687b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fd7-85d0-85b2a88f0ef3', 2, 'd9e74251-61ff-4472-adec-ad316cb9a307', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fd8-8f50-22638bec875b', 2, '0e156a57-8133-4d1b-9d0f-9b7554e7b1fc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fda-8e82-44bc6fdc4fb4', 2, 'cba403cb-6418-44b7-868d-19e04af673ce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fdd-8391-b2769a424c8c', 2, '30bf72ed-f62f-49a9-adfc-49693871605f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fdf-89d9-3e81f2661899', 1, '2c2ddbce-ee87-4134-9b32-54d0bd572910', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fe3-8e78-9d6d518d1a3d', 2, '55cc5aba-8121-4151-8df5-f6846396d1a3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fe5-81a9-bfa09ea70a7a', 2, '4c794628-9b09-4d60-8fb5-63c1a37b2b60', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fe6-884b-663f74fb18c6', 2, '91d768bb-fb68-4807-b3b6-db355bdd6e09', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fe8-83e0-6d4267c61cf1', 2, '832f5195-f3ab-4683-82ad-a66a71735ffc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fea-8286-a26a65a99529', 2, '2cde1cd0-cfc8-4901-96ef-1fe0c8bf997c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fec-86fe-f15fd497959e', 1, 'f82fd629-5f3a-45d6-8681-5ec47e66a807', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fee-8b77-e4cacdc92eb7', 2, 'ec452d72-4969-4880-b52f-316ffdfa19bd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ff1-8d96-46422384bb18', 2, '35fc1b7c-40b0-42b8-a0f9-c67087566289', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ff3-86bc-57ceb3751ddf', 2, 'd30ff0f3-39da-4033-a320-56f26edd5b51', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ff5-8457-70b8713922e3', 2, '73ac1957-7558-49f6-8642-59946d05b8e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ff7-84f8-3892debda834', 1, 'd9078b9a-5db6-4429-b489-3700e56f367f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ff9-8bfb-013e07bc67b5', 2, '9230de13-fb93-43f3-9c27-17bc0f950717', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ffa-8dc1-139547590d44', 2, 'd6251574-692e-4fce-a3a0-fa1ed64cd05b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4ffe-824f-3880a0de9c71', 2, '05a198ba-cafa-42c2-8ed8-3140f9c4ef9d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74de-4fff-8dee-a13c82449f1f', 2, 'bc8f5f31-f226-41f2-aaff-bdc9571bd54c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4001-8f94-21fa309d639a', 2, '08d97353-5dbb-4d3b-868c-b64e56ac96a6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4004-81ec-90670b201b8b', 1, '08d97330-6dd4-4435-851b-d6b12ea91518', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4006-89e2-61f5537ed319', 2, '08d97330-c16b-4b70-868c-5f1511c02f78', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4007-8b84-2826678f3569', 2, '08d97330-c16b-4bf2-8fc3-586be9c6b02a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4009-80ed-8017812d8b65', 2, '08d97330-c16b-4c5c-88a4-9e05027097a1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-400c-82cd-ce46c322987a', 2, '08d97330-c16b-4cb8-8329-b6a539ee51ca', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-400e-822e-589f13024b0f', 2, '08d97353-77a5-418c-8554-9815ea09cdef', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4010-84fb-1a675bd3a04d', 1, '73FD1267-79BA-4E23-A152-744AF73117E9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4012-8656-85c158732234', 1, '30c629a0-910e-404b-8c29-a73a6291fd95', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4014-8679-82dd5a7e98d6', 2, '3c8bc8ed-4cc4-43bc-accd-d4acb2a0358d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4015-882c-a2d27af1b0a8', 1, '96EE855E-8CD2-47FC-A51D-127C131C9FB9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4019-83a2-b0a4aad9c3df', 2, '3a35c662-a356-45e4-953d-00ebd981cad6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-401a-8e38-8adc10beaa18', 1, 'a3a4742d-ca39-42ec-b95a-8552a6fae579', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-401d-817d-85f3a1a37eef', 2, 'd4074121-0d4f-465e-ad37-409bbe15bf8a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-401e-8b11-d08f21f01d56', 2, 'aaf58c1b-4af2-4e5f-a3e4-c48e86378191', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4020-88e0-3dcb4c68f843', 2, '8379135e-5b13-4236-bfb1-9289e6129034', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4022-88c2-5f4c9368825e', 2, '329c0326-ce68-4a24-904d-aade67a90fc7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4024-8b1f-56068624a88f', 1, 'e3188a69-de3a-40ef-a5ff-5eaf460f5d20', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4029-83c5-b2a687cbac9f', 2, '87068c95-42c8-4f20-b786-27cb9d3d5ff7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-402a-8cb7-349b6dfa6a48', 2, 'd2ecb5e8-e5cc-49c8-ba86-dbd7e51ca20b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-402c-8ad0-8d9ce27b834a', 2, '310bb831-a46f-4117-9d02-a3e551611dcf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-402e-8aa1-e41374a40172', 2, '208c2915-d6d0-4bb0-8ec4-154f86561f5a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4030-8cc8-b2677f4a2ae2', 2, 'e06965bc-b693-4b91-96f9-fc10ca2aa1f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4033-82d3-30f191b6aa10', 2, '2ec7f52c-43b7-45bb-8714-17511817d1b8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4035-8885-73dde59a47a9', 1, '49F61713-C1E4-420E-BEEC-0B4DBC2D7DE8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4039-86ae-b21608acbc8c', 1, '5f9873e9-0308-4a8e-84b7-1c4c61f37654', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-403b-8a7e-d13965e1e8ab', 1, 'c87cd44f-d064-4d3c-a43e-de01a7a8785e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-403d-8bd0-fb6ec88ef7d0', 2, '772eb88a-5f67-4bb1-a122-0c83a2bdb5ef', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-403e-8ec0-3a57b6014b90', 2, 'c8eed325-56ad-4210-b610-3e3bb68eb0be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4040-8654-2b397afa89bd', 2, '5c321b1f-4f56-4276-a1aa-dd23ce12a1fc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4042-84d5-c68cc4b55295', 2, '153e4773-7425-403f-abf7-42db13f84c8d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4045-8cd5-b85bd9052d6f', 1, '605444e5-704f-4cca-8d00-75175e2aef05', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4048-80cc-bd10760abf1a', 2, 'd42aaaae-4973-427c-ad86-7a6b20b09325', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4049-84ed-ef09c24ab131', 2, 'e376d482-023e-4715-a9c8-2a393c24426e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-404a-8e00-0f23c78ac1ff', 1, 'ee136db7-178a-4bb0-b878-51287a5e2e2b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-404d-82f2-19faf3cfc320', 2, 'b4be6eee-3509-4685-8064-34b9cacc690a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-404e-8b9b-83a98694336f', 1, '6b196514-0df1-41aa-ae64-9bb598960709', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4051-8068-dd77bf68f78d', 1, '7cb65e00-8af2-4cf2-b318-8ba28b3c154e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4054-8f7c-d668d65618f9', 2, '17a0e46f-28f9-4787-832c-0da25c321ce4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4056-811e-1a9e5568b1a8', 2, '1a588a3b-95d7-4b3a-b50a-d3bc40de9fe3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4057-8760-aa96bce965fa', 1, 'a5b323e7-db24-468f-97d7-a17bf5396742', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4059-8bac-56e8e9294e11', 1, 'e9190a56-e173-4483-8a3e-f17b86e4766e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-405b-8ef2-4e5bd6170113', 2, 'fcb4d9f0-63f0-4bd0-9779-eed26da5c4b3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-405d-821d-8970a31389a2', 2, '6f872aa0-1aae-4f42-a3ba-a61079057749', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4060-8e8f-5a83e8c48492', 2, '0a1ba1d7-b4f3-45a4-a4da-e70fb25bb766', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4062-8949-00f81f7845d1', 2, '957a355d-d931-40f6-9da0-dddfd9135fe0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4064-8a51-5c24a3a4c2d0', 1, 'd5be1a41-547d-4001-8ae7-f6568e4d6cfe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4066-8c00-2b17bcef98e3', 1, '5c841e96-00f1-47ea-aec7-d197278562de', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4068-8f98-1a4617081f7d', 1, '0a479fd4-57ca-46db-a8bf-c30d5871b1f9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-406b-80ad-047e7c2ad399', 2, 'a5c8f6ff-1f2b-4827-88e3-e7af141af6f5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-406d-8df1-b375e3209a7d', 2, '4e044eb2-a753-4e99-a1af-a707a3475fc5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-406f-83a9-cec2fd17f428', 1, 'a8f0c195-53c5-4b05-b65e-5fafb14a3aec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4071-85c8-581efb76ecac', 2, '89c915bb-35f7-47dc-a206-9deae36b34db', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4072-89cd-454a0ae7a84f', 2, 'b2d222c3-ea50-4cb6-b05f-eadd4ab68c04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4074-8157-f2c953ebe2cc', 2, 'f4299350-e36f-4cd3-90a4-86b418e05f92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4075-8f72-8e557c970d76', 2, '61a54b03-776d-460b-91b5-9b048ea8a15d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4079-8876-1b6ce4b2e2f6', 2, '0eb93272-6e36-4d9e-866b-b238f41a8581', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-407b-8c09-de202bab3c6f', 1, 'a2cae27f-0b49-4181-8760-4be3a3560988', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-407d-8f2f-c824075a29d1', 2, 'a2d11fb0-767d-4ed6-8f7d-7e2f2d47a7cb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-407f-82e8-68449eeff880', 1, '33f831db-f9a4-43e7-8688-d08073af575b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4081-862d-582f58f01667', 2, 'da9f9a0d-e350-46fd-a44e-e543acaa8d34', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4082-89d9-4844e81107e5', 1, '39fce29e-2d24-934c-432b-87fda7e92d81', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4084-8e89-83009f790cbc', 2, '39fce29e-2dac-4340-a9ea-1034e0ede28f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4087-8c4b-eeea24ec7934', 2, '08d92a20-b747-4c5a-8a06-c1ce8588c7ce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4089-8241-f33e082425b4', 2, '39fce29e-2dac-c882-a2ae-efe34a55a09f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-408a-8eb3-74b28dbd5a52', 2, '39fce31f-fd77-2934-0b3d-74948cf3d490', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-408d-841f-49ee5442af5a', 1, '08d935e2-5205-4f27-8a80-331f2856ee0e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-408f-858b-c7b177375119', 1, '08d92fa2-7423-43dc-8839-359e00c53878', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4091-86b8-3d94fa5e0a85', 2, '08d92fa2-7437-4d8b-8592-8dce722502bf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4094-84f1-64419ee3f3a1', 2, '08d92fa2-7437-4e6b-804d-6843753457d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4095-8af6-95e4b5f1e577', 2, '08d92fa2-7437-4ef3-8737-91cc6871ae8b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4097-851b-6a8cc42d4de1', 2, '08d936a5-bfd2-49d6-88fd-9b19bff30f88', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4099-846d-65c951398a61', 2, '08d93c2e-efcb-4f18-8829-fa085aad9c10', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-409b-8512-bd6db4a820df', 2, '08d95878-a40e-4413-86f4-21042d7998dc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-409d-8a0d-c74829b79cc0', 1, '08d9360c-dd12-43e8-8ebe-0104c5bd3c08', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-409f-8b3f-585763bd2fcf', 2, '08d93615-773a-47ed-8a25-0cbf31c4f892', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40a2-85de-dd249cd17547', 2, '08d93615-773a-4979-862b-1f1d852fb314', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40a4-80d8-142d1dec197c', 2, '08d95878-b9f4-47a9-8a4f-e41b9a5c7a1b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40a6-801e-5c0236dc313a', 2, '08d963a3-ed2f-468f-8d22-6e20aeea4b71', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40a8-8292-3fe52b1ed1a3', 1, '08d93615-4748-4f48-88aa-162ed2db75a9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40aa-86d1-fe5e87faed61', 2, '08d93615-5caa-4d8b-831d-d6c728780fc4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40ab-88cf-9888ea5add1b', 2, '08d93615-5caa-4e25-85fb-a71993e2687e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40ad-83bd-ec1bc22d45ad', 2, '08d95878-ce7f-4716-877e-d9d6331e64a3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b0-8b24-a22d34b445b2', 2, '08d963a3-f586-4385-8db2-d37f37689c90', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b2-8d36-b14629da96da', 1, '08d94c14-e1b5-4b56-8873-37fb81ebaad3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b5-85bc-9f98d6b4920c', 2, '08d94c14-e1ca-4206-8a31-d60d885e9ac2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b6-8729-d3653215da61', 2, '08d94c14-e1ca-42ca-8ddc-2ceea031a8ea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b7-8dff-ca46e69f9840', 2, '08d94c14-e1ca-434d-8024-3eb69cce8bb0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40b9-8862-f7daa79e87aa', 2, '08d94c14-e1ca-43be-899c-34cd6122a6db', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40bc-8ef8-8a6db3158acf', 2, '08d94fe5-2f1f-4ba2-8d92-63a2e8e3b4be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40bf-8430-506cf006bd0d', 2, '08d9612f-406a-4650-8469-829593b485df', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40c1-8919-66d896733f3c', 1, '3e431a6e-1906-48f6-91da-16015b40dd20', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40c3-8cdc-e6d02f3027d0', 1, '8968b428-2a8b-4dbe-ad47-73dd408ddd5e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40c5-8f4a-9a12363752ef', 2, 'a3a37705-a4cb-4f26-b247-dfc68e00046d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40c7-840a-83eb45bbade2', 2, '90e52c1e-8fbd-4169-95ed-747f1dccfcf9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40c8-8b9d-0922cc85fddf', 2, 'da9da00e-d30a-4ef6-b86d-5f402cd3e64d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40cc-857c-22cccf2afd91', 2, '6b3aa51b-7590-471a-bd84-49e6589c1f32', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40ce-86f5-e1a6c30cabfd', 2, 'e8ec8398-2a2e-4b00-82e2-6f2bb19a63cd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40d0-8d14-ef7f89061e78', 2, '4e44d96b-bd7d-4634-bfe4-9fe2aeec8592', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40d3-8363-c33845e8fcdd', 1, '7cce1014-5087-4184-9848-77e164be4e17', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40d6-8e98-b047ef306289', 2, '4748945e-e179-483e-b14a-7cc29cc18ab6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40d8-81e8-d506c114593e', 2, '16030e33-e405-4c5b-ae20-d875e471fd04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40d9-873f-de55f94196a0', 2, 'e68fffbb-00bd-465c-9527-b04c554b6ba6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40df-8af0-babe713d9120', 2, '2aa1b5c9-57e7-4e1f-bd44-c477fa847d8c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40e3-82e4-b1850f66f772', 2, '48679ba7-74ef-48ae-9de1-e9fc2eae7621', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40e6-8dc2-a9b9bc7cfe1c', 1, '2ffc3301-8ec2-4157-a4c3-232797aae120', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40ed-8eec-79e7a547aeae', 2, '45a11ce3-c470-4dad-b5ed-189f8efcadf3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40f1-8479-4ab932b92afe', 2, '572c3ed8-94e8-4d5e-a0b7-324732f718f8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40f4-8cf9-b1831b97397c', 2, 'cb409d35-a09a-4808-b278-32f349ae0459', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40f9-8c66-1ce2b6863ddd', 1, '101358e6-eb92-431a-9f05-949f05738506', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-40fe-81f1-3335a2bea403', 1, '79c73d26-6f49-463a-9002-98eba48e36b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4100-85d6-967214e17997', 2, '1e4f989f-9110-41e9-bfec-302a671d53af', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4101-8953-c7e104c8eb94', 2, 'af3ce4e5-ae06-4558-a01b-a6b031c31bfd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4103-81c1-c147b3f7133b', 2, 'b6f741f3-53a1-4dfb-9cd8-cd24da010e1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4104-8ddf-2e5061e740e9', 2, '171f1fa5-6c98-4686-8efa-6534378fb93f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4106-8b71-b4314efcfbaf', 1, '5391c5c0-55c0-4132-a26d-5d27fcec1c18', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-410a-8732-97912ab5f8ae', 2, 'afa9fd66-a535-4fe0-940e-34f413c98355', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-410f-8e4a-a6915f8a15e8', 2, '1b32e4d2-1e93-4b40-b3f6-da20a5957234', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4111-847c-c35436c6fe89', 2, 'f353f74e-644c-4ed5-8558-eef6bdd35985', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4113-82ad-deab7be8138f', 2, 'dd259bbd-51a8-4bfe-adac-586738779351', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4115-83f5-49a689fc934c', 2, '491df014-bc06-4d49-bbb5-2235b5436836', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4117-8a42-9a34bc343759', 2, '7f57c359-0c70-414f-9446-55faf534f204', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-411c-84d3-cf379005cfa8', 2, 'ad02b7e4-b558-47a4-852d-b141e8ef27aa', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-411e-8d12-105536c65e79', 1, 'e093b2d3-ec49-4b4d-91ec-63f57f4e3f1d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4121-817b-08c8b498a492', 2, 'd00db889-23eb-41d4-b941-be4e6e236455', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4122-85d6-96e84cc5024c', 2, '2a05c5ca-1eb3-4204-86fb-e355d798a535', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4123-8bf2-0e27a20fd5bb', 2, '6453cb3c-c527-4f74-a09f-48c3d26b5863', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4125-88c8-c30556397d75', 2, '9a908e26-f348-45d1-a470-15d20f798a84', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4127-8851-32a0d45633f6', 2, '28592383-195f-4911-98ce-c817a8c1a716', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-412b-847f-c019a837c5ec', 2, '094d05bd-f2d8-47c1-989c-76525539b457', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-412d-8990-fd8414b43f53', 2, '4d559146-7425-4e67-b02d-f16c41eb481a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4130-80fd-8abfba3ca106', 2, '3c20ddc2-8a64-4d3f-bd39-ffcc36dc69c5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4132-87a0-5411a3353356', 1, 'ed896675-541a-4d34-bf77-29c87d7a26bb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4134-8b0e-f83ac95132a3', 2, 'b2f7f312-86c7-416a-86a4-c6409e786b11', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4135-8e12-68633afa96e2', 2, '95c46c7a-41d9-45ad-8633-913bece2fafe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4137-86a0-993a30961e30', 2, '8187bc3a-d003-45e5-9327-7e7267d24fcd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-413a-8ba9-7ab749eccd33', 2, '29421e16-0ddd-466b-8b6f-19980c01c955', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-413c-8aba-8dc315385225', 2, '3440df47-fa09-47c2-abe8-44411985701c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-413e-8d24-6999c0bc6060', 2, 'b55330a1-3190-4cee-aba5-e60a9b515817', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4141-8318-dd4f0c14a5e6', 2, 'eb71bee8-e348-4892-9257-4b7147921918', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4143-8f81-5e7909afdf72', 2, '67dac5bd-b923-43f0-9b29-a850ec8d356e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4146-864f-314017087684', 1, '39226710-b665-489e-aaa0-a8c15d29ed4c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-414a-84e1-1c867ca28eec', 2, 'f0db4138-2d89-4553-9322-5ebb9bbafbc3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-414b-894b-f28a8e4b547b', 2, '08d9a4b8-24a5-4b3e-8682-169a9ab29c04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-414c-8f6d-da5271055fa1', 1, '25ca371f-9c67-4e0e-9ca7-0dec2e836613', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-414f-8519-ff54dd77ba7d', 2, 'b8939694-f8e9-4931-a7bd-7114e7170c80', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4150-896f-1c0cbfd6288e', 2, '67e487ea-f49b-4f86-ad1e-f31248f461a8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4152-80ee-55c011b4039f', 2, 'd20c1c0a-a0d3-4227-b24f-81ef1bcff60c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4153-8d5e-41af98c7e7f9', 2, 'f1eb5b12-2898-4aa6-81bf-14473482b764', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4157-8872-dd8b360bf05d', 2, '0f4d177b-1aa4-4807-a4c2-8d918813ac53', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4159-8bda-35ecba0d45d3', 2, '923e066d-a552-450c-af6f-1ced15a71308', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-415c-81a9-8da148db672e', 2, 'b07d18b7-8f32-4fe8-a402-f1df22b70ef8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-415e-8855-8115a8d5069b', 1, '84e5ec65-f803-485e-b703-4d07eaaf6c05', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4160-8d50-362d98490f15', 2, 'b70177e4-40b6-4221-8807-f081310d5540', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4162-822e-dc22af35cdd1', 2, '810a68f6-40cb-413c-b351-d065173bd6f7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4163-881a-2b8fb8d27e27', 2, '215c648d-f86a-49cc-b0d5-b68cddcff792', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4166-8e6b-4ba7b5095b2d', 2, 'afa6eb2a-9477-4c91-816a-652dce303675', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4168-8f86-59f7a5153e24', 2, '91260897-df2c-4228-8323-d42795faaf90', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-416b-85bf-3d717d3c46a8', 2, '66fdc1a7-327a-42bd-97e8-8dcfb6212e8c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-416d-8b8d-a1f56ceb85ea', 2, '84445468-0716-400e-8072-100a292246b6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4170-814e-b7222514dd0b', 1, '69f6aebb-965b-4380-910f-99aba0776261', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4172-8978-8714c5a28892', 2, 'ceb3cbcf-5dca-4d1b-afec-0e356ea33bc6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4175-8bca-d51a8f655c3c', 2, '08d92ba9-f27c-4d5f-8d21-1acdd7cd6c4b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4177-8661-19c348da928f', 2, '08d98256-54bc-4b73-807e-4d3e7dba2b5d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4179-8197-9a118111f2aa', 2, '08d94b27-e1ff-46ab-8f47-46c5c900b0d6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-417b-8875-99193b389f08', 1, 'beaddc98-9037-4fc6-8d21-493fe47f20e8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-417d-8f84-63d87be1841e', 2, '815d472a-abdf-448e-bc67-172123ba60df', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-417f-819a-e960831581dc', 2, 'b88f2b75-0d9a-4400-8a15-0df5bec263a5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4180-8a1d-ccbe96ef583b', 2, '1191df4c-0593-4ee8-85ab-ad4f3bbc8184', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4183-8f31-99e9dfcf87e5', 2, '2cfa7ae3-260c-4c48-b7fb-3d94861e9cea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4185-8f66-5699f3fd9e6e', 2, '09711a0c-18c9-42e0-9cc4-ebfbc2745200', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4188-81d0-265b557bb16a', 2, '60e3aef8-126d-4bde-a8b5-6b378a1fa9f6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-418e-8065-c56acb5c083b', 1, '50cdea18-b06a-43c8-963c-8f52fb9d94de', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4190-8bd4-30104253cfb1', 2, 'd75fd32e-6ef7-4514-915b-5165794df754', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4192-80eb-b443021787ed', 2, '08d9a573-f1e5-4726-8a35-4feb68fdb31f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4193-86ae-fd558ecc6ca1', 1, 'badc3ee2-fcbb-43ae-9efe-2309f8a63834', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4195-8ef8-af4578ea5ea8', 2, '398edf66-1ca8-4519-b2a7-f202008901c7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4197-81cb-6a2173288ef2', 2, 'f552d4fa-791c-4891-95ff-298ca775c656', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4198-8abe-d747b455b2b3', 1, '08d93158-2459-490a-868d-a826777f22e4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-419c-892a-1f3ce40e4c3f', 2, '08d93158-2734-48a5-8aaa-cb936a2d8dd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-419d-8b92-1b2e7b6b5ac4', 2, '08d93158-2734-4988-8ec7-b05bdd501837', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-419f-8016-cb7db692a0ef', 2, '08d93158-2734-4a10-810d-19bf895a26f1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41a0-8b99-92d36334be49', 2, '08d93159-94c7-440b-8243-118a163a60f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41a2-8c07-0fbafd3fc8c6', 1, '83e2713c-3b2b-4795-8e48-646785a1936b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41a5-82e2-276f923f085f', 1, 'af863666-a357-4e06-bffd-df98e1d29ab8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41a9-80b3-9f2c4be4a115', 2, '52613262-e95b-4f2c-b339-d75e9dbf03b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41aa-84e6-e2d1b19d64fe', 2, 'dddaa429-6ebb-4d0e-ab1f-86307fa8a385', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ab-8d52-8dbe359a8fb4', 2, 'd5d5de3c-2182-420d-b44e-6c71c5ab1537', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ad-8b5d-582c88c4854b', 2, '25613ba8-8bb2-4357-a8d4-a558cb85eea3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41af-8be8-37a23d530d68', 2, '50a6975c-48e2-45d3-932b-8c7423dcc2be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41b1-8f4d-8981203cff9d', 2, '551df1d7-f8fc-4a4e-a34d-5691b589c5c4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41b4-848d-99594b37a109', 2, '822b37d6-3d6a-463b-93fb-fe06f43d90e0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41b8-88c9-6331c38b7726', 1, '83d761e9-4ab8-45db-a9ce-32bc148b6922', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ba-8c55-c6efc6ecf129', 2, 'ccfb8572-f661-4da2-8bc0-ceff351229ec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41bc-833b-3c4111e8f95c', 2, 'b7bf4423-23f7-495f-8f09-a402e3e3cfc8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41bd-8b65-e144f0e98292', 1, 'a620c016-27cb-46f8-86c9-44c197617524', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41bf-8f70-be85e20b4e0d', 2, 'dd9f45e6-0fa5-4c98-8420-8199c9175507', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41c1-83c6-e7a2e3d29b8e', 2, '1c97a035-f3ba-4dc5-a711-5fbf87e24c47', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41c2-88c1-abb0a57480fa', 1, '08d92a3f-bdb2-42be-89c7-fae5d3a4fec3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41c6-8b87-145095bbf574', 2, '08d92a3f-db7e-48a4-85f6-6fa01dfa49e2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41c7-8de4-7551151f37d5', 2, '08d92a3f-db7e-492e-8761-8d531b99eea2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41c9-8189-c3da2e1b09b1', 2, '08d92a3f-db7e-496f-8818-7e8575081481', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ca-8ca2-9ca1335225ca', 2, '08d92a3f-db7e-49c7-8997-8b28aa22bd1f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41cc-8a44-d4e0666a63cd', 2, '08d92c81-b505-4041-8f6c-f18e9630ed1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ce-8ce3-4e265e26a631', 1, '08d92af0-e091-40c3-8a90-914a3266dafc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41d2-8ed4-b4822f99726a', 1, '08d92be4-74ba-4edf-8357-49547cae7fbc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41d5-865c-1229603c23fc', 2, '08d92be4-74ca-4f08-8388-da5aca619fee', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41d6-8841-01c093b94b2a', 2, '08d92be4-74ca-4f8d-87b4-1be4e1137e9d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41d7-8df7-670c58e3617f', 2, '08d92be4-74ca-4fee-8728-e784d4edd9e9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41d9-872d-ebf434b30f28', 2, '08d92be4-74cb-4045-8935-d894e9a5098f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41db-860c-6fe9c4c2dbae', 1, '08d92fb7-7754-4c3b-8341-c60bc590212d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41dd-8f7c-63550313d23b', 2, '08d9313a-3be4-4173-8d12-5227170b7c60', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41e0-8a60-e48bb1df5c53', 2, '08d92fb7-7762-4a62-8cbb-c60e9098f62e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41e2-82f2-8d7c504b4812', 2, '08d9313a-3be4-4281-842e-de7dcfdeaa34', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41e3-8daf-1a2453c8799e', 2, '08d931f3-0997-4e93-8110-2eacfb6cdbbe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41e5-8a58-dd34ec58fa01', 2, '08d92fb7-7762-4998-8f28-acc9f98831a6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41e7-8b5d-77e837407b71', 2, '08d92fb7-7762-4aa6-828e-83a1a9b06913', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ea-805f-3a7f1ab89088', 2, '08d92fb7-7762-4ae8-83f5-2aeed3949514', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ec-86eb-f843bc7b8b53', 1, '732b0226-a8d6-41e7-b731-a8c4252f1c88', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f0-8798-fc9b7f38b2c0', 1, '240eb9e4-d5f8-4097-8611-dcdb30c2f49a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f2-8898-d0707efa14a7', 2, '8c0df9a6-af02-4450-bab8-226755f1a806', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f4-80b5-e7ad6b4adcd9', 2, '0cd16e19-6532-4260-abf8-83b8eb32b25b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f5-8a61-745abb6afc51', 2, 'd63212a7-5977-43e9-a162-9ff5763f20e2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f7-8b22-9381e830f753', 2, 'ca302b02-6835-41c0-ae24-97dfb690fd1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41f9-8e0d-aeba233c8da0', 1, 'b26cea9c-21ba-42fa-98fc-b8fe0b92451d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41fe-822d-36f32c1e6467', 2, 'aef967fa-e331-4891-b26e-ad4161b60150', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-41ff-8759-4dc6a2bbb4f7', 2, '08d93219-b1c6-42da-88e3-b486742cdf43', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4200-8c01-0806a64a7979', 2, 'e12bc302-e651-463a-a159-68968ece733a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4202-8a8e-11d5fa6c0d37', 1, 'b39698da-6117-433e-8a02-ef1392d1fe3b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4204-8c79-fff8537a0a10', 2, '064d1ffc-40dd-4bf2-8e7e-aab42e683995', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4205-8d34-be47ad9b3f9e', 1, '08d94670-7854-4707-8a1e-256200820167', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4208-82a9-f3f80593d15a', 1, '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-420b-8fa5-6eb162b82b44', 1, '08dab30a-d896-4019-8066-7001d27a834e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-420e-8071-458603081aae', 1, '08dab30b-0c23-4b79-8743-35952367b7d8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4210-8454-5ca3a201126b', 1, '08dab30b-24a5-4bd2-8124-6f5037002a73', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4212-86ce-a7f69275ae8d', 1, '08dab30b-4c9e-445f-82a9-e0264f432d57', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4214-8a37-07e40eb18139', 1, '5c4c18b1-88be-4819-ab5a-199bba8ae070', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4217-8149-bb37245fb700', 1, '6d903aa1-35e3-4b75-b2a4-261be30a0e15', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-421b-8246-6569a0760bcd', 2, '0063eff0-11b4-4da6-b864-f6e3b4c3f89a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-421c-83f2-c27b6c21f4e8', 1, 'db891a42-1b8a-4797-9518-2b038f457a25', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-421e-87a6-3398841da5b8', 1, 'be2173ad-0833-4a9a-8024-b9f32f892de5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4220-8ab7-1d35dffa2b84', 2, 'dc8064f7-1122-4ebd-820e-79964716c13d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4222-8487-df749eb97ef3', 1, 'eb3cf8ac-947d-4091-9c8e-75da8bae5e7f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4224-870d-3f317c3b47b6', 2, 'ebbe0e28-966a-402f-bae6-6ceaa5475006', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4226-8165-5f69279115d9', 1, '667a7393-ed53-43e0-bf2a-c349e5dd48e5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-422a-823f-02a382f91b6e', 2, 'f85f3bd5-ad1b-43d2-84f6-bbae465c65d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-422b-8c1c-c94d2c0bd579', 1, '0bddfade-d5b4-46c3-b0b6-45fb9f728e38', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-422e-8350-6664079a7a25', 2, '4e97842e-3b1f-44fc-ba0f-bddf9449a44a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-422f-8aa4-b8b3cb35c435', 1, '25b77622-ff89-47d2-b0b4-c8c8a7ff74d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4232-8161-6fb87988772b', 2, '56376d1f-3244-48c8-b5ff-c25793f0811e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4233-881a-efff0afaf590', 1, 'ffcf9006-570e-44f5-80d4-32c213813a92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4235-8e14-eff46f7bc99f', 2, 'f48f69a6-53b7-4636-8738-0748d44353e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-423c-83ae-154ee914edd2', 1, 'cf527f37-2b29-403a-a83b-a6fb0af33b7f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-423e-8ac6-90290a16d2af', 2, 'c26b571e-5d29-4d5d-b841-c934edb17ca0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4240-848b-a609f48fb548', 1, '6bdd6d88-4391-476e-bcec-10e41cbdcea7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4242-8bf8-d27dd6bb840f', 2, '00121ebb-3871-465d-9586-cd38c5a25b18', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4244-80a3-164e9d43a6e2', 2, 'c7f6afc9-0eeb-4ebc-a4e8-5cceedb08604', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4245-8d6a-15dda320aeca', 1, '08d93d2e-a9ac-44ba-86bf-af6814a028b3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4249-8e5a-ba5323345847', 1, '08d94b44-8770-42cb-8dc2-ef4c67a7b162', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-424c-8613-8671e11dbc0a', 2, '08d94b47-2fa7-4b05-87a2-e8b827c489c5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-424d-8c59-d78bf0fbc247', 1, 'b398f0e5-44d3-4206-9d90-e2f5d2740379', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4250-80fa-e11ead1c86f3', 1, 'c9a88d3e-e66b-4929-906a-f6eaec00527f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4252-81b5-e30ee554d4cb', 1, '788d27cb-598d-41da-ac11-b7ddf0914b08', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4254-84a0-fbfcf89e5acb', 2, '482b1be7-10c2-4ca0-9efd-dcbb15396466', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4255-861d-d555385afa51', 2, 'ab68803e-02ed-4abf-907a-b5878da021fb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4258-8601-f02a837a8d42', 2, 'b6fb6da1-ee60-4635-98d5-ccc48a6ea790', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-425a-82aa-27a9fdf7448e', 2, '8c4cdddd-24b2-4fb0-9cb3-86273a476d0a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-425c-835d-a04cdddc9ddf', 1, 'a955a782-35d2-4a47-b6de-2c93a0e524b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-425e-897d-2c4b20739931', 1, '91448822-e10b-4146-b9fe-2669073cc7f1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4260-89f4-d5ebbcaa93ee', 2, '0726694c-417d-4222-bbe6-268fec47145f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4261-8aba-2339cc8fed06', 2, '51eb09eb-09be-44ab-82be-10c2e3d1c482', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4263-80c3-484a46e13676', 2, 'd4a4bb19-36f5-4267-b264-1a3ea2c510e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4266-83f3-c787f0d53049', 2, 'd8d92dcd-db85-4dde-8df2-d3be835dcc56', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4268-8421-93525c2116ac', 2, '34d0a617-86dc-44e1-83fc-815043ac1af4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-426a-86db-c50dd1825fc0', 2, 'f7b696c4-9af0-4bde-b92a-1f9f151007b8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-426c-8f2c-06158c7d9f5c', 1, 'a083a171-932a-48b8-b053-13f9b39d555a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-426f-81c6-bed7ca3add50', 2, 'f8c0cd71-e206-4991-91cf-fa96d5652eac', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4270-857b-38f691f07a8f', 2, 'c97bdd88-5df3-40a9-aa33-fdf2beed9d1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4273-84c6-33b93ddb87cb', 2, 'ac332167-9f87-4d0a-9c0d-0fadd1bfda50', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4275-8202-266ae9a2f0df', 2, '08d94a91-7899-437d-8fd2-e1c5e10f61b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4277-8051-a4312371dd4b', 2, '08d94a91-8849-4e26-846f-5cd3edbe5d9f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4279-8196-da37a7a3cecc', 1, 'eeb05603-45d5-4205-88fc-0fe60357710d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-427b-8484-beac98b61b75', 2, '5084abcf-21ec-4edf-bf9f-513bb17514d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-427c-8600-d915a8c4df83', 2, '00eafd02-2d7e-4750-a799-3d8cdf062b14', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-427d-8b69-174a9d622f46', 2, 'be75a305-421e-4d91-9967-dff081e3a4f7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4280-8efb-d679f4351e3b', 1, 'ea9864ce-e397-42b0-8819-0680b78fcf4c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4283-84c7-c16d5eb87317', 2, 'aadb4281-3b01-4cfa-9398-767ad60a8703', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4284-88da-f39b1e2bc7cd', 2, 'a361156a-db2c-40b9-8449-189ce27da27c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4286-8003-106235f083cc', 2, '352de4d7-1e60-41a8-b983-b79676c6a556', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4287-8aa6-768b26db64f2', 2, '08d94b38-5252-492f-8acf-744c5a3906bf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4289-8814-fb004785f9b0', 1, 'b5ff9591-f939-41c0-8c68-3b9c2fe02bdd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-428d-8410-d54703e67ddd', 2, 'e46372b7-7c30-4f62-af2b-33a4f3393ddc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-428e-8902-63c1fd706f20', 2, '641fd85a-96a6-4801-9385-b27fa5d3e564', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4290-8114-f7c170bc8ae4', 2, 'e4ddb5b5-d576-4c50-847c-aa501ac5a38c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4291-8e44-b25c74a56327', 2, 'd20ee9fb-48ee-48d2-99e5-44b92cde7ec8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4293-8f26-3805c04737fc', 2, 'a525955f-81ad-4521-849a-dbc355531883', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4296-823f-c073aff93e8b', 2, '02a4ee76-4715-4d98-a742-f7ecd7e7d9dd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4298-862c-885ea7e549c8', 2, 'f688f8af-262a-4769-9ad5-4122422f072f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-429c-8ca0-0515bfde4b4c', 2, '08d93d33-d056-459d-8c47-d3aafb539c2b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-429f-837a-92d5ed91895b', 1, '4666f434-3178-42e5-a44f-1f34cadb3c43', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-42a1-8884-9cd833c1e2af', 2, '44ac9a8e-f4ac-4b6c-ab1a-8723da6ea36a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-42a2-8a93-452125a9b0b3', 2, 'cf235c14-e4ad-478a-8e9c-9f7ec5a80255', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-42a4-827c-b1108f4699ab', 2, '897b1de8-3710-439f-b252-b1d6d06a082c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-42a5-8e37-6ef218f5194a', 2, '83690e2c-43f0-489f-9481-4b72ad828d4e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-42a7-8fc1-b8ee49655810', 1, '4666f434-3178-42e5-a44f-1f34cadb3c44', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-431b-8bb5-a96241bc5450', 3, '21d40431-d289-415f-bfaf-5a23bf4dac9c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-431d-8e80-2e858b5f2a3c', 3, '309c622d-2217-499f-aa83-2eccd72205a1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-431f-8e5c-ce61daa588c7', 3, 'a24c6ed3-8c91-4ade-a5c1-8c5eb9719368', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4323-8f60-212f8ea039ea', 3, 'be804654-d6d7-44d1-8950-6841a2626720', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4325-8f4e-23ba7f1913cb', 3, 'bfbe0195-3fae-42d2-9d46-6bf5400d64ea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
-INSERT INTO `sys_roleauthorize` VALUES ('08dab311-74df-4327-8f39-42cf936a7f10', 3, 'd52c6878-9283-45d7-82f9-b465fa33a89b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-43e9-8382-0ec0b07cf43f', 1, '87dc2de3-ccbc-4dab-bb90-89fc68cbde4f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4453-8952-cc6b35f68af4', 1, '253646c6-ffd8-4c7f-9673-f349bbafcbe5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4456-81ff-7b6be7955077', 1, '26452c9a-243d-4c81-97b9-a3ad581c3bf4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4459-88cf-cb2131b114eb', 2, '7e10a7ac-8b65-4c7c-8eee-92d69d7dcbd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-445d-8117-9093374d662c', 2, '0b1b307b-2aac-456b-acfb-484a05c71bd7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-445e-8e0c-20cdffa21307', 2, 'f51da6f6-8511-49f3-982b-a30ed0946706', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4460-8c7a-91ed594038ea', 2, '1b72be70-e44d-43d6-91d0-dc3ad628d22e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4462-8bfd-7a2a529d5a58', 1, '262ca754-1c73-436c-a9a2-b6374451a845', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4464-8bb2-5fffbb05df61', 2, 'b83c84e4-6264-4b8e-b319-a49fbf34860d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4465-8e58-17b878425b46', 2, '82b2f4a2-55a1-4f44-b667-3449739643f6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4467-844e-d4f167cb2937', 2, '0fa5e0a8-c786-40af-81af-b133b42dded5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4469-81b2-405194b43dd7', 1, '91A6CFAD-B2F9-4294-BDAE-76DECF412C6C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-446b-8232-2c4fd8414c06', 2, '5d708d9d-6ebe-40ea-8589-e3efce9e74ec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-446c-8751-f77a1efd39b1', 2, 'ffffe7f8-900c-413a-9970-bee7d6599cce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-446e-819e-0138be1c96ec', 2, '239077ff-13e1-4720-84e1-67b6f0276979', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-446f-8e21-ce8f2c3c86de', 2, 'f93763ff-51a1-478d-9585-3c86084c54f3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4471-8f73-71018d6beada', 1, 'F298F868-B689-4982-8C8B-9268CBF0308D', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4476-8f6a-eecfe55af98a', 2, '13c9a15f-c50d-4f09-8344-fd0050f70086', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4478-85a0-4c0c57b4cb81', 2, 'e75e4efc-d461-4334-a764-56992fec38e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-447a-8001-4427b3353af9', 2, '8a9993af-69b2-4d8a-85b3-337745a1f428', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-447b-8d2f-17445f96394c', 2, '88f7b3a8-fd6d-4f8e-a861-11405f434868', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-447d-8f6b-694ac73631f2', 2, '29306956-f9b2-4e76-bc23-4b8f02d21be3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4480-80fa-a741b871060f', 2, 'd7a452f3-3596-4339-8803-d61fb4eec013', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4482-8276-8f6c519d5245', 1, '38CA5A66-C993-4410-AF95-50489B22939C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4484-8728-cd8f376b60cf', 2, '74eecdfb-3bee-405d-be07-27a78219c179', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4485-8d99-bcaf01cd2b90', 2, '4727adf7-5525-4c8c-9de5-39e49c268349', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4487-87cb-aca6915683b9', 2, '14617a4f-bfef-4bc2-b943-d18d3ff8d22f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4489-83f1-432502a8004c', 2, '08d96da9-64f0-49d7-8528-fe30b78e529d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-448b-81a0-2a4222453208', 2, 'abfdff21-8ebf-4024-8555-401b4df6acd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-448d-8195-524466f62d4f', 2, '38e39592-6e86-42fb-8f72-adea0c82cbc1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-448f-8447-1ebd1d842598', 2, '15362a59-b242-494a-bc6e-413b4a63580e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4491-86f0-40628dedeb45', 2, '2a8f5342-5eb7-491c-a1a9-a2631d8eb5d6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4493-8815-25830a79955a', 2, '7667ca4d-9f37-48af-9c2e-a11801c0ae33', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4495-8cb5-441a3c2f04f7', 1, '462027E0-0848-41DD-BCC3-025DCAE65555', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4497-8a47-806fc2c2a71c', 1, '484269cb-9aea-4af1-b7f6-f99e7e396ad1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4499-8725-673ff336dfa7', 1, '64A1C550-2C61-4A8C-833D-ACD0C012260F', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-449b-873d-6a86380a7c62', 2, '9FD543DB-C5BB-4789-ACFF-C5865AFB032C', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-449c-8e88-0a6e76231faa', 2, 'E29FCBA7-F848-4A8B-BC41-A3C668A9005D', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-449e-879a-e95a9db421a5', 2, '85F5212F-E321-4124-B155-9374AA5D9C10', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a0-844a-970991bc3f7b', 2, 'D4FCAFED-7640-449E-80B7-622DDACD5012', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a2-862b-c3fd3557f648', 2, 'FD3D073C-4F88-467A-AE3B-CDD060952CE6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a4-874a-caf7f4c8f3c7', 2, '23780fa8-b92c-4c0e-830e-ddcbe6cf4463', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a6-8966-9588ea9d7f10', 1, '01849cc9-c6da-4184-92f8-34875dac1d42', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a8-8acc-742e34f1bcbb', 2, '8f32069f-20f3-48c9-8e35-cd245fffcf64', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44a9-8c5e-f0fb11f53d7e', 2, 'e6514544-1436-431d-acbc-c44802831ea8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ab-8249-7af70b0e3b06', 2, 'ba72435b-1185-4108-8020-7310c5a70233', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ac-8d97-0bbc890b95bd', 1, 'ed757a25-82d5-43cc-89f4-ed26a51fb4f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ae-8c69-eda526a2fe90', 2, '071f5982-efb2-4fa3-a6cf-a02f3f1f9d92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44af-8f38-05540fa22ac0', 2, '3d0e99d1-a150-43dc-84ae-f0e2e0ad2217', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44b1-88d9-f2d0191076f2', 2, '4f727b61-0aa4-45f0-83b5-7fcddfe034e8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44b3-8716-94655cd90da2', 2, '746629aa-858b-4c5e-9335-71b0fa08a584', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44b5-8767-ea4689700dee', 2, '43e09a61-c2b0-46c1-9b81-76d686b390d4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44b7-8872-6a2cbaca741d', 1, '152a8e93-cebb-4574-ae74-2a86595ff986', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44b9-8822-97c64832cc11', 2, '85bfbb9d-24f0-4a6f-8bb8-0f87826d04fa', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ba-8ae7-849cc62bd335', 2, 'd1086ccf-e605-44a4-9777-629810cec02d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44bc-80d7-d373ba8e0604', 2, '01600a2b-c218-48d6-bb37-842daa727248', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44bd-8a4f-734c5c2d9fe1', 2, '63cd2162-ab5f-4b7f-9bbd-5c2e7625e639', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44bf-878a-832e522f58fc', 2, '98c2519c-b39f-4bf3-9543-5cc2630a4bbd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44c1-8a5f-ddb1d2c4627c', 1, '423A200B-FA5F-4B29-B7B7-A3F5474B725F', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44c3-8e2f-0fe857a89113', 2, '104bcc01-0cfd-433f-87f4-29a8a3efb313', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44c5-8254-2f8204fd71ce', 2, '4b876abc-1b85-47b0-abc7-96e313b18ed8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44c6-8ab4-4a68d288258a', 2, '0d777b07-041a-4205-a393-d1a009aaafc7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44c8-86e6-7cf25005bb2b', 2, '1ee1c46b-e767-4532-8636-936ea4c12003', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ca-873f-33104cd74ce7', 2, '82f162cb-beb9-4a79-8924-cd1860e26e2e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44cc-89cb-d215c7b9eda4', 1, 'd742c96e-b61c-4cea-afeb-81805789687b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ce-8cf7-bb0e6d5ca84e', 2, 'd9e74251-61ff-4472-adec-ad316cb9a307', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d0-8380-a1c5fc76619e', 2, '0e156a57-8133-4d1b-9d0f-9b7554e7b1fc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d1-8f06-df2dc0c26224', 2, 'cba403cb-6418-44b7-868d-19e04af673ce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d3-8f4a-ccdb0e9404e3', 2, '30bf72ed-f62f-49a9-adfc-49693871605f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d6-829c-e1bb0856cbed', 1, '2c2ddbce-ee87-4134-9b32-54d0bd572910', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d8-859b-8ae6afab7973', 2, '55cc5aba-8121-4151-8df5-f6846396d1a3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44d9-850e-bb6e6b1e4f40', 2, '4c794628-9b09-4d60-8fb5-63c1a37b2b60', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44da-89de-68519fbae4af', 2, '91d768bb-fb68-4807-b3b6-db355bdd6e09', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44dc-8268-5946c3b453db', 2, '832f5195-f3ab-4683-82ad-a66a71735ffc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44dd-8f90-97553c285934', 2, '2cde1cd0-cfc8-4901-96ef-1fe0c8bf997c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e0-82a0-5ed6ef8c499f', 1, 'f82fd629-5f3a-45d6-8681-5ec47e66a807', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e2-86ec-45fed0106b82', 2, 'ec452d72-4969-4880-b52f-316ffdfa19bd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e3-89fe-d56e63a53554', 2, '35fc1b7c-40b0-42b8-a0f9-c67087566289', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e4-8ecf-1faf6397046e', 2, 'd30ff0f3-39da-4033-a320-56f26edd5b51', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e6-88b3-462c65e2960c', 2, '73ac1957-7558-49f6-8642-59946d05b8e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44e8-84e4-656e69930e5a', 1, 'd9078b9a-5db6-4429-b489-3700e56f367f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ea-86cf-fb8ac39c9b59', 2, '9230de13-fb93-43f3-9c27-17bc0f950717', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44eb-8aea-2939bca957ab', 2, 'd6251574-692e-4fce-a3a0-fa1ed64cd05b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ed-81a8-0c44f41c9b20', 2, '05a198ba-cafa-42c2-8ed8-3140f9c4ef9d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ee-88b5-86ca55c34ada', 2, 'bc8f5f31-f226-41f2-aaff-bdc9571bd54c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f0-85f3-35afdd14072a', 2, '08d97353-5dbb-4d3b-868c-b64e56ac96a6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f2-8415-14c3481cd3b2', 1, '08d97330-6dd4-4435-851b-d6b12ea91518', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f4-873d-ca70e68def8d', 2, '08d97330-c16b-4b70-868c-5f1511c02f78', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f5-8700-a72f9efda7da', 2, '08d97330-c16b-4bf2-8fc3-586be9c6b02a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f6-8e84-59ad148062c5', 2, '08d97330-c16b-4c5c-88a4-9e05027097a1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44f8-86a3-a798380e1a29', 2, '08d97330-c16b-4cb8-8329-b6a539ee51ca', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44fa-824c-61eb408d3bfd', 2, '08d97353-77a5-418c-8554-9815ea09cdef', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44fd-86b1-0185722dac14', 1, '73FD1267-79BA-4E23-A152-744AF73117E9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-44ff-871d-6e5edf93abaa', 1, '30c629a0-910e-404b-8c29-a73a6291fd95', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4501-84cc-f20b5e15ce22', 2, '3c8bc8ed-4cc4-43bc-accd-d4acb2a0358d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4502-899e-b9ff4c39a875', 1, '96EE855E-8CD2-47FC-A51D-127C131C9FB9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4505-8fc2-98f69011ca86', 2, '3a35c662-a356-45e4-953d-00ebd981cad6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4508-8134-c1fcb2ae0b19', 1, 'a3a4742d-ca39-42ec-b95a-8552a6fae579', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-450c-8c7b-d9b1c2df4391', 2, 'd4074121-0d4f-465e-ad37-409bbe15bf8a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-450f-86dd-628818bd3048', 2, 'aaf58c1b-4af2-4e5f-a3e4-c48e86378191', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4519-826f-7e95ca4db0f0', 2, '8379135e-5b13-4236-bfb1-9289e6129034', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-451c-8b0e-e555d91b1e73', 2, '329c0326-ce68-4a24-904d-aade67a90fc7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-451f-8bf0-fd8186e91058', 1, 'e3188a69-de3a-40ef-a5ff-5eaf460f5d20', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4522-8076-f0e89e5052b6', 2, '87068c95-42c8-4f20-b786-27cb9d3d5ff7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4523-89e9-66c9a2346aee', 2, 'd2ecb5e8-e5cc-49c8-ba86-dbd7e51ca20b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4525-878c-5976dbf227e0', 2, '310bb831-a46f-4117-9d02-a3e551611dcf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4527-86cc-c652bc8cd740', 2, '208c2915-d6d0-4bb0-8ec4-154f86561f5a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4529-884d-72af12142f91', 2, 'e06965bc-b693-4b91-96f9-fc10ca2aa1f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-452b-8d03-2508d7e9d236', 2, '2ec7f52c-43b7-45bb-8714-17511817d1b8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-452f-80ef-105fa1b966d0', 1, '49F61713-C1E4-420E-BEEC-0B4DBC2D7DE8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4531-86b7-06f67a7d89f0', 1, '5f9873e9-0308-4a8e-84b7-1c4c61f37654', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4533-89af-b95eddbf37ab', 1, 'c87cd44f-d064-4d3c-a43e-de01a7a8785e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4535-8b6c-ff1d81815fd5', 2, '772eb88a-5f67-4bb1-a122-0c83a2bdb5ef', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4537-82e7-4d6f50ec3973', 2, 'c8eed325-56ad-4210-b610-3e3bb68eb0be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4538-8cb0-d05eadce144c', 2, '5c321b1f-4f56-4276-a1aa-dd23ce12a1fc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-453a-8af5-92f2a9d701bb', 2, '153e4773-7425-403f-abf7-42db13f84c8d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-453c-891c-196061b25751', 1, '605444e5-704f-4cca-8d00-75175e2aef05', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-453e-8a4d-50c728159521', 2, 'd42aaaae-4973-427c-ad86-7a6b20b09325', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-453f-8e07-e8e7c87766d1', 2, 'e376d482-023e-4715-a9c8-2a393c24426e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4541-86f1-ba1183a19a47', 1, 'ee136db7-178a-4bb0-b878-51287a5e2e2b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4543-89c1-e8af068176c7', 2, 'b4be6eee-3509-4685-8064-34b9cacc690a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4545-8175-40a6bc3c3c0b', 1, '6b196514-0df1-41aa-ae64-9bb598960709', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4547-885f-3cda9fc04524', 1, '7cb65e00-8af2-4cf2-b318-8ba28b3c154e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4549-89ec-ca1d025f5447', 2, '17a0e46f-28f9-4787-832c-0da25c321ce4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-454a-8b75-5b41d46311c0', 2, '1a588a3b-95d7-4b3a-b50a-d3bc40de9fe3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-454c-814f-82ce1a5e3ca7', 1, 'a5b323e7-db24-468f-97d7-a17bf5396742', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-454e-8725-ced074b38b17', 1, 'e9190a56-e173-4483-8a3e-f17b86e4766e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4550-896d-f4253e245bc9', 2, 'fcb4d9f0-63f0-4bd0-9779-eed26da5c4b3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4552-80e3-20106f26cc74', 2, '6f872aa0-1aae-4f42-a3ba-a61079057749', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4553-898f-a1c4ce6176e6', 2, '0a1ba1d7-b4f3-45a4-a4da-e70fb25bb766', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4555-84d2-fcee480b500d', 2, '957a355d-d931-40f6-9da0-dddfd9135fe0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4557-87b7-4c53fd080602', 1, 'd5be1a41-547d-4001-8ae7-f6568e4d6cfe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4559-8927-3017b39a1375', 1, '5c841e96-00f1-47ea-aec7-d197278562de', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-455f-84e1-a4d2d572468e', 1, '0a479fd4-57ca-46db-a8bf-c30d5871b1f9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4561-82b3-90ad0bac1794', 2, 'a5c8f6ff-1f2b-4827-88e3-e7af141af6f5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4562-846d-2f2919b35616', 2, '4e044eb2-a753-4e99-a1af-a707a3475fc5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4563-880e-b97e01fd2276', 1, 'a8f0c195-53c5-4b05-b65e-5fafb14a3aec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4565-8717-ab7225a1723f', 2, '89c915bb-35f7-47dc-a206-9deae36b34db', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4566-8785-58f29e472ce0', 2, 'b2d222c3-ea50-4cb6-b05f-eadd4ab68c04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4567-8d2f-4da6ec240714', 2, 'f4299350-e36f-4cd3-90a4-86b418e05f92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4569-8aec-71492adbedd3', 2, '61a54b03-776d-460b-91b5-9b048ea8a15d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-456b-8717-4e6c7a4065bb', 2, '0eb93272-6e36-4d9e-866b-b238f41a8581', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-456d-864c-733ed47b700c', 1, 'a2cae27f-0b49-4181-8760-4be3a3560988', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-456f-84bb-4be1a3068cce', 2, 'a2d11fb0-767d-4ed6-8f7d-7e2f2d47a7cb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4570-8698-6d2fe8ed113f', 1, '33f831db-f9a4-43e7-8688-d08073af575b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4572-861b-e9b7c021cb54', 2, 'da9f9a0d-e350-46fd-a44e-e543acaa8d34', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4573-8816-f7ced554bbe2', 1, '39fce29e-2d24-934c-432b-87fda7e92d81', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4575-8cfb-def118f2a001', 2, '39fce29e-2dac-4340-a9ea-1034e0ede28f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4576-8d0d-47caafccfeff', 2, '08d92a20-b747-4c5a-8a06-c1ce8588c7ce', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4578-8177-5e0c9ea64a53', 2, '39fce29e-2dac-c882-a2ae-efe34a55a09f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4579-8a6c-efe0fd5a05bb', 2, '39fce31f-fd77-2934-0b3d-74948cf3d490', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-457b-8c3b-d57e73854521', 1, '08d935e2-5205-4f27-8a80-331f2856ee0e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-457d-8ac0-fc29eadc1e70', 1, '08d92fa2-7423-43dc-8839-359e00c53878', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-457f-8a48-923d20fc1147', 2, '08d92fa2-7437-4d8b-8592-8dce722502bf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4580-8a6a-111ac63ebb70', 2, '08d92fa2-7437-4e6b-804d-6843753457d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4581-8cc8-b6dc7959beb3', 2, '08d92fa2-7437-4ef3-8737-91cc6871ae8b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4583-8334-64d058fba66a', 2, '08d936a5-bfd2-49d6-88fd-9b19bff30f88', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4584-8e53-eb90b443c52c', 2, '08d93c2e-efcb-4f18-8829-fa085aad9c10', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4586-8da0-bbb7d0af901f', 2, '08d95878-a40e-4413-86f4-21042d7998dc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4588-8fea-a2b73de969a0', 1, '08d9360c-dd12-43e8-8ebe-0104c5bd3c08', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-458b-81a9-da93ba1eaba2', 2, '08d93615-773a-47ed-8a25-0cbf31c4f892', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-458c-82f5-145536a244af', 2, '08d93615-773a-4979-862b-1f1d852fb314', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-458d-8a31-a4295c59461e', 2, '08d95878-b9f4-47a9-8a4f-e41b9a5c7a1b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-458f-864a-10f2c0995e68', 2, '08d963a3-ed2f-468f-8d22-6e20aeea4b71', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4591-859f-3d0fb4b4f6aa', 1, '08d93615-4748-4f48-88aa-162ed2db75a9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4593-84ea-4298b31a2774', 2, '08d93615-5caa-4d8b-831d-d6c728780fc4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4594-8493-9015b9eb56e7', 2, '08d93615-5caa-4e25-85fb-a71993e2687e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4595-8f0f-cc6e819653ef', 2, '08d95878-ce7f-4716-877e-d9d6331e64a3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4597-8d61-5e5fe108c924', 2, '08d963a3-f586-4385-8db2-d37f37689c90', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4599-8c71-39f9b2580494', 1, '08d94c14-e1b5-4b56-8873-37fb81ebaad3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-459b-8e9e-072a3f3cea9c', 2, '08d94c14-e1ca-4206-8a31-d60d885e9ac2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-459c-8efa-fbf4b6e89588', 2, '08d94c14-e1ca-42ca-8ddc-2ceea031a8ea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-459e-82e3-2f5f0cab688d', 2, '08d94c14-e1ca-434d-8024-3eb69cce8bb0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-459f-8e8e-40efcb28e978', 2, '08d94c14-e1ca-43be-899c-34cd6122a6db', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45a1-89b5-31b3fded1560', 2, '08d94fe5-2f1f-4ba2-8d92-63a2e8e3b4be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45a3-88c3-ace6b7ebc045', 2, '08d9612f-406a-4650-8469-829593b485df', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45a5-88d4-6160db81692c', 1, '3e431a6e-1906-48f6-91da-16015b40dd20', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45a7-88a3-4c4d928388e4', 1, '8968b428-2a8b-4dbe-ad47-73dd408ddd5e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45a9-8615-8498795fd40a', 2, 'a3a37705-a4cb-4f26-b247-dfc68e00046d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45aa-87bf-7a3284dceed7', 2, '90e52c1e-8fbd-4169-95ed-747f1dccfcf9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45ab-8fc0-deb249aa834b', 2, 'da9da00e-d30a-4ef6-b86d-5f402cd3e64d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45ad-8ade-a8de38aabfc2', 2, '6b3aa51b-7590-471a-bd84-49e6589c1f32', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45af-8675-e40fc4308230', 2, 'e8ec8398-2a2e-4b00-82e2-6f2bb19a63cd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b1-87f7-7e2640775a7f', 2, '4e44d96b-bd7d-4634-bfe4-9fe2aeec8592', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b3-8823-7a3ba6193ea4', 1, '7cce1014-5087-4184-9848-77e164be4e17', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b5-8730-fd605d722d06', 2, '4748945e-e179-483e-b14a-7cc29cc18ab6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b7-80e5-b9aee92e85dc', 2, '16030e33-e405-4c5b-ae20-d875e471fd04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b8-8421-172481f41871', 2, 'e68fffbb-00bd-465c-9527-b04c554b6ba6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45b9-8e75-bb57bb4e7ebd', 2, '2aa1b5c9-57e7-4e1f-bd44-c477fa847d8c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45bb-8a42-44f32be29645', 2, '48679ba7-74ef-48ae-9de1-e9fc2eae7621', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45bd-8b73-60e64f88af7a', 1, '2ffc3301-8ec2-4157-a4c3-232797aae120', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45bf-8a40-9317534cb9fd', 2, '45a11ce3-c470-4dad-b5ed-189f8efcadf3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c0-8b84-0b3c3913aed6', 2, '572c3ed8-94e8-4d5e-a0b7-324732f718f8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c2-82cd-37c3ad7ad1a5', 2, 'cb409d35-a09a-4808-b278-32f349ae0459', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c3-8cc9-ce540bf6da0e', 1, '101358e6-eb92-431a-9f05-949f05738506', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c5-8c00-d02e2b34cec3', 1, '79c73d26-6f49-463a-9002-98eba48e36b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c7-89d9-d1af974210ab', 2, '1e4f989f-9110-41e9-bfec-302a671d53af', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c8-896c-f6588ff79009', 2, 'af3ce4e5-ae06-4558-a01b-a6b031c31bfd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45c9-8f99-efca16a252fb', 2, 'b6f741f3-53a1-4dfb-9cd8-cd24da010e1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45cb-899d-5cf98a3de035', 2, '171f1fa5-6c98-4686-8efa-6534378fb93f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45cd-897a-61c4a85005b3', 1, '5391c5c0-55c0-4132-a26d-5d27fcec1c18', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45cf-876d-271a08bb0903', 2, 'afa9fd66-a535-4fe0-940e-34f413c98355', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d0-88ea-d20cc68379ff', 2, '1b32e4d2-1e93-4b40-b3f6-da20a5957234', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d1-8c39-b23b3fb8f547', 2, 'f353f74e-644c-4ed5-8558-eef6bdd35985', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d3-88d4-5ed81ad026ef', 2, 'dd259bbd-51a8-4bfe-adac-586738779351', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d5-85d9-8fe01ef18c97', 2, '491df014-bc06-4d49-bbb5-2235b5436836', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d7-8773-76991226b7b4', 2, '7f57c359-0c70-414f-9446-55faf534f204', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45d9-891c-36dfc3748184', 2, 'ad02b7e4-b558-47a4-852d-b141e8ef27aa', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45db-8bbc-49d185d6a647', 1, 'e093b2d3-ec49-4b4d-91ec-63f57f4e3f1d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45dd-8b0c-c7fd60f8ab81', 2, 'd00db889-23eb-41d4-b941-be4e6e236455', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45de-8c4c-4390c9a29822', 2, '2a05c5ca-1eb3-4204-86fb-e355d798a535', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e0-8053-50053835a8f7', 2, '6453cb3c-c527-4f74-a09f-48c3d26b5863', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e1-88e6-aee3d262fbe9', 2, '9a908e26-f348-45d1-a470-15d20f798a84', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e3-8788-1528f1c42afe', 2, '28592383-195f-4911-98ce-c817a8c1a716', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e5-8797-a5e9e66c05e4', 2, '094d05bd-f2d8-47c1-989c-76525539b457', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e7-885e-d51d81a3ee68', 2, '4d559146-7425-4e67-b02d-f16c41eb481a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45e9-8a2b-170856cc68cd', 2, '3c20ddc2-8a64-4d3f-bd39-ffcc36dc69c5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45eb-8d8a-061b8ca4fb02', 1, 'ed896675-541a-4d34-bf77-29c87d7a26bb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45ed-8db0-d902746d6d6a', 2, 'b2f7f312-86c7-416a-86a4-c6409e786b11', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45ee-8fea-88c01c78c2da', 2, '95c46c7a-41d9-45ad-8633-913bece2fafe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45f0-8700-b2f7553482c6', 2, '8187bc3a-d003-45e5-9327-7e7267d24fcd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45f1-8f53-074fe182e0de', 2, '29421e16-0ddd-466b-8b6f-19980c01c955', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45f3-8bb1-cabbec667cdc', 2, '3440df47-fa09-47c2-abe8-44411985701c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45f5-8c90-df342408078e', 2, 'b55330a1-3190-4cee-aba5-e60a9b515817', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45f7-8e7e-93d466879f2b', 2, 'eb71bee8-e348-4892-9257-4b7147921918', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45fa-812b-5507b75dd25b', 2, '67dac5bd-b923-43f0-9b29-a850ec8d356e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45fc-86ff-70e1e9fa9410', 1, '39226710-b665-489e-aaa0-a8c15d29ed4c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45fe-87ea-cda7df178d42', 2, 'f0db4138-2d89-4553-9322-5ebb9bbafbc3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-45ff-8904-e0113aec8eb8', 2, '08d9a4b8-24a5-4b3e-8682-169a9ab29c04', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4600-8d75-c9451e620507', 1, '25ca371f-9c67-4e0e-9ca7-0dec2e836613', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4602-8e46-9831879b99fa', 2, 'b8939694-f8e9-4931-a7bd-7114e7170c80', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4604-80dd-462c5c650c09', 2, '67e487ea-f49b-4f86-ad1e-f31248f461a8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4605-849e-db9d92d131ef', 2, 'd20c1c0a-a0d3-4227-b24f-81ef1bcff60c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4607-817c-d68a33edf126', 2, 'f1eb5b12-2898-4aa6-81bf-14473482b764', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4608-8ee7-0d571d3888df', 2, '0f4d177b-1aa4-4807-a4c2-8d918813ac53', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-460a-8dad-5ce662d8e18d', 2, '923e066d-a552-450c-af6f-1ced15a71308', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-460c-8ecd-72e0ce6b1e60', 2, 'b07d18b7-8f32-4fe8-a402-f1df22b70ef8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-460f-8119-f4f84c92d2e7', 1, '84e5ec65-f803-485e-b703-4d07eaaf6c05', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4611-8379-5015071897ea', 2, 'b70177e4-40b6-4221-8807-f081310d5540', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4612-877b-8ac7a85b4e99', 2, '810a68f6-40cb-413c-b351-d065173bd6f7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4613-8d4a-08534e31dea4', 2, '215c648d-f86a-49cc-b0d5-b68cddcff792', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4615-861a-ee97eeb927e5', 2, 'afa6eb2a-9477-4c91-816a-652dce303675', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4617-8320-f3322dad09d9', 2, '91260897-df2c-4228-8323-d42795faaf90', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4619-83b9-dde55490fb00', 2, '66fdc1a7-327a-42bd-97e8-8dcfb6212e8c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-461b-83d8-2d8144658935', 2, '84445468-0716-400e-8072-100a292246b6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-461d-8698-cab551082b04', 1, '69f6aebb-965b-4380-910f-99aba0776261', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-461f-8ae5-2a8c33166763', 2, 'ceb3cbcf-5dca-4d1b-afec-0e356ea33bc6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4621-81b9-c7c720dac7c0', 2, '08d92ba9-f27c-4d5f-8d21-1acdd7cd6c4b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4622-8896-48050d5e31ad', 2, '08d98256-54bc-4b73-807e-4d3e7dba2b5d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4624-8029-8468829e84f2', 2, '08d94b27-e1ff-46ab-8f47-46c5c900b0d6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4626-8243-666ff030a3bb', 1, 'beaddc98-9037-4fc6-8d21-493fe47f20e8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4628-85b4-f12b29b13f5e', 2, '815d472a-abdf-448e-bc67-172123ba60df', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4629-85fd-aba3246fcd49', 2, 'b88f2b75-0d9a-4400-8a15-0df5bec263a5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-462a-8f47-17494ab21daa', 2, '1191df4c-0593-4ee8-85ab-ad4f3bbc8184', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-462c-879a-978a3c50b2c1', 2, '2cfa7ae3-260c-4c48-b7fb-3d94861e9cea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-462e-83b2-17131fbfe18a', 2, '09711a0c-18c9-42e0-9cc4-ebfbc2745200', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4630-836a-d43470c06e6d', 2, '60e3aef8-126d-4bde-a8b5-6b378a1fa9f6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4632-8981-6e1a711da766', 1, '50cdea18-b06a-43c8-963c-8f52fb9d94de', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4634-8b1f-04f0b5a61bfa', 2, 'd75fd32e-6ef7-4514-915b-5165794df754', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4635-8fe7-bdc672363a34', 2, '08d9a573-f1e5-4726-8a35-4feb68fdb31f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4637-8265-3e027157f0ca', 1, 'badc3ee2-fcbb-43ae-9efe-2309f8a63834', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4639-8571-ca55c6060e22', 2, '398edf66-1ca8-4519-b2a7-f202008901c7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-463a-85a4-08a9cce137ce', 2, 'f552d4fa-791c-4891-95ff-298ca775c656', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-463c-8034-3c94c9fec5ad', 1, '08d93158-2459-490a-868d-a826777f22e4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-463e-83cd-3a1e2b90c84d', 2, '08d93158-2734-48a5-8aaa-cb936a2d8dd9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-463f-82f7-e4075730801f', 2, '08d93158-2734-4988-8ec7-b05bdd501837', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4640-865e-9bcf286f4bc4', 2, '08d93158-2734-4a10-810d-19bf895a26f1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4641-8e39-79b953bf367d', 2, '08d93159-94c7-440b-8243-118a163a60f0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4643-8c57-9d50be5eb67c', 1, '83e2713c-3b2b-4795-8e48-646785a1936b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4645-8f14-388083a2a0ad', 1, 'af863666-a357-4e06-bffd-df98e1d29ab8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4647-8d23-770264a93b12', 2, '52613262-e95b-4f2c-b339-d75e9dbf03b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4648-8d0d-5f52c6c2f556', 2, 'dddaa429-6ebb-4d0e-ab1f-86307fa8a385', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-464a-84b5-e6116596a6f8', 2, 'd5d5de3c-2182-420d-b44e-6c71c5ab1537', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-464b-8ed5-1408d2cf74e0', 2, '25613ba8-8bb2-4357-a8d4-a558cb85eea3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-464d-8a4d-bcd05b02d5d8', 2, '50a6975c-48e2-45d3-932b-8c7423dcc2be', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-464f-8a76-8e60a5010ad9', 2, '551df1d7-f8fc-4a4e-a34d-5691b589c5c4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4651-8ec7-995c62e5d9bb', 2, '822b37d6-3d6a-463b-93fb-fe06f43d90e0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4654-827f-b3f0b6b9f13b', 1, '83d761e9-4ab8-45db-a9ce-32bc148b6922', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4656-822d-5fec2cc43a65', 2, 'ccfb8572-f661-4da2-8bc0-ceff351229ec', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4657-8410-af17a28963fa', 2, 'b7bf4423-23f7-495f-8f09-a402e3e3cfc8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4658-8a96-6b225d34e0c9', 1, 'a620c016-27cb-46f8-86c9-44c197617524', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-465a-8b44-749a017d14bc', 2, 'dd9f45e6-0fa5-4c98-8420-8199c9175507', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-465b-8c51-f21ef3a9292d', 2, '1c97a035-f3ba-4dc5-a711-5fbf87e24c47', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-465d-84b9-f3c61ae8a341', 1, '08d92a3f-bdb2-42be-89c7-fae5d3a4fec3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-465f-8500-64ccbd776d82', 2, '08d92a3f-db7e-48a4-85f6-6fa01dfa49e2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4660-8540-c62d13097444', 2, '08d92a3f-db7e-492e-8761-8d531b99eea2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4661-8931-173461918e2e', 2, '08d92a3f-db7e-496f-8818-7e8575081481', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4663-80d8-a33fdc3d05a0', 2, '08d92a3f-db7e-49c7-8997-8b28aa22bd1f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4664-8b19-62100fd58113', 2, '08d92c81-b505-4041-8f6c-f18e9630ed1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4666-8b61-5f7f4587c24c', 1, '08d92af0-e091-40c3-8a90-914a3266dafc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4668-8dec-11827f353cac', 1, '08d92be4-74ba-4edf-8357-49547cae7fbc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-466b-807f-9aaab80af67b', 2, '08d92be4-74ca-4f08-8388-da5aca619fee', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-466c-803b-1b5368f78e32', 2, '08d92be4-74ca-4f8d-87b4-1be4e1137e9d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-466d-8343-52af45d06fba', 2, '08d92be4-74ca-4fee-8728-e784d4edd9e9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-466e-8b95-a3b1e0e675f5', 2, '08d92be4-74cb-4045-8935-d894e9a5098f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4670-868b-fe5be0d428dd', 1, '08d92fb7-7754-4c3b-8341-c60bc590212d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4672-8ee4-2f18d9009610', 2, '08d9313a-3be4-4173-8d12-5227170b7c60', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4673-8d4e-272e10f6ed2e', 2, '08d92fb7-7762-4a62-8cbb-c60e9098f62e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4675-8064-51524c0921eb', 2, '08d9313a-3be4-4281-842e-de7dcfdeaa34', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4676-886e-1b186fedac74', 2, '08d931f3-0997-4e93-8110-2eacfb6cdbbe', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4678-8286-cdfe89f3a352', 2, '08d92fb7-7762-4998-8f28-acc9f98831a6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-467a-807b-bcd8ee047451', 2, '08d92fb7-7762-4aa6-828e-83a1a9b06913', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-467c-8470-07e627f78a6e', 2, '08d92fb7-7762-4ae8-83f5-2aeed3949514', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-467e-87f4-d352180b736e', 1, '732b0226-a8d6-41e7-b731-a8c4252f1c88', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4680-88fe-60f91010b7f0', 1, '240eb9e4-d5f8-4097-8611-dcdb30c2f49a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4682-84a3-3f4664519522', 2, '8c0df9a6-af02-4450-bab8-226755f1a806', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4683-8969-ef77cf8e02e9', 2, '0cd16e19-6532-4260-abf8-83b8eb32b25b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4685-81fb-d8c6ee5dd56c', 2, 'd63212a7-5977-43e9-a162-9ff5763f20e2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4686-8ef5-59055265a8a1', 2, 'ca302b02-6835-41c0-ae24-97dfb690fd1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4689-8391-19c5a713b386', 1, 'b26cea9c-21ba-42fa-98fc-b8fe0b92451d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-468b-8114-d8ee68d3a4ec', 2, 'aef967fa-e331-4891-b26e-ad4161b60150', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-468c-82e0-b660cb879296', 2, '08d93219-b1c6-42da-88e3-b486742cdf43', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-468d-853e-322d9bcd03a2', 2, 'e12bc302-e651-463a-a159-68968ece733a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-468e-8f3b-f2ce5ef9ebac', 1, 'b39698da-6117-433e-8a02-ef1392d1fe3b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4690-8fc8-6b68afb7fe09', 2, '064d1ffc-40dd-4bf2-8e7e-aab42e683995', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4691-8ef6-83eca8c17c1c', 1, '08d94670-7854-4707-8a1e-256200820167', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4694-81cc-14e5806c911b', 1, '08dab306-91ba-4cd2-8fd2-591c0fce6ab1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4696-8306-537875972200', 1, '08dab30a-d896-4019-8066-7001d27a834e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4697-8f8d-a6cf6abe02eb', 1, '08dab30b-0c23-4b79-8743-35952367b7d8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4699-8dcb-4433ee95b293', 1, '08dab30b-24a5-4bd2-8124-6f5037002a73', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-469b-8c6c-6dc0324f0b92', 1, '08dab30b-4c9e-445f-82a9-e0264f432d57', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-469d-8c6b-58abd6d73916', 1, '5c4c18b1-88be-4819-ab5a-199bba8ae070', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a0-82e4-611bc9828391', 1, '6d903aa1-35e3-4b75-b2a4-261be30a0e15', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a1-8f63-4986fc5bb0cd', 2, '0063eff0-11b4-4da6-b864-f6e3b4c3f89a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a2-8e55-f4d5bf738490', 1, 'db891a42-1b8a-4797-9518-2b038f457a25', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a4-8cd7-36e14ee1c742', 1, 'be2173ad-0833-4a9a-8024-b9f32f892de5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a6-897b-c6bd3ccaa25b', 2, 'dc8064f7-1122-4ebd-820e-79964716c13d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a8-80c1-3dd7d769e522', 1, 'eb3cf8ac-947d-4091-9c8e-75da8bae5e7f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46a9-8fc6-e52c90032ddd', 2, 'ebbe0e28-966a-402f-bae6-6ceaa5475006', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ab-8aa5-60fb3681341f', 1, '667a7393-ed53-43e0-bf2a-c349e5dd48e5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ad-8c49-d8d24173ec42', 2, 'f85f3bd5-ad1b-43d2-84f6-bbae465c65d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46af-83ae-cf5bfedd474b', 1, '0bddfade-d5b4-46c3-b0b6-45fb9f728e38', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b1-8712-0861121ca900', 2, '4e97842e-3b1f-44fc-ba0f-bddf9449a44a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b2-8b1c-bb45811c135d', 1, '25b77622-ff89-47d2-b0b4-c8c8a7ff74d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b4-8dd2-e8c2eedecdc0', 2, '56376d1f-3244-48c8-b5ff-c25793f0811e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b6-817a-8774e456269c', 1, 'ffcf9006-570e-44f5-80d4-32c213813a92', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b8-8831-4005027384bc', 2, 'f48f69a6-53b7-4636-8738-0748d44353e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46b9-8e24-1eefc7bdb9a5', 1, 'cf527f37-2b29-403a-a83b-a6fb0af33b7f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46bc-81c9-0a003ffc097c', 2, 'c26b571e-5d29-4d5d-b841-c934edb17ca0', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46bd-87f2-1f332b9245d2', 1, '6bdd6d88-4391-476e-bcec-10e41cbdcea7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46bf-8a2c-193dbe4dd55f', 2, '00121ebb-3871-465d-9586-cd38c5a25b18', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46c0-8d4b-a67a58635965', 2, 'c7f6afc9-0eeb-4ebc-a4e8-5cceedb08604', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46c2-896d-1b35d3e51b84', 1, '08d93d2e-a9ac-44ba-86bf-af6814a028b3', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46c4-8bc4-a0c68fef9dbe', 1, '08d94b44-8770-42cb-8dc2-ef4c67a7b162', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46c6-8ed5-ac51489e05a3', 2, '08d94b47-2fa7-4b05-87a2-e8b827c489c5', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46c8-8237-4688561db964', 1, 'b398f0e5-44d3-4206-9d90-e2f5d2740379', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ca-80a8-483ab7209106', 1, 'c9a88d3e-e66b-4929-906a-f6eaec00527f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46cb-8d43-97a641a8d7b3', 1, '788d27cb-598d-41da-ac11-b7ddf0914b08', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46cd-8b29-7f5c3b45fce8', 2, '482b1be7-10c2-4ca0-9efd-dcbb15396466', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ce-8e7f-21564f602adc', 2, 'ab68803e-02ed-4abf-907a-b5878da021fb', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d0-84b1-e618e0b5a99f', 2, 'b6fb6da1-ee60-4635-98d5-ccc48a6ea790', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d1-8f91-f922577ff9e2', 2, '8c4cdddd-24b2-4fb0-9cb3-86273a476d0a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d3-8c1e-4c4b276415db', 1, 'a955a782-35d2-4a47-b6de-2c93a0e524b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d5-8c1c-2e967b8276b4', 1, '91448822-e10b-4146-b9fe-2669073cc7f1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d7-8960-6ef3f2a5853f', 2, '0726694c-417d-4222-bbe6-268fec47145f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d8-8a08-992f8e0c453f', 2, '51eb09eb-09be-44ab-82be-10c2e3d1c482', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46d9-8fef-5d3d0959a663', 2, 'd4a4bb19-36f5-4267-b264-1a3ea2c510e6', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46db-8893-34e2d927aae0', 2, 'd8d92dcd-db85-4dde-8df2-d3be835dcc56', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46dd-86b6-7908a26df5d6', 2, '34d0a617-86dc-44e1-83fc-815043ac1af4', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46df-867f-82a224464a0b', 2, 'f7b696c4-9af0-4bde-b92a-1f9f151007b8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e1-899c-9e27bd6c308a', 1, 'a083a171-932a-48b8-b053-13f9b39d555a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e3-8733-3fe2399c860d', 2, 'f8c0cd71-e206-4991-91cf-fa96d5652eac', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e4-8bd7-6630c2311b23', 2, 'c97bdd88-5df3-40a9-aa33-fdf2beed9d1c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e6-81a6-d236b597e6a1', 2, 'ac332167-9f87-4d0a-9c0d-0fadd1bfda50', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e7-8a6b-2719d561f230', 2, '08d94a91-7899-437d-8fd2-e1c5e10f61b2', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46e9-8553-8cc6e79359e0', 2, '08d94a91-8849-4e26-846f-5cd3edbe5d9f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46eb-83ca-12619e070d35', 1, 'eeb05603-45d5-4205-88fc-0fe60357710d', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ed-8348-2f799fe17eff', 2, '5084abcf-21ec-4edf-bf9f-513bb17514d9', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ee-83cd-c2ab0e345b6e', 2, '00eafd02-2d7e-4750-a799-3d8cdf062b14', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ef-8b78-fc3dbf33d737', 2, 'be75a305-421e-4d91-9967-dff081e3a4f7', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f1-8459-80b848c2d5ac', 1, 'ea9864ce-e397-42b0-8819-0680b78fcf4c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f3-84c8-348c08c0bdc1', 2, 'aadb4281-3b01-4cfa-9398-767ad60a8703', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f4-86d0-0e5372d952b7', 2, 'a361156a-db2c-40b9-8449-189ce27da27c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f5-8c34-a7bb70d4064c', 2, '352de4d7-1e60-41a8-b983-b79676c6a556', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f7-84cd-1fe94720c52f', 2, '08d94b38-5252-492f-8acf-744c5a3906bf', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46f9-823f-27ed8d7a5cd6', 1, 'b5ff9591-f939-41c0-8c68-3b9c2fe02bdd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46fb-832c-2a92f1d40b61', 2, 'e46372b7-7c30-4f62-af2b-33a4f3393ddc', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46fc-85dd-c85799f3ab2c', 2, '641fd85a-96a6-4801-9385-b27fa5d3e564', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46fd-8a9c-0748fe304271', 2, 'e4ddb5b5-d576-4c50-847c-aa501ac5a38c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-46ff-84c4-adf579b5b9d3', 2, 'd20ee9fb-48ee-48d2-99e5-44b92cde7ec8', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4701-8120-fa41b121307a', 2, 'a525955f-81ad-4521-849a-dbc355531883', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4703-8036-ef14bea232d1', 2, '02a4ee76-4715-4d98-a742-f7ecd7e7d9dd', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4705-8328-cc74a0939aae', 2, 'f688f8af-262a-4769-9ad5-4122422f072f', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4707-86a1-36c388f35879', 2, '08d93d33-d056-459d-8c47-d3aafb539c2b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4709-8821-3a51af1a2473', 1, '4666f434-3178-42e5-a44f-1f34cadb3c43', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-470b-8984-cb38f642dd52', 2, '44ac9a8e-f4ac-4b6c-ab1a-8723da6ea36a', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-470c-8ad5-744b82a3766b', 2, 'cf235c14-e4ad-478a-8e9c-9f7ec5a80255', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-470e-814e-a58a72c26899', 2, '897b1de8-3710-439f-b252-b1d6d06a082c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-470f-8b97-1028d9bab1e0', 2, '83690e2c-43f0-489f-9481-4b72ad828d4e', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4711-8a59-2068ab65253f', 1, '4666f434-3178-42e5-a44f-1f34cadb3c44', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4713-8b5f-4fa2512c2c1e', 2, '08dab58c-bd53-4793-85de-bd4bd3aa4a35', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4714-8feb-9b412afde0f6', 2, '08dab58c-bd53-49c1-8a1e-ff507ece06ab', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4716-8888-2726f7ff613d', 2, '08dab58c-bd53-4a2f-8a6b-1403129ee16c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-478a-86c6-b5a65d746677', 3, '21d40431-d289-415f-bfaf-5a23bf4dac9c', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-478c-8896-ee05c916cc01', 3, '309c622d-2217-499f-aa83-2eccd72205a1', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-478e-8911-479624dcb04a', 3, 'a24c6ed3-8c91-4ade-a5c1-8c5eb9719368', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4790-894c-49a685dc6e27', 3, 'be804654-d6d7-44d1-8950-6841a2626720', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4792-8a7d-eadf57daa7dc', 3, 'bfbe0195-3fae-42d2-9d46-6bf5400d64ea', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
+INSERT INTO `sys_roleauthorize` VALUES ('08dab58d-0bff-4794-8eab-e9abe0c72be5', 3, 'd52c6878-9283-45d7-82f9-b465fa33a89b', 1, '08dab311-74dd-44c4-898f-d0a8134f1f48', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_serverstate
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_serverstate`;
 CREATE TABLE `sys_serverstate`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_WEBSITE` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ARM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_CPU` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_IIS` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DATE` date NULL DEFAULT NULL,
-  `F_COUT` int NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_SERVERSTATE`(`F_WEBSITE`, `F_DATE`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_WebSite` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ARM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CPU` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IIS` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Date` date NULL DEFAULT NULL,
+  `F_Cout` int NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_ServerState`(`F_WebSite`, `F_Date`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_serverstate
@@ -4443,30 +4443,30 @@ CREATE TABLE `sys_serverstate`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_systemset`;
 CREATE TABLE `sys_systemset`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_LOGO` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_LOGOCODE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PROJECTNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_COMPANYNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ADMINACCOUNT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ADMINPASSWORD` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_MOBILEPHONE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_PRINCIPALMAN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ENDTIME` datetime NULL DEFAULT NULL,
-  `F_DBSTRING` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_DBPROVIDER` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_HOSTURL` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Logo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_LogoCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ProjectName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_CompanyName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AdminAccount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AdminPassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_MobilePhone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_PrincipalMan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_EndTime` datetime NULL DEFAULT NULL,
+  `F_DbString` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_DBProvider` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_HostUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_systemset
@@ -4478,48 +4478,48 @@ INSERT INTO `sys_systemset` VALUES ('d69fd66a-6a77-4011-8a25-53a79bdf5001', '/ic
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_ACCOUNT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_REALNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_NICKNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_HEADICON` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_GENDER` tinyint NULL DEFAULT NULL,
-  `F_BIRTHDAY` datetime NULL DEFAULT NULL,
-  `F_MOBILEPHONE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_EMAIL` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WECHAT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_MANAGERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_SECURITYLEVEL` int NULL DEFAULT NULL,
-  `F_SIGNATURE` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ORGANIZEID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DEPARTMENTID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ROLEID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_DUTYID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_ISADMIN` tinyint NULL DEFAULT NULL,
-  `F_ISBOSS` tinyint NULL DEFAULT NULL,
-  `F_ISLEADERINDEPTS` tinyint NULL DEFAULT NULL,
-  `F_ISSENIOR` tinyint NULL DEFAULT NULL,
-  `F_SORTCODE` int NULL DEFAULT NULL,
-  `F_DELETEMARK` tinyint NULL DEFAULT NULL,
-  `F_ENABLEDMARK` tinyint NULL DEFAULT NULL,
-  `F_DESCRIPTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CREATORTIME` datetime NULL DEFAULT NULL,
-  `F_CREATORUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LASTMODIFYTIME` datetime NULL DEFAULT NULL,
-  `F_LASTMODIFYUSERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DELETETIME` datetime NULL DEFAULT NULL,
-  `F_DELETEUSERID` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_DINGTALKOPENID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DINGTALKNICK` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_DINGTALKUNIONID` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WXOPENID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_WXNICKNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_HEADIMGURL` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ISPLANMAN` tinyint NOT NULL COMMENT '调度人员',
-  `F_WEBSOCKETPORT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL COMMENT '打印端口',
-  PRIMARY KEY (`F_ID`) USING BTREE,
-  INDEX `IX_SYS_USER`(`F_ACCOUNT`) USING BTREE COMMENT '唯一键'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_Account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_RealName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_NickName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_HeadIcon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Gender` tinyint NULL DEFAULT NULL,
+  `F_Birthday` datetime NULL DEFAULT NULL,
+  `F_MobilePhone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WeChat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ManagerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_SecurityLevel` int NULL DEFAULT NULL,
+  `F_Signature` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_OrganizeId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DepartmentId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_RoleId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_DutyId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_IsAdmin` tinyint NULL DEFAULT NULL,
+  `F_IsBoss` tinyint NULL DEFAULT NULL,
+  `F_IsLeaderInDepts` tinyint NULL DEFAULT NULL,
+  `F_IsSenior` tinyint NULL DEFAULT NULL,
+  `F_SortCode` int NULL DEFAULT NULL,
+  `F_DeleteMark` tinyint NULL DEFAULT NULL,
+  `F_EnabledMark` tinyint NULL DEFAULT NULL,
+  `F_Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CreatorTime` datetime NULL DEFAULT NULL,
+  `F_CreatorUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LastModifyTime` datetime NULL DEFAULT NULL,
+  `F_LastModifyUserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DeleteTime` datetime NULL DEFAULT NULL,
+  `F_DeleteUserId` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_DingTalkOpenId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DingTalkNick` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_DingTalkUnionId` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WxOpenId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_WxNickName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_HeadImgUrl` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_IsPlanMan` tinyint NOT NULL COMMENT '调度人员',
+  `F_WebSocketPort` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '打印端口',
+  PRIMARY KEY (`F_Id`) USING BTREE,
+  INDEX `IX_Sys_User`(`F_Account`) USING BTREE COMMENT '唯一键'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
@@ -4532,30 +4532,30 @@ INSERT INTO `sys_user` VALUES ('9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', 'admin', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_userlogon`;
 CREATE TABLE `sys_userlogon`  (
-  `F_ID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NOT NULL,
-  `F_USERID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_USERPASSWORD` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_USERSECRETKEY` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ALLOWSTARTTIME` datetime NULL DEFAULT NULL,
-  `F_ALLOWENDTIME` datetime NULL DEFAULT NULL,
-  `F_LOCKSTARTDATE` datetime NULL DEFAULT NULL,
-  `F_LOCKENDDATE` datetime NULL DEFAULT NULL,
-  `F_FIRSTVISITTIME` datetime NULL DEFAULT NULL,
-  `F_PREVIOUSVISITTIME` datetime NULL DEFAULT NULL,
-  `F_LASTVISITTIME` datetime NULL DEFAULT NULL,
-  `F_CHANGEPASSWORDDATE` datetime NULL DEFAULT NULL,
-  `F_MULTIUSERLOGIN` tinyint NULL DEFAULT NULL,
-  `F_LOGONCOUNT` int NULL DEFAULT NULL,
-  `F_USERONLINE` tinyint NULL DEFAULT NULL,
-  `F_QUESTION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ANSWERQUESTION` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL,
-  `F_CHECKIPADDRESS` tinyint NULL DEFAULT NULL,
-  `F_LANGUAGE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_THEME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_LOGINSESSION` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin NULL DEFAULT NULL,
-  `F_ERRORNUM` int NULL DEFAULT NULL,
-  PRIMARY KEY (`F_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_bin ROW_FORMAT = DYNAMIC;
+  `F_Id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `F_UserId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_UserPassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_UserSecretkey` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AllowStartTime` datetime NULL DEFAULT NULL,
+  `F_AllowEndTime` datetime NULL DEFAULT NULL,
+  `F_LockStartDate` datetime NULL DEFAULT NULL,
+  `F_LockEndDate` datetime NULL DEFAULT NULL,
+  `F_FirstVisitTime` datetime NULL DEFAULT NULL,
+  `F_PreviousVisitTime` datetime NULL DEFAULT NULL,
+  `F_LastVisitTime` datetime NULL DEFAULT NULL,
+  `F_ChangePasswordDate` datetime NULL DEFAULT NULL,
+  `F_MultiUserLogin` tinyint NULL DEFAULT NULL,
+  `F_LogOnCount` int NULL DEFAULT NULL,
+  `F_UserOnLine` tinyint NULL DEFAULT NULL,
+  `F_Question` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_AnswerQuestion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `F_CheckIPAddress` tinyint NULL DEFAULT NULL,
+  `F_Language` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_Theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_LoginSession` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `F_ErrorNum` int NULL DEFAULT NULL,
+  PRIMARY KEY (`F_Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_userlogon
@@ -4565,7 +4565,3 @@ INSERT INTO `sys_userlogon` VALUES ('08dab311-971f-40e5-8f63-83a1e1b16a44', '08d
 INSERT INTO `sys_userlogon` VALUES ('9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '52c6b3f2456d7a6e4ce848c38bb0a228', 'b648e3d3de301b49', NULL, NULL, NULL, NULL, NULL, '2020-04-17 14:47:44', '2020-04-17 14:59:58', NULL, 0, 360, 0, NULL, NULL, 0, NULL, NULL, 'evrcyibdv42f3ykhfy1yz3ur', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-INSERT INTO `szprslmes`.`sys_modulebutton` (`F_ID`, `F_MODULEID`, `F_PARENTID`, `F_LAYERS`, `F_ENCODE`, `F_FULLNAME`, `F_ICON`, `F_LOCATION`, `F_JSEVENT`, `F_URLADDRESS`, `F_SPLIT`, `F_ISPUBLIC`, `F_ALLOWEDIT`, `F_ALLOWDELETE`, `F_SORTCODE`, `F_DELETEMARK`, `F_ENABLEDMARK`, `F_DESCRIPTION`, `F_CREATORTIME`, `F_CREATORUSERID`, `F_LASTMODIFYTIME`, `F_LASTMODIFYUSERID`, `F_DELETETIME`, `F_DELETEUSERID`, `F_AUTHORIZE`) VALUES ('08dab58c-bd53-4a2f-8a6b-1403129ee16c', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpRepairRecord', '维修记录', NULL, 1, 'EqpRepairRecord', '', NULL, 0, 0, 0, 3, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:57:14', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpRepairRecord');
-INSERT INTO `szprslmes`.`sys_modulebutton` (`F_ID`, `F_MODULEID`, `F_PARENTID`, `F_LAYERS`, `F_ENCODE`, `F_FULLNAME`, `F_ICON`, `F_LOCATION`, `F_JSEVENT`, `F_URLADDRESS`, `F_SPLIT`, `F_ISPUBLIC`, `F_ALLOWEDIT`, `F_ALLOWDELETE`, `F_SORTCODE`, `F_DELETEMARK`, `F_ENABLEDMARK`, `F_DESCRIPTION`, `F_CREATORTIME`, `F_CREATORUSERID`, `F_LASTMODIFYTIME`, `F_LASTMODIFYUSERID`, `F_DELETETIME`, `F_DELETEUSERID`, `F_AUTHORIZE`) VALUES ('08dab58c-bd53-49c1-8a1e-ff507ece06ab', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpRepairInfo', '设备维修', NULL, 1, 'EqpRepairInfo', '', NULL, 0, 0, 0, 2, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:56:42', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpRepairInfo');
-INSERT INTO `szprslmes`.`sys_modulebutton` (`F_ID`, `F_MODULEID`, `F_PARENTID`, `F_LAYERS`, `F_ENCODE`, `F_FULLNAME`, `F_ICON`, `F_LOCATION`, `F_JSEVENT`, `F_URLADDRESS`, `F_SPLIT`, `F_ISPUBLIC`, `F_ALLOWEDIT`, `F_ALLOWDELETE`, `F_SORTCODE`, `F_DELETEMARK`, `F_ENABLEDMARK`, `F_DESCRIPTION`, `F_CREATORTIME`, `F_CREATORUSERID`, `F_LASTMODIFYTIME`, `F_LASTMODIFYUSERID`, `F_DELETETIME`, `F_DELETEUSERID`, `F_AUTHORIZE`) VALUES ('08dab58c-bd53-4793-85de-bd4bd3aa4a35', '4666f434-3178-42e5-a44f-1f34cadb3c44', '0', 1, 'EqpCallRepair', '故障报修', NULL, 1, 'EqpCallRepair', '', NULL, 0, 0, 0, 1, 0, 1, '', '2022-10-24 14:55:30', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '2022-10-24 14:56:06', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, 'EqpCallRepair');

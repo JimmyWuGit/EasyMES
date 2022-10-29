@@ -18,7 +18,7 @@ namespace WaterCloud.Web.Areas.QualityManage.Controllers
     /// 描 述：不良物料管理控制器类
     /// </summary>
     [Area("QualityManage")]
-    public class ScapMaterialController :  ControllerBase
+    public class ScapMaterialController :  BaseController
     {
         public ScapMaterialService _service {get;set;}
 

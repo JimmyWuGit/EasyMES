@@ -8,26 +8,30 @@ Page({
     areaArrIndex: 0,
     arrIndex: 0,
     arrOutIndex: 0,
-    areaCode:"原材料仓库",
+    arrAreaIndex: 0,
   },
   onLoad() { 
-    // myRequest.get("/api/Common/GetAreaList").then((res) => {
-    //   if (res.data.data) {
-    //     this.setData({
-    //       objectAreaArray: res.data.data,
-    //     });
-    //     if (res.data.data.length>0)
-    //     {
-
-    //     }
-    //   } else {
-    //     dd.alert({ title: '提示', content: "无库区", buttonText: '我知道了', });
-    //   }
-    // })   
+  
   },
-
+  GetArea() {
+    var code=this.data.F_MaterialType;
+    myRequest.get("/api/Common/GetAreaList?type="+code).then((res) => {
+      if (res.data.data) {
+        if (res.data.data.length>0)
+        {
+          this.setData({
+            objectAreaArray: res.data.data,
+            F_AreaCode:res.data.data[this.data.arrAreaIndex].F_AreaCode
+          });
+          this.GetLocation();
+        }
+      } else {
+        dd.alert({ title: '提示', content: "无库区", buttonText: '我知道了', });
+      }
+    }) 
+  },
   GetLocation() {
-    var code=this.data.areaCode;
+    var code=this.data.F_AreaCode;
     var api=encodeURI("/api/Common/GetLocationList?areaCode=" + code+"&materialCode="+this.data.F_MaterialCode);
     myRequest.get(api).then((res) => {
       if (res.data.data && res.data.data.length > 0) {
@@ -44,7 +48,7 @@ Page({
     })    
   },
   GetAllLocation() {
-    var code=this.data.areaCode;
+    var code=this.data.F_AreaCode;
     var api=encodeURI("/api/Common/GetLocationList?areaCode=" + code+"&isAll=true"+"&materialCode="+this.data.F_MaterialCode);
     myRequest.get(api).then((res) => {
       if (res.data.data && res.data.data.length > 0) {
@@ -99,13 +103,13 @@ Page({
       arrIndex: 0,
     });
   },
-  // bindObjPickerAreaChange(e) {
-  //   this.setData({
-  //     areaArrIndex: e.detail.value,
-  //     hidden: true
-  //   });
-  //   this.GetLocation();
-  // },
+  bindObjPickerAreaChange(e) {
+    this.setData({
+      arrAreaIndex: e.detail.value,
+      hidden: true
+    });
+    this.GetLocation();
+  },
   GetInStorageBandingByCode(code) {
     dd.httpRequest({
       headers: {
@@ -132,12 +136,13 @@ Page({
               F_InStorageCode: res.data.data.F_InStorageCode,
               F_MaterialCode: res.data.data.F_MaterialCode,
               F_MaterialName: res.data.data.F_MaterialName,
+              F_MaterialType: res.data.data.F_MaterialType,
               F_MaterialBatch: res.data.data.F_MaterialBatch,
               F_Num: res.data.data.F_Num,
               F_BandingUserName: res.data.data.F_BandingUserName,
               instorageHidden: false
             });
-            this.GetLocation();
+            this.GetArea();
           } else {
             dd.alert({ title: '提示', content: "不存在和此流转箱匹配的信息！", buttonText: '我知道了', });
           }

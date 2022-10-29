@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// 描 述：工单管理控制器类
     /// </summary>
     [Area("ProcessManage")]
-    public class WorkOrderController :  ControllerBase
+    public class WorkOrderController :  BaseController
     {
         public WorkOrderService _service {get;set;}
 

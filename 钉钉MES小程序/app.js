@@ -19,6 +19,7 @@ App({
       success: (res) => {
         if (res.data) {
           that.globalData.apiUrl = !!res.data.apiUrl?res.data.apiUrl:that.globalData.apiUrl;
+          that.globalData.mainurl = !!res.data.apiUrl?res.data.apiUrl:that.globalData.apiUrl;
           that.globalData.PhotoUrl = !!res.data.PhotoUrl?res.data.PhotoUrl:that.globalData.apiUrl;
         }
       }
@@ -59,7 +60,7 @@ App({
                     userid: res.data.data.userid,
                     username: res.data.data.username,
                     apitoken: res.data.data.apitoken,
-                    mainurl: res.data.data.mainurl,
+                    mainurl: that.globalData.apiurl,
                     apiurl:that.globalData.apiurl,
                     PhotoUrl:that.globalData.PhotoUrl,
                   },
@@ -71,7 +72,7 @@ App({
                 that.globalData.userid = res.data.data.userid;
                 that.globalData.username = res.data.data.username;
                 that.globalData.apitoken = res.data.data.apitoken;
-                that.globalData.mainurl = res.data.data.mainurl;
+                that.globalData.mainurl = that.globalData.apiurl;
 
 
                 resolve({

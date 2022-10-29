@@ -15,7 +15,7 @@ using Chloe;
 namespace WaterCloud.Web.Areas.SystemManage.Controllers
 {
     [Area("SystemManage")]
-    public class CodeGeneratorController : ControllerBase
+    public class CodeGeneratorController : BaseController
     {
 
         private readonly IDatabaseTableService _service;

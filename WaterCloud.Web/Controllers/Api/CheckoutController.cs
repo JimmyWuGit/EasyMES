@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WaterCloud.Code;
@@ -13,7 +14,7 @@ using WaterCloud.Service.QualityManage;
 using WaterCloud.Service.SystemManage;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
 	/// <summary>
 	/// 质检接口
@@ -22,7 +23,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     //[ServiceFilter(typeof(LoginFilterAttribute))]
     public class CheckoutController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public StorageService _storageService { get; set; }
@@ -380,27 +381,46 @@ namespace WaterCloud.WebApi.Controllers
         [HttpPost]
         public async Task<dynamic> PhotoSaveIndex()
         {
-            try
-            {
-                Dictionary<string, byte[]> dict = new Dictionary<string, byte[]>();
-                var formfiles = Request.Form.Files;
-                foreach (var formfile in formfiles)
-                {
-                    var stream = formfile.OpenReadStream();
-                    byte[] bytes = new byte[stream.Length];
-                    stream.Read(bytes, 0, bytes.Length);
-                    dict.Add(formfile.FileName, bytes);
-                }
+			try
+			{
+				var cd = DateTime.Now;
+				var BasePath = GlobalContext.HostingEnvironment.ContentRootPath;
+				var SavePath = Path.Combine("upload", "Quality");
+				string fullPath = Path.Combine(BasePath, SavePath);
+				if (!Directory.Exists(fullPath))
+					Directory.CreateDirectory(fullPath);
+				var formfiles = Request.Form.Files;
+				List<string> files = new List<string>();
+				foreach (var formfile in formfiles)
+				{
+					var fullFileName = formfile.FileName;
+					var fileExtension = Path.GetExtension(fullFileName);
+					var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + new Random().Next(100000, 999999) + fileExtension;
+					using (var fs = System.IO.File.Create(Path.Combine(fullPath, filename)))
+					{
+						await formfile.CopyToAsync(fs);
+						fs.Flush();
+					}
+					files.Add($@"/upload/Quality/" + filename);
+					try
+					{
+						System.Drawing.Image img = System.Drawing.Image.FromFile(Path.Combine(fullPath, filename));
+					}
+					catch (Exception ex)
+					{
+						FileHelper.DeleteFile(Path.Combine(fullPath, filename));
+						throw new Exception("文件非法，请检查！");
+					}
+				}
+				dynamic result = new { error = 0, files = files.First() };
 
-                var result = await _scapService.PhotoSaveIndex(dict);
-                var temp = result.Content.ReadAsStringAsync().Result.ToJObject();
-                return new {error=0,file= temp["files"].First().ToString() };
-            }
-            catch (Exception ex)
-            {
-                return new AlwaysResultEx { error = (int)errorCodeType.error, message = LogHelper.ExMsgFormat(ex.Message) };
-            }
-        }
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return new AlwaysResultEx { error = (int)errorCodeType.error, message = LogHelper.ExMsgFormat(ex.Message) };
+			}
+		}
         #endregion
 
         #region 请求对象

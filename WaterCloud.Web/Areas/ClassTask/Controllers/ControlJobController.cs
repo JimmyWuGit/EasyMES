@@ -19,7 +19,7 @@ namespace WaterCloud.Web.Areas.ClassTask.Controllers
     /// 描 述：待执行任务控制器类
     /// </summary>
     [Area("ClassTask")]
-    public class ControlJobController :  ControllerBase
+    public class ControlJobController :  BaseController
     {
         public ControlJobService _service {get;set;}
         public StorageService _storageService {get;set; }

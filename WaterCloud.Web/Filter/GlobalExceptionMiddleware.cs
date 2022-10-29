@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using WaterCloud.Code;
 
-namespace WaterCloud.WebApi
+namespace WaterCloud.Web
 {
     public class GlobalExceptionMiddleware
     {

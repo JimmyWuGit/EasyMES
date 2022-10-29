@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
     /// 描 述：设备点检项目控制器类
     /// </summary>
     [Area("EquipmentManage")]
-    public class EqpPqcCheckItemController : ControllerBase
+    public class EqpPqcCheckItemController : BaseController
     {
         public EqpPqcCheckItemService _service { get; set; }
         public EquipmentService _eqpservice { get; set; }

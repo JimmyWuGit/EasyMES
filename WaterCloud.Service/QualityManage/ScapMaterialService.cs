@@ -10,6 +10,8 @@ using WaterCloud.Domain.MaterialManage;
 using System.Net.Http;
 using WaterCloud.Domain.ProcessManage;
 using WaterCloud.Domain.EquipmentManage;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WaterCloud.Service.QualityManage
 {
@@ -421,7 +423,7 @@ namespace WaterCloud.Service.QualityManage
                         {
                             if (entity.F_MaterialType==0)
                             {
-                                area = await uniwork.FindEntity<AreaEntity>(a => a.F_AreaCode == "原材料仓库");
+                                area = await uniwork.FindEntity<AreaEntity>(a => a.F_AreaType == 0);
                             }
                             else
                             {
@@ -454,21 +456,6 @@ namespace WaterCloud.Service.QualityManage
             }
             await uniwork.Insert(entity);
             uniwork.Commit();
-        }
-
-
-        public async Task<HttpResponseMessage> PhotoSaveIndex(Dictionary<string, byte[]> dict)
-        {
-            var content = new MultipartFormDataContent();
-
-            foreach (KeyValuePair<string, byte[]> k in dict)
-            {
-                content.Add(new ByteArrayContent(k.Value), "file", k.Key);
-            }
-
-            return await _httpClientFactory.CreateClient().PostAsync(GlobalContext.SystemConfig.MainProgram + "/QualityManage/ScapMaterial/PhotoSaveIndex",
-                content);
-
         }
         #endregion
 

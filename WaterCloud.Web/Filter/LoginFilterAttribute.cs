@@ -8,7 +8,7 @@ using WaterCloud.Code;
 using Microsoft.AspNetCore.Authorization;
 using WaterCloud.Service.SystemOrganize;
 
-namespace WaterCloud.WebApi
+namespace WaterCloud.Web
 {
     /// <summary>
     /// 验证token

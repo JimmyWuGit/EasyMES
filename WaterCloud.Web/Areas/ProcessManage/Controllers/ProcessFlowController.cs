@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// 描 述：工序管理控制器类
     /// </summary>
     [Area("ProcessManage")]
-    public class ProcessFlowController :  ControllerBase
+    public class ProcessFlowController :  BaseController
     {
         public ProcessFlowService _service {get;set;}
 

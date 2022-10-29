@@ -149,17 +149,14 @@ namespace WaterCloud.Service.InfoManage
 			}
 			if (isSendDing)
 			{
-                WorkMessageApi.SendDingMsg(dingdingtoken, dingconfig.F_AgentId, list, messageEntity.F_MessageInfo, "您有一条新消息", dingconfig.F_Url);
+                await WorkMessageApi.SendDingMsg(dingdingtoken, dingconfig.F_AgentId, list, messageEntity.F_MessageInfo, "您有一条新消息", dingconfig.F_Url);
             }
             //通过http发送即时消息
             messageEntity.companyId = currentuser.CompanyId;
             var mouduleName = ReflectionHelper.GetModuleName(1);
             var module = uniwork.IQueryable<ModuleEntity>(a => a.F_EnCode == mouduleName).FirstOrDefault();
-            var url = module.F_UrlAddress.Substring(0, module.F_UrlAddress.Length - 5) + "SendWebSocketMsg";
-            HttpContent httpContent = new StringContent(messageEntity.ToJson(), Encoding.UTF8);
-            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            _httpClientFactory.CreateClient().PostAsync(GlobalContext.SystemConfig.MainProgram + url, httpContent);
-        }
+			await SendWebSocketMsg(messageEntity);
+		}
 
         public async System.Threading.Tasks.Task SubmitFormAutoSend(MessageEntity entity, bool isWork = false, bool isSendDing = true)
         {
@@ -204,16 +201,13 @@ namespace WaterCloud.Service.InfoManage
             }
             if (isSendDing)
             {
-                WorkMessageApi.SendDingMsgAutoSend(dingdingtoken, dingconfig.F_AgentId, list, messageEntity.F_MessageInfo, "您有一条新消息", dingconfig.F_Url);
+                await WorkMessageApi.SendDingMsgAutoSend(dingdingtoken, dingconfig.F_AgentId, list, messageEntity.F_MessageInfo, "您有一条新消息", dingconfig.F_Url);
             }
             //通过http发送即时消息
             messageEntity.companyId = currentuser.CompanyId;
             var mouduleName = ReflectionHelper.GetModuleName(1);
             var module = uniwork.IQueryable<ModuleEntity>(a => a.F_EnCode == mouduleName).FirstOrDefault();
-            var url = module.F_UrlAddress.Substring(0, module.F_UrlAddress.Length - 5) + "SendWebSocketMsg";
-            HttpContent httpContent = new StringContent(messageEntity.ToJson(), Encoding.UTF8);
-            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            _httpClientFactory.CreateClient().PostAsync(GlobalContext.SystemConfig.MainProgram + url, httpContent);
+            await SendWebSocketMsg(messageEntity);
         }
 
         public async System.Threading.Tasks.Task SendWebSocketMsg(MessageEntity messageEntity)

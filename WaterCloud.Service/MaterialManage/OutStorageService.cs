@@ -79,7 +79,10 @@ namespace WaterCloud.Service.MaterialManage
             currentStorages = currentStorages.Where(a => a.F_MaterialType == 2).ToList();
             //获取当前天
             DateTime currentdate = DateTime.Now.Date;
-            if (DateTime.Now.Hour < 8)
+            var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+            var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var currentTime = DateTime.Now.TimeOfDay;
+            if (TimeSpan.Compare(currentTime,classStartTime) < 0)
             {
                 currentdate = currentdate.AddDays(-1);
             }
@@ -87,15 +90,23 @@ namespace WaterCloud.Service.MaterialManage
             var producePlans = uniwork.IQueryable<WorkPlanEntity>(a => a.F_Date >= currentdate).ToList();
             //今天的计划加进计划库存中
             var tempoutplan = list.Where(a => a.F_PlanTime < currentdate.AddDays(1) && a.F_OutStorageState <= 2).ToList();
-            if (DateTime.Now.Hour < 8)
-            {
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+			{
                 tempoutplan = list.Where(a => a.F_PlanTime < currentdate.AddDays(2) && a.F_OutStorageState <= 2).ToList();
             }
-            var tempproduceplan = producePlans.Where(a => a.F_Date >= currentdate && a.F_Date < currentdate.AddDays(1)).ToList();
-            if (DateTime.Now.Hour < 8 || DateTime.Now.Hour >= 20)
+			var tempproduceplan = producePlans.Where(a => a.F_Date >= currentdate && a.F_Date < currentdate.AddDays(1)).ToList();
+			for (int i = 0; i < classNums.Count(); i++)
             {
-                tempproduceplan = producePlans.Where(a => a.F_Date == currentdate && a.F_ClassNum == "B").ToList();
-            }
+				var tempStartTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]);
+				var tempEndTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]);
+                if (TimeSpan.Compare(currentTime, tempStartTime) > 0 && TimeSpan.Compare(tempEndTime, currentTime) > 0)
+                {
+                    for (int j = 0; j < i; j++)
+                    {
+                        tempproduceplan = tempproduceplan.Where(a => a.F_ClassNum != classNums[j].F_ItemCode).ToList();
+					}
+                }
+			}
             foreach (var item in tempoutplan)
             {
                 var temp = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();

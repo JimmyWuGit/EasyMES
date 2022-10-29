@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：Bom结构控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class BomInfoController :  ControllerBase
+    public class BomInfoController :  BaseController
     {
         public BomInfoService _service {get;set;}
 

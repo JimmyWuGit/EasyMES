@@ -67,18 +67,19 @@
                         materialBatch = parentData[i].F_BatchPrefix + "-" + new Date().SmallFormat("yyMMDDhhmmss");
                     }
                     else {
-                        if (new Date().getHours() > 20) {
-                            materialBatch = parentData[i].F_BatchPrefix + "-" + new Date().SmallFormat("yyMMDD") + "B";
-                        }
-                        else if (new Date().getHours() < 8) {
-                            materialBatch = parentData[i].F_BatchPrefix + "-" + new Date().setDate(new Date().getDate() - 1).SmallFormat("yyMMDD") + "B";
-                        }
-                        else {
-                            materialBatch = parentData[i].F_BatchPrefix + "-" + new Date().SmallFormat("yyMMDD") + "A";
-                        }
+                        common.ajax({
+                            url: '/RunMonitor/EqpScanScreen/GetBatch',
+                            dataType: 'json',
+                            async: false,
+                            success: function (data) {
+                                if (!!data && data.length > 0) {
+                                    materialBatch = data;
+                                    $('#F_MaterialBatch').val(materialBatch);
+                                }
+                            }
+                        });
                     }
                     $('#F_Num').val(parentData[i].F_ContainerNum);
-                    $('#F_MaterialBatch').val(materialBatch);
                 }
             }
         }

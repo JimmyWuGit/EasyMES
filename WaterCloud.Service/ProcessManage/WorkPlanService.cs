@@ -7,6 +7,7 @@ using Chloe;
 using WaterCloud.Domain.ProcessManage;
 using WaterCloud.Domain.MaterialManage;
 using WaterCloud.Domain.EquipmentManage;
+using WaterCloud.Service.SystemManage;
 
 namespace WaterCloud.Service.ProcessManage
 {
@@ -17,9 +18,11 @@ namespace WaterCloud.Service.ProcessManage
     /// </summary>
     public class WorkPlanService : DataFilterService<WorkPlanEntity>, IDenpendency
     {
-        public WorkPlanService(IDbContext context) : base(context)
+		private ItemsDataService itemsApp;
+		public WorkPlanService(IDbContext context) : base(context)
         {
-        }
+			itemsApp = new ItemsDataService(context);
+		}
         #region 获取数据
         public async Task<List<WorkPlanEntity>> GetList(string keyword = "")
         {
@@ -60,53 +63,39 @@ namespace WaterCloud.Service.ProcessManage
             var datas = IQueryable().Where(a => a.F_Date>=startTime && a.F_Date < endTime).ToList();
             var datat = uniwork.IQueryable<EquipmentEntity>(t => t.F_ParentId=="0" && t.F_EnabledMark == true && t.F_DeleteMark == false&&t.F_EqpType==0).OrderBy(t=>t.F_EqpName).ToList();
             var data = new List<Object>();
-            foreach (var item in datat)
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var currentTime = DateTime.Now.TimeOfDay;
+			foreach (var item in datat)
 			{
                 Dictionary<string,string> temp = new Dictionary<string, string>();
                 temp["F_EqpId"] = item.F_Id;
                 temp["F_EqpName"] = item.F_EqpName;
                 for (int i = 0; i < CountDay; i++)
                 {
-                    temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "A"] = "";
-                    temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "B"] = "";
-                    if (datas.Where(a=>a.F_EqpId==item.F_Id&& startTime.AddDays(i)==a.F_Date&&a.F_ClassNum=="A").Count()>0)
-					{
-                        var entitys = datas.Where(a => a.F_EqpId == item.F_Id && startTime.AddDays(i) == a.F_Date && a.F_ClassNum == "A").ToList();
-                        foreach (var entity in entitys)
-                        {
-                            if (entity.F_WorkPlanType == 0)
-                            {
-                                temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "A"] += entity.F_MaterialName + ",计划数量" + entity.F_PlanNum + ",实际数量" + entity.F_DoneNum + ";";
-                            }
-                            else
-                            {
-                                temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "A"] = "";
-                            }
-                        }
-                    }
-                    else
+                    foreach (var classNum in classNums)
                     {
-                        temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "A"] = "";
-                    }
-                    if (datas.Where(a => a.F_EqpId == item.F_Id && startTime.AddDays(i) == a.F_Date && a.F_ClassNum == "B").Count() > 0)
-                    {
-                        var entitys = datas.Where(a => a.F_EqpId == item.F_Id && startTime.AddDays(i) == a.F_Date && a.F_ClassNum == "B").ToList();
-                        foreach (var entity in entitys)
-                        {
-                            if (entity.F_WorkPlanType == 0)
-                            {
-                                temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "B"] += entity.F_MaterialName + ",计划数量" + entity.F_PlanNum + ",实际数量" + entity.F_DoneNum + ";";
-                            }
-                            else
-                            {
-                                temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "B"] = "";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + "B"] = "";
-                    }
+						temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + classNum.F_ItemCode] = "";
+						if (datas.Where(a => a.F_EqpId == item.F_Id && startTime.AddDays(i) == a.F_Date && a.F_ClassNum == classNum.F_ItemCode).Count() > 0)
+						{
+							var entitys = datas.Where(a => a.F_EqpId == item.F_Id && startTime.AddDays(i) == a.F_Date && a.F_ClassNum == classNum.F_ItemCode).ToList();
+							foreach (var entity in entitys)
+							{
+								if (entity.F_WorkPlanType == 0)
+								{
+									temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + classNum.F_ItemCode] += entity.F_MaterialName + ",计划数量" + entity.F_PlanNum + ",实际数量" + entity.F_DoneNum + ";";
+								}
+								else
+								{
+									temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + classNum.F_ItemCode] = "";
+								}
+							}
+						}
+						else
+						{
+							temp[startTime.AddDays(i).ToString("yyyy/MM/dd") + classNum.F_ItemCode] = "";
+						}
+					}
                 }
 
                 data.Add(temp);
@@ -115,8 +104,10 @@ namespace WaterCloud.Service.ProcessManage
             var cols = new List<string>();
             for (int i = 0; i < CountDay; i++)
             {
-                cols.Add(startTime.AddDays(i).ToString("yyyy/MM/dd") + "A");
-                cols.Add(startTime.AddDays(i).ToString("yyyy/MM/dd") + "B");
+                foreach (var classNum in classNums)
+                {
+                    cols.Add(startTime.AddDays(i).ToString("yyyy/MM/dd") + classNum.F_ItemCode);
+                }
             }
             return new
             {
@@ -369,17 +360,39 @@ namespace WaterCloud.Service.ProcessManage
                 entity.F_MaterialId = item.F_MaterialId;
                 entity.F_WorkOrderCode = "WC_" + DateTime.Now.ToString("yyyyMMddHHmmss") + i;
                 entity.F_SplitType = 0;
-                if (classnum == "A")
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+				var tempEndTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[1]).TotalMinutes;
+                if (classNums.Count() == 1)
                 {
-                    entity.F_PlanStartTime = now.AddHours(8);
-                    entity.F_PlanEndTime = now.AddHours(20);
+                    entity.F_PlanStartTime = now.AddMinutes(tempStartTime);
+                    entity.F_PlanEndTime = now.AddMinutes(tempEndTime);
                 }
                 else
                 {
-                    entity.F_PlanStartTime = now.AddHours(20);
-                    entity.F_PlanEndTime = now.AddHours(32);
+                    tempEndTime = tempStartTime;
+                    for (int j = 0; j < classNums.Count(); j++)
+                    {
+                        var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+                        var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+                        if (endTime > startTime)
+                        {
+                            tempEndTime += endTime - startTime;
+                        }
+                        else
+                        {
+                            tempEndTime += endTime + 24 * 60 - startTime;
+                        }
+                        if (classNums[j].F_ItemCode == classnum)
+                        {
+                            entity.F_PlanStartTime = now.AddMinutes(tempStartTime);
+                            entity.F_PlanEndTime = now.AddMinutes(tempEndTime);
+                            break;
+                        }
+                        tempStartTime = tempEndTime;
+                    }
                 }
-                entity.F_WorkPlanId = item.F_Id;
+				entity.F_WorkPlanId = item.F_Id;
                 entitys.Add(entity);
                 var detail = new WorkOrderDetailEntity();
                 detail.Create();
@@ -451,17 +464,39 @@ namespace WaterCloud.Service.ProcessManage
                 entity.F_MaterialId = item.F_MaterialId;
                 entity.F_WorkOrderCode = "WC_"+DateTime.Now.ToString("yyyyMMddHHmmss")+i;
                 entity.F_SplitType = 0;
-                if (classnum == "A")
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+				var tempEndTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[1]).TotalMinutes;
+                if (classNums.Count() == 1)
                 {
-                    entity.F_PlanStartTime = now.AddHours(8);
-                    entity.F_PlanEndTime = now.AddHours(20);
+					entity.F_PlanStartTime = now.AddMinutes(tempStartTime);
+					entity.F_PlanEndTime = now.AddMinutes(tempEndTime);
                 }
                 else
                 {
-                    entity.F_PlanStartTime = now.AddHours(20);
-                    entity.F_PlanEndTime = now.AddHours(32);
+					tempEndTime = tempStartTime;
+					for (int j = 0; j < classNums.Count(); j++)
+                    {
+                        var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+                        var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+                        if (endTime > startTime)
+                        {
+                            tempEndTime += endTime - startTime;
+                        }
+                        else
+                        {
+                            tempEndTime += endTime + 24 * 60 - startTime;
+                        }
+                        if (classNums[j].F_ItemCode == classnum)
+                        {
+                            entity.F_PlanStartTime = now.AddMinutes(tempStartTime);
+                            entity.F_PlanEndTime = now.AddMinutes(tempEndTime);
+                            break;
+                        }
+                        tempStartTime = tempEndTime;
+                    }
                 }
-                entity.F_WorkPlanId = item.F_Id;
+				entity.F_WorkPlanId = item.F_Id;
                 entitys.Add(entity);
                 var detail = new WorkOrderDetailEntity();
                 detail.Create();
@@ -563,16 +598,38 @@ namespace WaterCloud.Service.ProcessManage
                 order.F_MaterialId = item.F_MaterialId;
                 order.F_WorkOrderCode = "WC_" + DateTime.Now.ToString("yyyyMMddHHmmss") + i;
                 order.F_SplitType = 0;
-                if (classnum == "A")
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var tempStartTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[0]).TotalMinutes;
+				var tempEndTime = TimeSpan.Parse(classNums[0].F_Description.Split("-")[1]).TotalMinutes;
+                if (classNums.Count() == 1)
                 {
-                    order.F_PlanStartTime = now.AddHours(8);
-                    order.F_PlanEndTime = now.AddHours(20);
-                }
+					order.F_PlanStartTime = now.AddMinutes(tempStartTime);
+					order.F_PlanEndTime = now.AddMinutes(tempEndTime);
+				}
                 else
                 {
-                    order.F_PlanStartTime = now.AddHours(20);
-                    order.F_PlanEndTime = now.AddHours(32);
-                }
+					tempEndTime = tempStartTime;
+					for (int j = 0; j < classNums.Count(); j++)
+					{
+						var startTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[0]).TotalMinutes;
+						var endTime = TimeSpan.Parse(classNums[j].F_Description.Split("-")[1]).TotalMinutes;
+						if (endTime > startTime)
+						{
+							tempEndTime += endTime - startTime;
+						}
+						else
+						{
+							tempEndTime += endTime + 24 * 60 - startTime;
+						}
+						if (classNums[j].F_ItemCode == classnum)
+						{
+							order.F_PlanStartTime = now.AddMinutes(tempStartTime);
+							order.F_PlanEndTime = now.AddMinutes(tempEndTime);
+							break;
+						}
+						tempStartTime = tempEndTime;
+					}
+				}
                 order.F_WorkPlanId = item.F_Id;
                 entitys.Add(order);
                 var detail = new WorkOrderDetailEntity();

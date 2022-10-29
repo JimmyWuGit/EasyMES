@@ -11,6 +11,7 @@ using WaterCloud.Service.MaterialManage;
 using System.Net.Http;
 using WaterCloud.Domain.EquipmentManage;
 using WaterCloud.Domain.SystemSecurity;
+using WaterCloud.Service.SystemManage;
 
 namespace WaterCloud.Service.PlanManage
 {
@@ -22,10 +23,12 @@ namespace WaterCloud.Service.PlanManage
     public class OrderService : DataFilterService<OrderEntity>, IDenpendency
     {
         private StorageService storageApp;
-        public OrderService(IDbContext context, IHttpClientFactory httpClientFactory) : base(context)
+        private ItemsDataService itemsApp;
+		public OrderService(IDbContext context, IHttpClientFactory httpClientFactory) : base(context)
         {
             storageApp = new StorageService(context, httpClientFactory);
-        }
+			itemsApp = new ItemsDataService(context);
+		}
         #region 获取数据
         public async Task<List<OrderEntity>> GetList(string keyword = "")
         {
@@ -54,7 +57,7 @@ namespace WaterCloud.Service.PlanManage
         public async Task<List<MaterialEntity>> GetMaterialList(string keyword)
         {
             //获取数据权限
-            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false && a.F_EnabledMark==true && a.F_MaterialType == 2);
+            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false && a.F_EnabledMark==true && a.F_MaterialType >0);
             if (!string.IsNullOrEmpty(keyword))
             {
                 list = list.Where(t => t.F_MaterialCode.Contains(keyword) || t.F_MaterialName.Contains(keyword));
@@ -255,9 +258,13 @@ namespace WaterCloud.Service.PlanManage
             var orderIds = ordernotes.Select(a => a.F_Id).ToList();
             //获取当前天
             DateTime currentdate = DateTime.Now.Date;
-            if (DateTime.Now.Hour<8)
-            {
-                currentdate = currentdate.AddDays(-1);
+			//班别
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]);
+			var currentTime = DateTime.Now.TimeOfDay;
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
+			{
+				currentdate = currentdate.AddDays(-1);
             }
             //到期的订单先结案
             var overnote = ordernotes.Where(a => a.F_PlanEndTime == DateTime.Now.Date.AddDays(-1)).FirstOrDefault();
@@ -331,17 +338,25 @@ namespace WaterCloud.Service.PlanManage
             //今天的计划加进计划库存中
             var tempinplan = inPlans.Where(a => a.F_PlanTime < currentdate.AddDays(1) && a.F_InStorageState <= 2).ToList();
             var tempoutplan = outPlans.Where(a => a.F_PlanTime < currentdate.AddDays(1) && a.F_OutStorageState <= 2).ToList();
-            if (DateTime.Now.Hour < 8)
+			if (TimeSpan.Compare(currentTime, classStartTime) < 0)
             {
                 tempinplan = inPlans.Where(a => a.F_PlanTime < currentdate.AddDays(2) && a.F_InStorageState <= 2).ToList();
                 tempoutplan = outPlans.Where(a => a.F_PlanTime < currentdate.AddDays(2) && a.F_OutStorageState <= 2).ToList();
             }
             var tempproduceplan = producePlans.Where(a => a.F_Date >= currentdate && a.F_Date < currentdate.AddDays(1)).ToList();
-            if (DateTime.Now.Hour < 8 || DateTime.Now.Hour >= 20)
-            {
-                tempproduceplan = producePlans.Where(a => a.F_Date == currentdate && a.F_ClassNum == "B").ToList();
-            }
-            foreach (var item in tempinplan)
+			for (int i = 0; i < classNums.Count(); i++)
+			{
+				var tempStartTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[0]);
+				var tempEndTime = TimeSpan.Parse(classNums[i].F_Description.Split("-")[1]);
+				if (TimeSpan.Compare(currentTime, tempStartTime) > 0 && TimeSpan.Compare(tempEndTime, currentTime) > 0)
+				{
+					for (int j = 0; j < i; j++)
+					{
+						tempproduceplan = tempproduceplan.Where(a => a.F_ClassNum != classNums[j].F_ItemCode).ToList();
+					}
+				}
+			}
+			foreach (var item in tempinplan)
             {
                 var temp = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
                 temp.F_Num += item.F_Num - item.F_DoneNum;
@@ -481,250 +496,132 @@ namespace WaterCloud.Service.PlanManage
                 {
                     break;
                 }
-                //制定生产计划 白班
-                //根据订单产品获取需要生产的设备
-                var products = needMaterials.Where(a => a.F_MaterialType > 0 && a.F_Num > 0).Select(a => a.F_Id).ToList();
-                //人为修改的生产计划
-                var peopleProduceA = peopleProduce.Where(a => a.F_Date == lasterDate.AddDays(i) && a.F_ClassNum == "A" && a.F_IsUserEdit == true).ToList();
-                var peopleProduceIds = peopleProduceA.Select(a => a.F_EqpId).ToList();
-                var eqpbanding = eqpbandings.Where(a => products.Contains(a.F_MaterialId)).ToList();
-                //订单需要的并且不满足安全库存的优先生产
-                List<WorkPlanEntity> halfPlans = new List<WorkPlanEntity>();
-                foreach (var item in eqpbanding)
+                foreach (var classNum in classNums)
                 {
-                    //增加人为修改的部分
-                    var peopleProducetemp = peopleProduceA.Where(a => a.F_EqpId == item.F_EqpId && a.F_MaterialId == item.F_MaterialId).FirstOrDefault();
-                    var produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
-                    if (peopleProducetemp != null)
-                    {
-                        produceStorage.F_Num += peopleProducetemp.F_PlanNum;
-                        var tempBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                        var tempBomIds = tempBoms.Select(a => a.F_SonMaterialId).ToList();
-                        var tempcurrentStorages = currentStorages.Where(a => tempBomIds.Contains(a.F_Id)).ToList();
-                        foreach (var thisStorage in tempcurrentStorages)
-                        {
-                            var thisBom = tempBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                            thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
-                        }
-                        halfPlans.Add(peopleProducetemp);
-                    }
-                    if (halfPlans.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0 || peopleProduceA.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0)
-                    {
-                        continue;
-                    }
-                    //对比独立生产的物料，库存小于安全库存，库存大于安全库存，以最少的为准
-                    bool firstProduce = true;
-                    //安全库存需要
-                    List<string> warms = new List<string>();
-                    //订单库存需要
-                    List<string> orders = new List<string>();
-                    foreach (var banding in eqpbanding.Where(a => a.F_EqpId == item.F_EqpId))
-                    {
-                        var warmMaterial = warmMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        var orderMaterial = orderMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        if (orderMaterial == null)
-                        {
-                            continue;
-                        }
-                        var storage = currentStorages.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        var itemBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                        var itemBomIds = itemBoms.Select(a => a.F_SonMaterialId).ToList();
-                        var itemStorages = currentStorages.Where(a => itemBomIds.Contains(a.F_Id)).ToList();
-                        bool isproduce = true;
-                        foreach (var thisStorage in itemStorages)
-                        {
-                            var thisBom = itemBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                            if (thisStorage.F_MaterialType == 1 && thisStorage.F_Num < item.F_Num * thisBom.F_Num)
-                            {
-                                isproduce = false;
-                            }
-                        }
-                        if (isproduce == true)
-                        {
-                            if (storage.F_Num < warmMaterial.F_WarmNum)
-                            {
-                                warms.Add(banding.F_MaterialId);
-                            }
-                            if (storage.F_Num < orderMaterial.F_Num)
-                            {
-                                orders.Add(banding.F_MaterialId);
-                            }
-                        }
-                    }
-                    if (!orders.Contains(item.F_MaterialId) && orders.Count() > 0)
-                    {
-                        firstProduce = false;
-                    }
-                    if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && !warms.Contains(item.F_MaterialId) && warms.Count() > 0)
-                    {
-                        firstProduce = false;
-                    }
-                    if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && warms.Contains(item.F_MaterialId) && warms.Count() > 1)
-                    {
-                        var storage = currentStorages.Where(a => warms.Contains(a.F_Id)).OrderBy(a => a.F_Num).FirstOrDefault();
-                        if (storage.F_Id != item.F_MaterialId)
-                        {
-                            firstProduce = false;
-                        }
-                    }
-                    if (firstProduce == false)
-                    {
-                        continue;
-                    }
-                    var thisBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                    var thisBomIds = thisBoms.Select(a => a.F_SonMaterialId).ToList();
-                    var thisStorages = currentStorages.Where(a => thisBomIds.Contains(a.F_Id)).ToList();
-                    foreach (var thisStorage in thisStorages)
-                    {
-                        var thisBom = thisBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                        thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
-                    }
-                    WorkPlanEntity workplan = new WorkPlanEntity();
-                    workplan.Create();
-                    workplan.F_ClassNum = "A";
-                    workplan.F_Date = lasterDate.AddDays(i);
-                    workplan.F_DoneNum = 0;
-                    workplan.F_PlanNum = item.F_Num;
-                    workplan.F_WorkPlanType = 0;
-                    workplan.F_MaterialId = item.F_MaterialId;
-                    workplan.F_EqpId = item.F_EqpId;
-                    workplan.F_EqpName = item.F_EqpName;
-                    workplan.F_EnabledMark = true;
-                    workplan.F_IsUserEdit = false;
-                    workplan.F_DeleteMark = false;
-                    workPlans.Add(workplan);
-                    if (item.F_ProduceType == 0)
-                    {
-                        halfPlans.Add(workplan);
-                    }
-                    //增加当前库存
-                    produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
-                    produceStorage.F_Num += item.F_Num;
-                    //扣减需求当前库存
-                    var needMaterial = needMaterials.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
-                    needMaterial.F_Num -= item.F_Num;
-                }
-                //半成品生产、
-                //根据订单产品获取需要生产的设备
-                //制定生产计划 夜班
-                halfPlans = new List<WorkPlanEntity>();
-                //人为修改的生产计划
-                var peopleProduceB = peopleProduce.Where(a => a.F_Date == lasterDate.AddDays(i) && a.F_ClassNum == "B" && a.F_IsUserEdit == true).ToList();
-                peopleProduceIds = peopleProduceB.Select(a => a.F_EqpId).ToList();
-                products = needMaterials.Where(a => a.F_MaterialType > 0 && a.F_Num > 0).Select(a => a.F_Id).ToList();
-                eqpbanding = eqpbandings.Where(a => products.Contains(a.F_MaterialId)).ToList();
-                //订单需要的并且不满足安全库存的优先生产
-                foreach (var item in eqpbanding)
-                {
-                    //增加人为修改的库存
-                    var peopleProducetemp = peopleProduceB.Where(a => a.F_EqpId == item.F_EqpId && a.F_MaterialId == item.F_MaterialId).FirstOrDefault();
-                    var produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
-                    if (peopleProducetemp != null)
-                    {
-                        produceStorage.F_Num += peopleProducetemp.F_PlanNum;
-                        var tempBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                        var tempBomIds = tempBoms.Select(a => a.F_SonMaterialId).ToList();
-                        var tempcurrentStorages = currentStorages.Where(a => tempBomIds.Contains(a.F_Id)).ToList();
-                        foreach (var thisStorage in tempcurrentStorages)
-                        {
-                            var thisBom = tempBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                            thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
-                        }
-                        halfPlans.Add(peopleProducetemp);
-                    }
-                    if (halfPlans.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0 || peopleProduceB.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0)
-                    {
-                        continue;
-                    }
-                    //对比独立生产的物料，库存小于安全库存，库存大于安全库存，以最少的为准
-                    bool firstProduce = true;
-                    //安全库存需要
-                    List<string> warms = new List<string>();
-                    //订单库存需要
-                    List<string> orders = new List<string>();
-                    foreach (var banding in eqpbanding.Where(a => a.F_EqpId == item.F_EqpId))
-                    {
-                        var warmMaterial = warmMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        var orderMaterial = orderMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        if (orderMaterial == null)
-                        {
-                            continue;
-                        }
-                        var storage = currentStorages.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
-                        var itemBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                        var itemBomIds = itemBoms.Select(a => a.F_SonMaterialId).ToList();
-                        var itemStorages = currentStorages.Where(a => itemBomIds.Contains(a.F_Id)).ToList();
-                        bool isproduce = true;
-                        foreach (var thisStorage in itemStorages)
-                        {
-                            var thisBom = itemBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                            if (thisStorage.F_MaterialType == 1 && thisStorage.F_Num < item.F_Num * thisBom.F_Num)
-                            {
-                                isproduce = false;
-                            }
-                        }
-                        if (isproduce == true)
-                        {
-                            if (storage.F_Num < warmMaterial.F_WarmNum)
-                            {
-                                warms.Add(banding.F_MaterialId);
-                            }
-                            if (storage.F_Num < orderMaterial.F_Num)
-                            {
-                                orders.Add(banding.F_MaterialId);
-                            }
-                        }
-                    }
-                    if (!orders.Contains(item.F_MaterialId) && orders.Count() > 0)
-                    {
-                        firstProduce = false;
-                    }
-                    if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && !warms.Contains(item.F_MaterialId) && warms.Count() > 0)
-                    {
-                        firstProduce = false;
-                    }
-                    if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && warms.Contains(item.F_MaterialId) && warms.Count() > 1)
-                    {
-                        var storage = currentStorages.Where(a => warms.Contains(a.F_Id)).OrderBy(a => a.F_Num).FirstOrDefault();
-                        if (storage.F_Id != item.F_MaterialId)
-                        {
-                            firstProduce = false;
-                        }
-                    }
-                    if (firstProduce == false)
-                    {
-                        continue;
-                    }
-                    var thisBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
-                    var thisBomIds = thisBoms.Select(a => a.F_SonMaterialId).ToList();
-                    var thisStorages = currentStorages.Where(a => thisBomIds.Contains(a.F_Id)).ToList();
-                    foreach (var thisStorage in thisStorages)
-                    {
-                        var thisBom = thisBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
-                        thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
-                    }
-                    WorkPlanEntity workplan = new WorkPlanEntity();
-                    workplan.Create();
-                    workplan.F_Date = lasterDate.AddDays(i);
-                    workplan.F_ClassNum = "B";
-                    workplan.F_DoneNum = 0;
-                    workplan.F_PlanNum = item.F_Num;
-                    workplan.F_WorkPlanType = 0;
-                    workplan.F_MaterialId = item.F_MaterialId;
-                    workplan.F_EqpId = item.F_EqpId;
-                    workplan.F_EqpName = item.F_EqpName;
-                    workplan.F_EnabledMark = true;
-                    workplan.F_IsUserEdit = false;
-                    workplan.F_DeleteMark = false;
-                    workPlans.Add(workplan);
-                    if (item.F_ProduceType == 0)
-                    {
-                        halfPlans.Add(workplan);
-                    }
-                    //增加当前库存
-                    produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
-                    produceStorage.F_Num += item.F_Num;
-                }
+					//制定生产计划 白班
+					//根据订单产品获取需要生产的设备
+					var products = needMaterials.Where(a => a.F_MaterialType > 0 && a.F_Num > 0).Select(a => a.F_Id).ToList();
+					//人为修改的生产计划
+					var peopleProduceClass = peopleProduce.Where(a => a.F_Date == lasterDate.AddDays(i) && a.F_ClassNum == classNum.F_ItemCode && a.F_IsUserEdit == true).ToList();
+					var peopleProduceIds = peopleProduceClass.Select(a => a.F_EqpId).ToList();
+					var eqpbanding = eqpbandings.Where(a => products.Contains(a.F_MaterialId)).ToList();
+					//订单需要的并且不满足安全库存的优先生产
+					List<WorkPlanEntity> halfPlans = new List<WorkPlanEntity>();
+					foreach (var item in eqpbanding)
+					{
+						//增加人为修改的部分
+						var peopleProducetemp = peopleProduceClass.Where(a => a.F_EqpId == item.F_EqpId && a.F_MaterialId == item.F_MaterialId).FirstOrDefault();
+						var produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
+						if (peopleProducetemp != null)
+						{
+							produceStorage.F_Num += peopleProducetemp.F_PlanNum;
+							var tempBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
+							var tempBomIds = tempBoms.Select(a => a.F_SonMaterialId).ToList();
+							var tempcurrentStorages = currentStorages.Where(a => tempBomIds.Contains(a.F_Id)).ToList();
+							foreach (var thisStorage in tempcurrentStorages)
+							{
+								var thisBom = tempBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
+								thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
+							}
+							halfPlans.Add(peopleProducetemp);
+						}
+						if (halfPlans.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0 || peopleProduceClass.Where(a => a.F_EqpId == item.F_EqpId).Count() > 0)
+						{
+							continue;
+						}
+						//对比独立生产的物料，库存小于安全库存，库存大于安全库存，以最少的为准
+						bool firstProduce = true;
+						//安全库存需要
+						List<string> warms = new List<string>();
+						//订单库存需要
+						List<string> orders = new List<string>();
+						foreach (var banding in eqpbanding.Where(a => a.F_EqpId == item.F_EqpId))
+						{
+							var warmMaterial = warmMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
+							var orderMaterial = orderMaterials.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
+							if (orderMaterial == null)
+							{
+								continue;
+							}
+							var storage = currentStorages.Where(a => a.F_Id == banding.F_MaterialId).FirstOrDefault();
+							var itemBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
+							var itemBomIds = itemBoms.Select(a => a.F_SonMaterialId).ToList();
+							var itemStorages = currentStorages.Where(a => itemBomIds.Contains(a.F_Id)).ToList();
+							bool isproduce = true;
+							foreach (var thisStorage in itemStorages)
+							{
+								var thisBom = itemBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
+								if (thisStorage.F_MaterialType == 1 && thisStorage.F_Num < item.F_Num * thisBom.F_Num)
+								{
+									isproduce = false;
+								}
+							}
+							if (isproduce == true)
+							{
+								if (storage.F_Num < warmMaterial.F_WarmNum)
+								{
+									warms.Add(banding.F_MaterialId);
+								}
+								if (storage.F_Num < orderMaterial.F_Num)
+								{
+									orders.Add(banding.F_MaterialId);
+								}
+							}
+						}
+						if (!orders.Contains(item.F_MaterialId) && orders.Count() > 0)
+						{
+							firstProduce = false;
+						}
+						if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && !warms.Contains(item.F_MaterialId) && warms.Count() > 0)
+						{
+							firstProduce = false;
+						}
+						if (orders.Contains(item.F_MaterialId) && orders.Count() > 1 && warms.Contains(item.F_MaterialId) && warms.Count() > 1)
+						{
+							var storage = currentStorages.Where(a => warms.Contains(a.F_Id)).OrderBy(a => a.F_Num).FirstOrDefault();
+							if (storage.F_Id != item.F_MaterialId)
+							{
+								firstProduce = false;
+							}
+						}
+						if (firstProduce == false)
+						{
+							continue;
+						}
+						var thisBoms = allBoms.Where(a => a.F_MaterialId == item.F_MaterialId).ToList();
+						var thisBomIds = thisBoms.Select(a => a.F_SonMaterialId).ToList();
+						var thisStorages = currentStorages.Where(a => thisBomIds.Contains(a.F_Id)).ToList();
+						foreach (var thisStorage in thisStorages)
+						{
+							var thisBom = thisBoms.Where(a => a.F_SonMaterialId == thisStorage.F_Id).FirstOrDefault();
+							thisStorage.F_Num -= item.F_Num * thisBom.F_Num;
+						}
+						WorkPlanEntity workplan = new WorkPlanEntity();
+						workplan.Create();
+						workplan.F_ClassNum = classNum.F_ItemCode;
+						workplan.F_Date = lasterDate.AddDays(i);
+						workplan.F_DoneNum = 0;
+						workplan.F_PlanNum = item.F_Num;
+						workplan.F_WorkPlanType = 0;
+						workplan.F_MaterialId = item.F_MaterialId;
+						workplan.F_EqpId = item.F_EqpId;
+						workplan.F_EqpName = item.F_EqpName;
+						workplan.F_EnabledMark = true;
+						workplan.F_IsUserEdit = false;
+						workplan.F_DeleteMark = false;
+						workPlans.Add(workplan);
+						if (item.F_ProduceType == 0)
+						{
+							halfPlans.Add(workplan);
+						}
+						//增加当前库存
+						produceStorage = currentStorages.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
+						produceStorage.F_Num += item.F_Num;
+						//扣减需求当前库存
+						var needMaterial = needMaterials.Where(a => a.F_Id == item.F_MaterialId).FirstOrDefault();
+						needMaterial.F_Num -= item.F_Num;
+					}
+				}
                 if (lasterDate.AddDays(i - 1) >= DateTime.Now.Date)
                 {
                     //制定采购计划

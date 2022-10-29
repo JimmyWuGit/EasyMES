@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.RunMonitor.Controllers
     /// 描 述：看板账户控制器类
     /// </summary>
     [Area("RunMonitor")]
-    public class BoardAccountController :  ControllerBase
+    public class BoardAccountController :  BaseController
     {
         public BoardAccountService _service {get;set;}
 

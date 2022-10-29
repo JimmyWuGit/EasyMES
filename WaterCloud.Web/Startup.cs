@@ -27,6 +27,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
+using WaterCloud.Domain.SystemOrganize;
+using Microsoft.OpenApi.Models;
 
 namespace WaterCloud.Web
 {
@@ -42,11 +44,19 @@ namespace WaterCloud.Web
             GlobalContext.HostingEnvironment = env;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public async void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddSession();
-
+			GlobalContext.SystemConfig = Configuration.GetSection("SystemConfig").Get<SystemConfig>();
+			GlobalContext.Services = services;
+			GlobalContext.Configuration = Configuration;
+			services.AddSwaggerGen(config =>
+			{
+				config.SwaggerDoc("v1", new OpenApiInfo { Title = "WaterCloud Api", Version = "v1" });
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				config.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）                
+			});
+			services.AddSession();
             //代替HttpContext.Current
             services.AddHttpContextAccessor();
             //缓存缓存选择
@@ -120,11 +130,17 @@ namespace WaterCloud.Web
             {
                 // 返回数据首字母不小写，CamelCasePropertyNamesContractResolver是小写
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            });
-            services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
-            services.AddControllersWithViews().AddControllersAsServices();
-            //调试前端可更新
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            }).AddControllersAsServices().AddRazorRuntimeCompilation();
+			services.AddDirectoryBrowser();
+			services.AddControllers(options =>
+			{
+				options.Filters.Add<ModelActionFilter>();
+				options.ModelMetadataDetailsProviders.Add(new ModelBindingMetadataProvider());
+			}).ConfigureApiBehaviorOptions(options =>
+			{
+				options.SuppressModelStateInvalidFilter = true;
+			});
+			services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
             //启用 Gzip 和 Brotil 压缩功能
             services.AddResponseCompression(options =>
             {
@@ -141,9 +157,6 @@ namespace WaterCloud.Web
             });
             services.AddOptions();
             services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(GlobalContext.HostingEnvironment.ContentRootPath + Path.DirectorySeparatorChar + "DataProtection"));
-            GlobalContext.SystemConfig = Configuration.GetSection("SystemConfig").Get<SystemConfig>();
-            GlobalContext.Services = services;
-            GlobalContext.Configuration = Configuration;
             //更新数据库管理员和主系统
             try
             {
@@ -151,12 +164,32 @@ namespace WaterCloud.Web
                 {
                     using (var context = DBContexHelper.Contex())
                     {
-                        var _setService = new Service.SystemOrganize.SystemSetService(context);
-                        Domain.SystemOrganize.SystemSetEntity temp = new Domain.SystemOrganize.SystemSetEntity();
-                        temp.F_AdminAccount = GlobalContext.SystemConfig.SysemUserCode;
-                        temp.F_AdminPassword = GlobalContext.SystemConfig.SysemUserPwd;
-                        _setService.SubmitForm(temp, GlobalContext.SystemConfig.SysemMasterProject).GetAwaiter().GetResult();
-                    }
+						var setentity = context.Query<SystemSetEntity>().FirstOrDefault();
+						context.Session.BeginTransaction();
+						var user = context.Query<UserEntity>().Where(a => a.F_Account == setentity.F_AdminAccount).FirstOrDefault();
+						var userinfo = context.Query<UserLogOnEntity>().Where(a => a.F_UserId == user.F_Id).FirstOrDefault();
+						userinfo.F_UserSecretkey = Md5.md5(Utils.CreateNo(), 16).ToLower();
+						userinfo.F_UserPassword = Md5.md5(DESEncrypt.Encrypt(Md5.md5(GlobalContext.SystemConfig.SysemUserPwd, 32).ToLower(), userinfo.F_UserSecretkey).ToLower(), 32).ToLower();
+						context.Update<UserEntity>(a => a.F_Id == user.F_Id, a => new UserEntity
+						{
+							F_Account = GlobalContext.SystemConfig.SysemUserCode
+						});
+                        var cacheKeyUser = "watercloud_userdata_";
+						await CacheHelper.Remove(cacheKeyUser + user.F_Id);
+						await context.UpdateAsync<UserLogOnEntity>(a => a.F_Id == userinfo.F_Id, a => new UserLogOnEntity
+						{
+							F_UserPassword = userinfo.F_UserPassword,
+							F_UserSecretkey = userinfo.F_UserSecretkey
+						});
+						await context.UpdateAsync<SystemSetEntity>(a => a.F_Id == userinfo.F_Id, a => new SystemSetEntity
+						{
+							F_AdminAccount = GlobalContext.SystemConfig.SysemUserCode,
+							F_AdminPassword = GlobalContext.SystemConfig.SysemUserPwd
+						});
+						context.Session.CommitTransaction();
+						var cacheKeyOperator = "watercloud_operator_";// +登录者token
+						await CacheHelper.Remove(cacheKeyOperator + "info_" + user.F_Id);
+					}
                 }
             }
             catch (Exception ex)
@@ -179,17 +212,6 @@ namespace WaterCloud.Web
             builder.RegisterAssemblyTypes(typeof(Program).Assembly)
             .Where(t => controllerBaseType.IsAssignableFrom(t) && t != controllerBaseType)
             .PropertiesAutowired();
-
-            ////注入redis
-            //if (Configuration.GetSection("SystemConfig:CacheProvider").Value== Define.CACHEPROVIDER_REDIS)
-            //{
-            //    //redis 注入服务
-            //    string redisConnectiong = Configuration.GetSection("SystemConfig:RedisConnectionString").Value;
-            //    // 多客户端
-            //    var redisDB = new CSRedisClient(redisConnectiong + ",defaultDatabase=" + 0);
-            //    RedisHelper.Initialization(redisDB);
-            //    builder.RegisterInstance(redisDB).SingleInstance();//生命周期只能单例
-            //}
             //注册html解析
             builder.RegisterInstance(HtmlEncoder.Create(UnicodeRanges.All)).SingleInstance();
             //注册特性
@@ -197,13 +219,15 @@ namespace WaterCloud.Web
             builder.RegisterType(typeof(HandlerAuthorizeAttribute)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(HandlerAdminAttribute)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(HandlerLockAttribute)).InstancePerLifetimeScope();
-            ////注册ue编辑器
-            //Config.ConfigFile = "config.json";
-            //Config.noCache = true;
-            //var actions = new UEditorActionCollection();
-            //builder.RegisterInstance(actions).SingleInstance();
-            //builder.RegisterInstance(typeof(UEditorService)).SingleInstance();
-        }
+			//ControllerBase中使用属性注入
+			controllerBaseType = typeof(ControllerBase);
+			builder.RegisterAssemblyTypes(typeof(Program).Assembly)
+			.Where(t => controllerBaseType.IsAssignableFrom(t) && t != controllerBaseType)
+			.PropertiesAutowired();
+			//注册特性
+			builder.RegisterType(typeof(AuthorizeFilterAttribute)).InstancePerLifetimeScope();
+			builder.RegisterType(typeof(LoginFilterAttribute)).InstancePerLifetimeScope();
+		}
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
@@ -223,29 +247,7 @@ namespace WaterCloud.Web
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=36000");
                 }
             });
-            //string resource1 = Path.Combine("E:\\", "upload1");
-            //if (!FileHelper.IsExistDirectory(resource1))
-            //{
-            //    FileHelper.CreateFolder(resource1);
-            //}
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(resource1),
-            //    RequestPath = "/upload1",
-            //    OnPrepareResponse = ctx =>
-            //    {
-            //        ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=36000");
-            //    }
-            //});
-            //启用 Gzip 和 Brotil 压缩功能
-            app.UseResponseCompression();
             app.UseCors("CorsPolicy");
-            //虚拟目录 
-            //如需使用，所有URL修改，例："/Home/Index"改成'@Url.Content("~/Home/Index")'，部署访问首页必须带虚拟目录;
-            //if (!string.IsNullOrEmpty(GlobalContext.SystemConfig.VirtualDirectory))
-            //{
-            //    app.UsePathBase(new PathString(GlobalContext.SystemConfig.VirtualDirectory)); // 让 Pathbase 中间件成为第一个处理请求的中间件， 才能正确的模拟虚拟路径
-            //}
             if (WebHostEnvironment.IsDevelopment())
             {
                 //打印sql
@@ -265,17 +267,34 @@ namespace WaterCloud.Web
                 ContentTypeProvider = new CustomerFileExtensionContentTypeProvider(),
                 OnPrepareResponse = GlobalContext.SetCacheControl
             });
-            //session
-            app.UseSession();
-            //路径
-            app.UseRouting();
+			//启用 Gzip 和 Brotil 压缩功能
+			app.UseResponseCompression();
+			app.Use(next => context =>
+			{
+				context.Request.EnableBuffering();
+				return next(context);
+			});
+			app.UseSwagger(c =>
+			{
+				c.RouteTemplate = "api-doc/{documentName}/swagger.json";
+			});
+			app.UseSwaggerUI(c =>
+			{
+				c.RoutePrefix = "api-doc";
+				c.SwaggerEndpoint("v1/swagger.json", "WaterCloud Api v1");
+			});
+			//session
+			app.UseSession();
+			//路径
+			app.UseRouting();
             //MVC路由
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<MessageHub>("/chatHub");
                 endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Login}/{action=Index}/{id?}");
-            });
+				endpoints.MapControllerRoute("api", "api/{controller=ApiHome}/{action=Index}/{id?}");
+			});
             GlobalContext.ServiceProvider = app.ApplicationServices;
         }
     }

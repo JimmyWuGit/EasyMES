@@ -7,6 +7,7 @@ using Chloe;
 using WaterCloud.Domain.EquipmentManage;
 using WaterCloud.Domain.ProcessManage;
 using WaterCloud.Domain.MaterialManage;
+using WaterCloud.Service.SystemManage;
 
 namespace WaterCloud.Service.EquipmentManage
 {
@@ -18,9 +19,11 @@ namespace WaterCloud.Service.EquipmentManage
     public class EquipmentService : DataFilterService<EquipmentEntity>, IDenpendency
     {
         private string cacheKey = "watercloud_equipmentdata_";
-        public EquipmentService(IDbContext context) : base(context)
+		private ItemsDataService itemsApp;
+		public EquipmentService(IDbContext context) : base(context)
         {
-        }
+			itemsApp = new ItemsDataService(context);
+		}
         #region 获取数据
         public async Task<List<EquipmentEntity>> GetList(string keyword = "")
         {
@@ -96,9 +99,21 @@ namespace WaterCloud.Service.EquipmentManage
                 uniwork.BeginTrans();
                 await repository.Update(entity);
                 var list = uniwork.IQueryable<EqpMaterialBandingEntity>(a => a.F_EqpId == keyValue).ToList();
-                foreach (var item in list)
+				var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+				var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]).TotalMinutes;
+				var classEndTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[1]).TotalMinutes;
+                var totalMin = 720;
+                if (classEndTime> classStartTime)
                 {
-                    double v1= (720 - (entity.F_PlanStopTime ?? 0)) *60 * (entity.F_OEE ?? 0);
+                    totalMin = (int)(classEndTime - classStartTime);
+				}
+                else
+                {
+					totalMin = (int)(classEndTime + 24 * 60- classStartTime);
+				}
+				foreach (var item in list)
+                {
+                    double v1= (totalMin - (entity.F_PlanStopTime ?? 0)) *60 * (entity.F_OEE ?? 0);
                     double v2 = (double)entity.F_Beat * 100;
                     item.F_Num = (float)Utils.Round(v1 / v2, 0);
                     if (list.Where(a=>a.F_ProduceType==1).Count()>0 && item.F_ProduceType==1)
@@ -142,7 +157,19 @@ namespace WaterCloud.Service.EquipmentManage
         public async Task SubmitMaterialForm(List<EqpMaterialBandingEntity> listData, string eqpId)
         {
             var eqp = await uniwork.FindEntity<EquipmentEntity>(eqpId);
-            foreach (var item in listData)
+			var classNums = await itemsApp.GetItemList("Mes_ClassNumber");
+			var classStartTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[0]).TotalMinutes;
+			var classEndTime = TimeSpan.Parse(classNums.FirstOrDefault().F_Description.Split("-")[1]).TotalMinutes;
+			var totalMin = 720;
+			if (classEndTime > classStartTime)
+			{
+				totalMin = (int)(classEndTime - classStartTime);
+			}
+			else
+			{
+				totalMin = (int)(classEndTime + 24 * 60 - classStartTime);
+			}
+			foreach (var item in listData)
             {
                 item.F_Id = Utils.GuId();
                 if (item.F_Priority <= 0)
@@ -155,9 +182,9 @@ namespace WaterCloud.Service.EquipmentManage
                 item.F_MaterialName = material.F_MaterialName;
                 item.F_MaterialType = material.F_MaterialType;
                 item.F_MaterialUnit = material.F_MaterialUnit;
-                if (eqp.F_Beat != null && eqp.F_Beat != 0)
+				if (eqp.F_Beat != null && eqp.F_Beat != 0)
                 {
-                    double v1 = (720 - (eqp.F_PlanStopTime ?? 0)) * 60 * (eqp.F_OEE ?? 0);
+                    double v1 = (totalMin - (eqp.F_PlanStopTime ?? 0)) * 60 * (eqp.F_OEE ?? 0);
                     double v2 = (double)eqp.F_Beat * 100;
                     item.F_Num = (float)Utils.Round(v1 / v2, 0);
                     if (listData.Where(a => a.F_ProduceType == 1).Count() > 0 && item.F_ProduceType == 1)

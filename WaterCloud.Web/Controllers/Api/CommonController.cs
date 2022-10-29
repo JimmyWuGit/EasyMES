@@ -11,7 +11,7 @@ using WaterCloud.Service.MaterialManage;
 using WaterCloud.Service.ReportRecord;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     /// <summary>
     /// 常规接口
@@ -20,7 +20,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class CommonController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public EquipmentService _eqpService { get; set; }
@@ -31,18 +31,21 @@ namespace WaterCloud.WebApi.Controllers
         public LocationService _locationService { get; set; }
         public WorkRunService _service { get; set; }
         public ReportRecordService _repService { get; set; }
-        #region 获取数据
-        /// <summary>
-        /// 获取区域列表
-        /// </summary>
-        /// <param name="keyword">关键词</param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<AlwaysResult> GetAreaList([FromQuery] string keyword)
+		#region 获取数据
+		/// <summary>
+		/// 获取区域列表
+		/// </summary>
+		/// <param name="keyword">关键词</param>
+		/// <param name="type">类型</param>
+		/// <returns></returns>
+		[HttpGet]
+        public async Task<AlwaysResult> GetAreaList([FromQuery] string keyword = "", [FromQuery] int? type = null)
         {
             var data = await _areaService.GetList(keyword);
             data=data.Where(a => a.F_EnabledMark == true).OrderBy(a=>a.F_AreaType).ToList();
-            return new AlwaysResult<List<AreaEntity>> { state = ResultType.success.ToString(), data = data };
+            if (type!=null)
+				data = data.Where(a => a.F_AreaType == type).ToList();
+			return new AlwaysResult<List<AreaEntity>> { state = ResultType.success.ToString(), data = data };
         }
         /// <summary>
         /// 获取物料列表

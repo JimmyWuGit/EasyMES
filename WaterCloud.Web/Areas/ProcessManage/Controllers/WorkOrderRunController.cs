@@ -15,7 +15,7 @@ namespace WaterCloud.Web.Areas.ProcessManage.Controllers
     /// 描 述：工单执行控制器类
     /// </summary>
     [Area("ProcessManage")]
-    public class WorkOrderRunController :  ControllerBase
+    public class WorkOrderRunController :  BaseController
     {
         public WorkOrderRunService _service {get;set;}
 

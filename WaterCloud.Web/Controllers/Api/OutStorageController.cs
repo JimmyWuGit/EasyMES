@@ -9,7 +9,7 @@ using WaterCloud.Domain.MaterialManage;
 using WaterCloud.Service.MaterialManage;
 using WaterCloud.Service.SystemSecurity;
 
-namespace WaterCloud.WebApi.Controllers
+namespace WaterCloud.Web.Controllers
 {
     /// <summary>
     /// 出库接口
@@ -18,7 +18,7 @@ namespace WaterCloud.WebApi.Controllers
     [ApiController]
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class OutStorageController : ControllerBase
-    {
+	{
         //自动注入服务
         public LogService _logService { get; set; }
         public OutStorageService _service { get; set; }

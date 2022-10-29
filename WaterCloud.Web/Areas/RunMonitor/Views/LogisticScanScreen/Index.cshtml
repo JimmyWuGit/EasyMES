@@ -352,7 +352,8 @@
                         materialhtml10 += '<p>数量:' + totalJob[index].F_NeedNum + '</p>';
                         materialhtml10 += '<div class="boxfoot"></div>';
                         $('#material').html(materialhtml10);
-                        GetUseLocation("", totalJob[index].F_MaterialCode, "", "原材料仓库", "GetUseLocation");
+                        var areacode = GetArea();
+                        GetUseLocation("", totalJob[index].F_MaterialCode, "", areacode, "GetUseLocation");
                         break;
 
                     default:
@@ -364,7 +365,22 @@
 
 
         })
-
+        function GetArea() {
+            layui.use(['common'], function () {
+                let common = layui.common;
+                common.ajax({
+                    url: '/RunMonitor/LogisticScanScreen/GetAreaList',
+                    dataType: "json",
+                    data: { type:0 },
+                    async: false,
+                    success: function (data) {
+                        if (!!data) {
+                            return data[0].F_AreaCode;
+                        }
+                    }
+                })
+            })
+        }
         function GetUseMaterial(eqpName) {
             let mathtml = '';
             let transferhtml = '';

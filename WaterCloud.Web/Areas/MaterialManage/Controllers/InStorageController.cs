@@ -17,7 +17,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：入库管理控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class InStorageController :  ControllerBase
+    public class InStorageController :  BaseController
     {
         public InStorageService _service {get;set;}
         [HttpGet]

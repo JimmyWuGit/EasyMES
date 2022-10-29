@@ -20,7 +20,7 @@ namespace WaterCloud.Web.Areas.MaterialManage.Controllers
     /// 描 述：库位管理控制器类
     /// </summary>
     [Area("MaterialManage")]
-    public class LocationController :  ControllerBase
+    public class LocationController :  BaseController
     {
         public LocationService _service {get;set;}
 

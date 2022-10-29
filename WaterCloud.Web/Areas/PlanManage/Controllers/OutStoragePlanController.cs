@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.PlanManage.Controllers
     /// 描 述：交付计划控制器类
     /// </summary>
     [Area("PlanManage")]
-    public class OutStoragePlanController :  ControllerBase
+    public class OutStoragePlanController :  BaseController
     {
         public OutStoragePlanService _service {get;set;}
 

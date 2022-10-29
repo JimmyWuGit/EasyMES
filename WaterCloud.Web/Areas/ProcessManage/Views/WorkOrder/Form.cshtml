@@ -23,6 +23,10 @@
             , format: 'yyyy/MM/dd',
         });
         $(function () {
+            $("#classNum").bindSelect({
+                data: top.clients.dataItems['Mes_ClassNumber'],
+                id: "",
+            });
             if (!!keyValue) {
                 common.ajax({
                     url: '/ProcessManage/WorkOrder/GetFormJson',
@@ -337,8 +341,6 @@
                         <label class="layui-form-label required">班别</label>
                         <div class="layui-input-block">
                             <select id="classNum" lay-verify="required" name="classNum">
-                                <option value="A" selected>白班</option>
-                                <option value="B">夜班</option>
                             </select>
                         </div>
                     </div>

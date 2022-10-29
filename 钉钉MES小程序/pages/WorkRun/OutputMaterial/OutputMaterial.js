@@ -90,18 +90,10 @@ Page({
         }
         else
         {
-            if(new Date().getHours()>20)
-            {
-              materialBatch = res.data.data[0].F_BatchPrefix +"-"+  +(Number(until.formatTime(new Date(),"yyMMDD"))-1) +"B";
-            }
-            else if(new Date().getHours()<8)
-            {
-              materialBatch = res.data.data[0].F_BatchPrefix +"-"+  + until.formatTime(new Date().setDate(new Date().getDate()-1),"yyMMDD")+"B";
-            }
-            else
-            {
-              materialBatch = res.data.data[0].F_BatchPrefix +"-"+  + until.formatTime(new Date(),"yyMMDD")+"A";
-            }
+          var api=encodeURI("/api/WorkRun/GetBatch");
+          myRequest.get(api).then((resit) =>{
+            materialBatch=resit
+          })
         }
         that.setData({
           objectArray: res.data.data,

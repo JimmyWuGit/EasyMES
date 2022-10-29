@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.EquipmentManage.Controllers
     /// 描 述：模具物料绑定控制器类
     /// </summary>
     [Area("EquipmentManage")]
-    public class EqpUserController :  ControllerBase
+    public class EqpUserController :  BaseController
     {
         public EqpUserService _service {get;set;}
 

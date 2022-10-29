@@ -14,7 +14,7 @@ namespace WaterCloud.Web.Areas.DingTalkManage.Controllers
     /// 描 述：应用配置控制器类
     /// </summary>
     [Area("DingTalkManage")]
-    public class DingTalkConfigController :  ControllerBase
+    public class DingTalkConfigController :  BaseController
     {
         public DingTalkConfigService _service {get;set;}
 

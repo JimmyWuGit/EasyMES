@@ -14,7 +14,7 @@ using System;
 namespace WaterCloud.Web.Areas.ReportRecord.Controllers
 {
     [Area("ReportRecord")]
-    public class AllBadStorageReportController : ControllerBase
+    public class AllBadStorageReportController : BaseController
     {
         public ReportRecordService _service { get; set; }
         [HandlerAjaxOnly]
