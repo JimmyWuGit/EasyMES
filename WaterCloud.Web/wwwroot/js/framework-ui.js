@@ -206,6 +206,29 @@ $.fn.bindRadio = function (options) {
     }
 }
 // 时间格式方法
+Date.prototype.SmallFormat = function (fmt) {
+    fmt = fmt || 'YYYY-MM-DD hh:mm:ss';
+    var obj = {
+        'Y': this.getFullYear(),
+        'y': Number(this.getFullYear().toString().substring(2)),
+        'M': this.getMonth() + 1,
+        'D': this.getDate(),
+        'w': this.getDay(),
+        'h': this.getHours(),
+        'm': this.getMinutes(),
+        's': this.getSeconds(),
+    }, week = ['日', '一', '二', '三', '四', '五', '六'];
+    for (var i in obj) {
+        fmt = fmt.replace(new RegExp(i + '+', 'g'), function (e) {
+            var itemStr = obj[i] + '';
+            if (i == 'w') return (e.length > 2 ? '星期' : '周') + week[itemStr];
+            for (var j = 0, len = itemStr.length; j < e.length - len; j++) itemStr = '0' + itemStr;
+            return itemStr;
+        });
+    }
+    return fmt;
+}
+// 时间格式方法
 Date.prototype.Format = function (fmt) {
     var o = {
 
@@ -269,17 +292,56 @@ function uuid() {
 
     var uuid = s.join("");
     return uuid;
+};
+//获取一个DIV的绝对坐标的功能函数,即使是非绝对定位,一样能获取到
+function getElCoordinate(dom) {
+    var t = dom.offsetTop;
+    var l = dom.offsetLeft;
+    dom = dom.offsetParent;
+    while (dom) {
+        t += dom.offsetTop;
+        l += dom.offsetLeft;
+        dom = dom.offsetParent;
+    }; return {
+        top: t,
+        left: l
+    };
 }
-//父窗体方法
-Window.prototype.parentWindow = function () { //author: meizz
-    var index = parent.layer.getFrameIndex(this.name);
-    return window.top.iframesList[index];
-};
-function setIframeHeight(iframe) {
-    if (iframe) {
-        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-        if (iframeWin.document.body) {
-            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-        }
+//兼容各种浏览器的,获取鼠标真实位置
+function mousePosition(ev) {
+    if (!ev) ev = window.event;
+    if (ev.pageX || ev.pageY) {
+        return { x: ev.pageX, y: ev.pageY };
     }
-};
+    return {
+        x: ev.clientX + document.documentElement.scrollLeft - document.body.clientLeft,
+        y: ev.clientY + document.documentElement.scrollTop - document.body.clientTop
+    };
+}
+//货币分析成浮点数
+//alert(parseCurrency("￥1,900,000.12"));
+function parseCurrency(currentString) {
+    var regParser = /[\d\.]+/g;
+    var matches = currentString.match(regParser);
+    var result = '';
+    var dot = false;
+    for (var i = 0; i < matches.length; i++) {
+        var temp = matches[i];
+        if (temp == '.') {
+            if (dot) continue;
+        }
+        result += temp;
+    }
+    return parseFloat(result);
+}
+
+//将#XXXXXX颜色格式转换为RGB格式，并附加上透明度
+function brgba(hex, opacity) {
+    if (! /#?\d+/g.test(hex)) return hex; //如果是“red”格式的颜色值，则不转换。//正则错误，参考后面的PS内容
+    var h = hex.charAt(0) == "#" ? hex.substring(1) : hex,
+        r = parseInt(h.substring(0, 2), 16),
+        g = parseInt(h.substring(2, 4), 16),
+        b = parseInt(h.substring(4, 6), 16),
+        a = opacity;
+    return "rgba(" + r + "," + g + "," + b + "," + a + ")";
+}
