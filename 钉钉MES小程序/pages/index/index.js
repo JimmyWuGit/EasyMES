@@ -8,17 +8,17 @@ Page({
     menuList: null,
     arrIndex:0,
     objectArray:[
-    {
-      name:'测试工厂',
-      apiurl:'http://localhost:8082',
-      PhotoUrl:'http://localhost:8082/upload/'
-    },
-    {
-      name:'水之云',
-      apiurl:'http://106.75.169.226:8082',
-      PhotoUrl:'http://106.75.169.226:8082/upload/'
-    }
-  ],
+      {
+        name:'水之云',
+        apiurl:'http://106.75.169.226:8082',
+        PhotoUrl:'http://106.75.169.226:8082/upload/'
+      },
+      {
+        name:'测试工厂',
+        apiurl:'http://localhost:8082',
+        PhotoUrl:'http://localhost:8082/upload/'
+      }
+    ],
   },
   bringToFront(e) {
     const { value } = e.target.dataset;
