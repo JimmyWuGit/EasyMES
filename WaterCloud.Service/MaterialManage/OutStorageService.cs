@@ -254,7 +254,7 @@ namespace WaterCloud.Service.MaterialManage
         public async Task<List<MaterialEntity>> GetMaterialList(SoulPage<MaterialEntity> pagination, string keyword, string id)
         {
             //获取数据权限
-            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false && a.F_MaterialType>=1);
+            var list = uniwork.IQueryable<MaterialEntity>(a => a.F_DeleteMark == false);
             if (!string.IsNullOrEmpty(keyword))
             {
                 list = list.Where(t => t.F_MaterialCode.Contains(keyword) || t.F_MaterialName.Contains(keyword));

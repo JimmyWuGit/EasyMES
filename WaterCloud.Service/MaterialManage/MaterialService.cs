@@ -95,15 +95,8 @@ namespace WaterCloud.Service.MaterialManage
             }
             if (type!=null)
             {
-                if (type==-1)
-                {
-                    query = query.Where(u => u.F_MaterialType > 0);
-                }
-                else
-                {
-                    query = query.Where(u => u.F_MaterialType == type);
-                }
-            }
+				query = query.Where(u => u.F_MaterialType == type);
+			}
             if(!string.IsNullOrEmpty(id))
             {
                 query= query.Where(u=>u.F_Id==id);

@@ -43,7 +43,7 @@ namespace WaterCloud.Service.PlanManage
             }
             DateTime endTime = startTime.AddDays(CountDay);
             var datas = repository.IQueryable().Where(a => a.F_PlanTime >= startTime && a.F_PlanTime < endTime).ToList();
-            var datat = uniwork.IQueryable<MaterialEntity>(t => t.F_MaterialType == 2 && t.F_EnabledMark == true && t.F_DeleteMark == false ).OrderBy(t => t.F_MaterialCode).ToList();
+            var datat = uniwork.IQueryable<MaterialEntity>(t => t.F_MaterialType > 0 && t.F_EnabledMark == true && t.F_DeleteMark == false ).OrderBy(t => t.F_MaterialCode).ToList();
             var data = new List<Object>();
             foreach (var item in datat)
             {
