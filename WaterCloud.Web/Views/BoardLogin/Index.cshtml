@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="~/lib/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="~/css/login.css" media="all">
 </head>
-<body style="background-image: url(/images/bgs.jpg);">
+<body style="background-image: url(/images/mes.jpeg);">
     @*动画特效*@
     <div id="starsBox"></div>
     <div class="layui-container">
@@ -23,11 +23,11 @@
                     <h1>@ViewBag.ProjectName</h1>
                 </div>
                 <ul class="layui-tab-title">
-                    <li>账号密码登录</li>
-                    <li class="layui-this">钉钉登录</li>
+                    <li class="layui-this">账号密码登录</li>
+                    <li>钉钉登录</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item">
+                    <div class="layui-tab-item layui-show">
                         <div class="layui-form">
                             <form class="layui-form" action="">
                                 <div class="layui-form-item">
@@ -58,15 +58,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="layui-tab-item layui-show">
+                    <div class="layui-tab-item">
                         <div id="login_container">
 
                         </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <span>其他账号登录</span>
-                    @*<a style="vertical-align: middle;"><i class="dingicon"></i></a>*@
                 </div>
             </div>
         </div>
@@ -90,9 +86,6 @@
         else if (window.navigator.userAgent.includes("DingTalk")) {
             window.location.href = 'https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=' + appid + '&response_type=code&scope=snsapi_auth&state=STATE&redirect_uri=' + url;
         }
-        layui.use('element', function () {
-            var element = layui.element;
-        });
         //钉钉扫码登录
         var goto = encodeURIComponent('https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=' + appid + '&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=' + url);
         if (typeof DDLogin == 'function') {
@@ -235,11 +228,6 @@
                     layer = layui.layer;
                 // 登录过期的时候，跳出ifram框架
                 if (top.location != self.location) top.location = self.location;
-                element.on('tab(demo)', function (data) {
-                    $("#canvas").click();
-                    form.render();
-                });
-
                 // 进行登录操作
                 form.on('submit(login)', function (data) {
                     saveUserInfo();
