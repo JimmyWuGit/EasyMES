@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 using WaterCloud.Domain.SystemOrganize;
 using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 
 namespace WaterCloud.Web
 {
@@ -54,7 +55,26 @@ namespace WaterCloud.Web
 				config.SwaggerDoc("v1", new OpenApiInfo { Title = "WaterCloud Api", Version = "v1" });
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-				config.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）                
+				config.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
+				config.AddSecurityDefinition(GlobalContext.SystemConfig.TokenName, new OpenApiSecurityScheme
+				{
+					Description = "header token",
+					Name = GlobalContext.SystemConfig.TokenName,
+					In = ParameterLocation.Header,
+					Scheme = "",
+					Type = SecuritySchemeType.ApiKey,//设置类型
+					BearerFormat = ""
+				});
+				config.AddSecurityRequirement(new OpenApiSecurityRequirement
+				{
+					{
+						new OpenApiSecurityScheme
+						{
+							Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = GlobalContext.SystemConfig.TokenName }
+						},
+						new List<string>()
+					}
+				});
 			});
 			services.AddSession();
             //代替HttpContext.Current
