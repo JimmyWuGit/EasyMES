@@ -65,6 +65,7 @@
                     var materialBatch = "";
                     if (parentData[i].F_BatchType == 1) {
                         materialBatch = parentData[i].F_BatchPrefix + "-" + new Date().SmallFormat("yyMMDDhhmmss");
+                        $('#F_MaterialBatch').val(materialBatch);
                     }
                     else {
                         common.ajax({

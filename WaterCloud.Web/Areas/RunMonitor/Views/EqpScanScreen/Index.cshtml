@@ -205,78 +205,81 @@
             });
         }
         function getData() {
-            layui.use(['jquery', 'common'], function () {
-                var $ = layui.jquery,
-                    common = layui.common;
-                common.ajax({
-                    url: '/RunMonitor/EqpScanScreen/GetListJson',
-                    dataType: "json",
-                    data: { keyValue: keyValue },
-                    async: false,
-                    success: function (data) {
-                        //获取领料申请和当前托盘计数及当前工单产出
-                        $('#eqpJob').html('');
-                        $('#eqpState').html('');
-                        $('#eqpNowNum').html('');
-                        $('#eqpUse').html('');
-                        if (!!data.eqpUseJob) {
-                            var html = '';
-                            for (var i = 0; i < data.eqpUseJob.length; i++) {
-                                html += '<div class="box">' + '';
-                                if (data.eqpUseJob[i].F_JobState == 2) {
-                                    html += '<div class="boxcard statefinish">';
-                                    html += '<p>申请时间:' + data.eqpUseJob[i].F_CreatorTime + '</p>';
-                                    html += '<p>申请物料:' + data.eqpUseJob[i].F_MaterialName + '</p>';
-                                    html += '<p>申请数量:' + data.eqpUseJob[i].F_NeedNum + '</p>';
-                                    html += '<p>完成状态:已完成</p>';
+            if (!!keyValue) {
+                layui.use(['jquery', 'common'], function () {
+                    var $ = layui.jquery,
+                        common = layui.common;
+
+                    common.ajax({
+                        url: '/RunMonitor/EqpScanScreen/GetListJson',
+                        dataType: "json",
+                        data: { keyValue: keyValue },
+                        async: false,
+                        success: function (data) {
+                            //获取领料申请和当前托盘计数及当前工单产出
+                            $('#eqpJob').html('');
+                            $('#eqpState').html('');
+                            $('#eqpNowNum').html('');
+                            $('#eqpUse').html('');
+                            if (!!data.eqpUseJob) {
+                                var html = '';
+                                for (var i = 0; i < data.eqpUseJob.length; i++) {
+                                    html += '<div class="box">' + '';
+                                    if (data.eqpUseJob[i].F_JobState == 2) {
+                                        html += '<div class="boxcard statefinish">';
+                                        html += '<p>申请时间:' + data.eqpUseJob[i].F_CreatorTime + '</p>';
+                                        html += '<p>申请物料:' + data.eqpUseJob[i].F_MaterialName + '</p>';
+                                        html += '<p>申请数量:' + data.eqpUseJob[i].F_NeedNum + '</p>';
+                                        html += '<p>完成状态:已完成</p>';
+                                    }
+                                    else {
+                                        html += '<div class="boxcard statedoing">';
+                                        html += '<p>申请时间:' + data.eqpUseJob[i].F_CreatorTime + '</p>';
+                                        html += '<p>申请物料:' + data.eqpUseJob[i].F_MaterialName + '</p>';
+                                        html += '<p>申请数量:' + data.eqpUseJob[i].F_NeedNum + '</p>';
+                                        html += '<p>完成状态:进行中</p>';
+                                    }
+                                    html += '<div class="boxfoot"></div>';
+                                    html += '</div>';
+                                    html += '</div>';
                                 }
-                                else {
-                                    html += '<div class="boxcard statedoing">';
-                                    html += '<p>申请时间:' + data.eqpUseJob[i].F_CreatorTime + '</p>';
-                                    html += '<p>申请物料:' + data.eqpUseJob[i].F_MaterialName + '</p>';
-                                    html += '<p>申请数量:' + data.eqpUseJob[i].F_NeedNum + '</p>';
-                                    html += '<p>完成状态:进行中</p>';
+                                $('#eqpJob').html(html);
+                            }
+                            var html0 = '';
+                            html0 += '<p>当前设备:' + data.F_EqpName + '</p>';
+                            html0 += '<p>值班人:' + data.workusers + '</p>';
+                            html0 += '<p>班次:' + data.dateClass + '</p>';
+                            if (!!data.workorders) {
+                                for (var i = 0; i < data.workorders.length; i++) {
+                                    html0 += '<p>生产物料:' + data.workorders[i].F_MaterialName + '</p>';
+                                    html0 += '<p>当前产量:' + data.workorders[i].F_DoneNum + '</p>';
                                 }
-                                html += '<div class="boxfoot"></div>';
-                                html += '</div>';
-                                html += '</div>';
                             }
-                            $('#eqpJob').html(html);
-                        }
-                        var html0 = '';
-                        html0 += '<p>当前设备:' + data.F_EqpName + '</p>';
-                        html0 += '<p>值班人:' + data.workusers + '</p>';
-                        html0 += '<p>班次:' + data.dateClass + '</p>';
-                        if (!!data.workorders) {
-                            for (var i = 0; i < data.workorders.length; i++) {
-                                html0 += '<p>生产物料:' + data.workorders[i].F_MaterialName + '</p>';
-                                html0 += '<p>当前产量:' + data.workorders[i].F_DoneNum + '</p>';
+                            html0 += '<div class="boxfoot"></div>';
+                            $('#eqpState').html(html0);
+                            var html1 = '';
+                            if (!!data.transferbox) {
+                                html1 += '<p>当前容器:' + data.transferbox.F_TransferBoxCode + '</p>';
                             }
-                        }
-                        html0 += '<div class="boxfoot"></div>';
-                        $('#eqpState').html(html0);
-                        var html1 = '';
-                        if (!!data.transferbox) {
-                            html1 += '<p>当前容器:' + data.transferbox.F_TransferBoxCode + '</p>';
-                        }
-                        else {
-                            html1 += '<p>当前容器:' + '----' + '</p>';
-                        }
-                        html1 += '<p>产出计数:' + '----' + '</p>';
-                        html1 += '<div class="boxfoot"></div>';
-                        $('#eqpNowNum').html(html1);
-                        var html2 = '';
-                        if (!!data.eqpUse) {
-                            for (var i = 0; i < data.eqpUse.length; i++) {
-                                html2 += '<p>工位物料:' + data.eqpUse[i].F_MaterialName + '</p>';
-                                html2 += '<p>剩余数量:' + data.eqpUse[i].Num + '</p>';
+                            else {
+                                html1 += '<p>当前容器:' + '----' + '</p>';
                             }
+                            html1 += '<p>产出计数:' + '----' + '</p>';
+                            html1 += '<div class="boxfoot"></div>';
+                            $('#eqpNowNum').html(html1);
+                            var html2 = '';
+                            if (!!data.eqpUse) {
+                                for (var i = 0; i < data.eqpUse.length; i++) {
+                                    html2 += '<p>工位物料:' + data.eqpUse[i].F_MaterialName + '</p>';
+                                    html2 += '<p>剩余数量:' + data.eqpUse[i].Num + '</p>';
+                                }
+                            }
+                            html2 += '<div class="boxfoot"></div>';
+                            $('#eqpUse').html(html2);
                         }
-                        html2 += '<div class="boxfoot"></div>';
-                        $('#eqpUse').html(html2);
-                    }
+                    });
                 });
-            });
+            }
         }
         $(function () {
             getData();
