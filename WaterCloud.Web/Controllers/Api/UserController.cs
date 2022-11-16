@@ -219,6 +219,10 @@ namespace WaterCloud.Web.Controllers
             {
                 request.localurl = "";
             }
+            if (GlobalContext.SystemConfig.SysemUserCode == request.userName)
+            {
+                throw new Exception("禁止使用超管账号");
+            }
             try
             {
                 if (!await CheckIP())
