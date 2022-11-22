@@ -67,10 +67,13 @@ namespace WaterCloud.Service.MaterialManage
         public async Task SubmitForm(BomFormEntity entity, string listData)
         {
             uniwork.BeginTrans();
-            await repository.Delete(a => a.F_BomType == 1 && a.F_MaterialId == entity.F_MaterialId && a.F_ProcessId == entity.F_ProcessId);
+            if (await uniwork.IQueryable<MaterialEntity>(a => a.F_Id == entity.F_MaterialId && a.F_MaterialType == 0).AnyAsync())
+                throw new Exception("原料不能有bom构成");
             if (!string.IsNullOrEmpty(listData))
             {
                 var list = listData.ToList<BomFormEntity>();
+                if (list.Any(a=>a.F_SonMaterialId == a.F_MaterialId))
+                    throw new Exception("bom构物料异常");
                 foreach (var item in list)
                 {
                     item.Create();
@@ -79,12 +82,15 @@ namespace WaterCloud.Service.MaterialManage
                     item.F_DeleteMark = false;
                     item.F_BomType = 1;
                 }
+                await repository.Delete(a => a.F_BomType == 1 && a.F_MaterialId == entity.F_MaterialId && a.F_ProcessId == entity.F_ProcessId);
                 await repository.Insert(list);
             }
             uniwork.Commit();
         }
         public async Task DeleteForm(string itemId, string keyValue)
         {
+            if (string.IsNullOrEmpty(keyValue))
+                await repository.Delete(a => a.F_BomType == 1 && a.F_MaterialId == itemId);
             await repository.Delete(a => a.F_BomType == 1 && a.F_MaterialId == itemId && a.F_ProcessId == keyValue);
         }
         #endregion

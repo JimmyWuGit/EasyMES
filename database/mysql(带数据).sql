@@ -4563,5 +4563,7 @@ CREATE TABLE `sys_userlogon`  (
 INSERT INTO `sys_userlogon` VALUES ('08d96e82-89ea-4ed8-89fb-9520423dbcf7', '08d96e82-89ea-4ed8-89fb-9520423dbcf7', '107b8ef72a5ee9b734d89c8617fa4c1c', '1eacb75a6c6118fd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `sys_userlogon` VALUES ('08dab311-971f-40e5-8f63-83a1e1b16a44', '08dab311-971f-40e5-8f63-83a1e1b16a44', 'f8bf369a1f87f62355e5f9ecd9f83c85', '9c44480ef4a92f2f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `sys_userlogon` VALUES ('9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '52c6b3f2456d7a6e4ce848c38bb0a228', 'b648e3d3de301b49', NULL, NULL, NULL, NULL, NULL, '2020-04-17 14:47:44', '2020-04-17 14:59:58', NULL, 0, 360, 0, NULL, NULL, 0, NULL, NULL, 'evrcyibdv42f3ykhfy1yz3ur', 0);
+INSERT INTO `sys_modulebutton` VALUES ('08d9a4b8-24a5-4b3e-8682-169a9ab29c05', '39226710-b665-489e-aaa0-a8c15d29ed4c', '0', 1, 'NF-delete', '删除', NULL, 1, 'delete', '/MaterialManage/BomInfo/DeleteForm', NULL, 0, 0, 0, 1, 0, 1, '', '2021-11-11 10:08:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '');
+
 
 SET FOREIGN_KEY_CHECKS = 1;

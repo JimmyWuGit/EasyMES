@@ -12587,3 +12587,5 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW
 ON [PRIMARY]
 GO
 
+INSERT INTO [dbo].[sys_ModuleButton] ([F_Id], [F_ModuleId], [F_ParentId], [F_Layers], [F_EnCode], [F_FullName], [F_Icon], [F_Location], [F_JsEvent], [F_UrlAddress], [F_Split], [F_IsPublic], [F_AllowEdit], [F_AllowDelete], [F_SortCode], [F_DeleteMark], [F_EnabledMark], [F_Description], [F_CreatorTime], [F_CreatorUserId], [F_LastModifyTime], [F_LastModifyUserId], [F_DeleteTime], [F_DeleteUserId], [F_Authorize]) VALUES (N'08d9a4b8-24a5-4b3e-8682-169a9ab29c05', N'39226710-b665-489e-aaa0-a8c15d29ed4c', N'0', N'1', N'NF-delete', N'删除', NULL, N'1', N'delete', N'/MaterialManage/BomInfo/DeleteForm', NULL, N'0', N'0', N'0', N'2', N'0', N'1', N'', N'2021-11-11 10:08:25.0000000', N'9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, N'')
+GO

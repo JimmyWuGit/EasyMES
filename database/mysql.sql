@@ -3435,5 +3435,6 @@ CREATE TABLE `sys_userlogon`  (
 -- Records of sys_userlogon
 -- ----------------------------
 INSERT INTO `sys_userlogon` VALUES ('9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', '52c6b3f2456d7a6e4ce848c38bb0a228', 'b648e3d3de301b49', NULL, NULL, NULL, NULL, NULL, '2020-04-17 14:47:44', '2020-04-17 14:59:58', NULL, 0, 360, 0, NULL, NULL, 0, NULL, NULL, 'evrcyibdv42f3ykhfy1yz3ur', 0);
+INSERT INTO `sys_modulebutton` VALUES ('08d9a4b8-24a5-4b3e-8682-169a9ab29c05', '39226710-b665-489e-aaa0-a8c15d29ed4c', '0', 1, 'NF-delete', '删除', NULL, 1, 'delete', '/MaterialManage/BomInfo/DeleteForm', NULL, 0, 0, 0, 1, 0, 1, '', '2021-11-11 10:08:25', '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', NULL, NULL, NULL, NULL, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
